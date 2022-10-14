@@ -143,6 +143,17 @@
               $("#mysidebar").navgoco('toggle', true);
           });
 
+          $(".sidebar-nav-container").on("scroll", function() {
+            $.cookie("sidebarScroll", $(".sidebar-nav-container").scrollTop(), {
+              path    : "/us-en/netapp-solutions"  
+            });
+          });
+          $(function() {
+            if ($.cookie("sidebarScroll")) {
+              $(".sidebar-nav-container").scrollTop($.cookie("sidebarScroll"));
+            }
+          });
+
       });
 
   </script>
@@ -4235,7 +4246,7 @@
     ><a href="/us-en/netapp-solutions/ai/index.html">
         <div class="na-navbar-padding"> Artificial Intelligence</div>
       </a>
-      <ul>
+      <ul style="display: none;">
         <li 
       data-pdf-exists="true" 
       data-pdf-filename="AI Converged Infrastructures"
@@ -4244,7 +4255,7 @@
     ><a href="#">
         <div class="na-navbar-padding"> AI Converged Infrastructures</div>
       </a>
-      <ul>
+      <ul style="display: none;">
         <li 
       data-pdf-exists="true" 
       data-pdf-filename="ONTAP AI with NVIDIA"
@@ -4253,7 +4264,7 @@
     ><a href="/us-en/netapp-solutions/ai/ontap-ai-overview.html">
         <div class="na-navbar-padding"> ONTAP AI with NVIDIA</div>
       </a>
-      <ul>
+      <ul style="display: none;">
         <li 
       data-pdf-exists="true" 
       data-pdf-filename="ONTAP AI with NVIDIA DGX A100 Systems Design Guide"
@@ -4262,25 +4273,25 @@
     ><a class="na-navbar-padding" href="/us-en/netapp-solutions/ai/nva-1151-design-link.html">
         ONTAP AI with NVIDIA DGX A100 Systems Design Guide
       </a></li><li 
-      data-pdf-exists="false" 
+      data-pdf-exists="true" 
       data-pdf-filename="ONTAP AI with NVIDIA DGX A100 Systems Deployment Guide"
       data-li-level="4#" 
       class=" "
-    ><a class="na-navbar-padding" href="https://www.netapp.com/pdf.html?item=/media/20708-nva-1151-deploy.pdf">
+    ><a class="na-navbar-padding" href="/us-en/netapp-solutions/ai/nva-1151-deploy-link.html">
         ONTAP AI with NVIDIA DGX A100 Systems Deployment Guide
       </a></li><li 
-      data-pdf-exists="false" 
+      data-pdf-exists="true" 
       data-pdf-filename="ONTAP AI with NVIDIA DGX A100 Systems and Mellanox Spectrum Ethernet Switches Design Guide"
       data-li-level="4#" 
       class=" "
-    ><a class="na-navbar-padding" href="https://www.netapp.com/pdf.html?item=/media/21793-nva-1153-design.pdf">
+    ><a class="na-navbar-padding" href="/us-en/netapp-solutions/ai/nva-1153-design-link.html">
         ONTAP AI with NVIDIA DGX A100 Systems and Mellanox Spectrum Ethernet Switches Design Guide
       </a></li><li 
-      data-pdf-exists="false" 
+      data-pdf-exists="true" 
       data-pdf-filename="ONTAP AI with NVIDIA DGX A100 Systems and Mellanox Spectrum Ethernet Switches Deployment Guide"
       data-li-level="4#" 
       class=" "
-    ><a class="na-navbar-padding" href="https://www.netapp.com/pdf.html?item=/media/21789-nva-1153-deploy.pdf">
+    ><a class="na-navbar-padding" href="/us-en/netapp-solutions/ai/nva-1153-deploy-link.html">
         ONTAP AI with NVIDIA DGX A100 Systems and Mellanox Spectrum Ethernet Switches Deployment Guide
       </a></li></ul></li><li 
       data-pdf-exists="true" 
@@ -4290,20 +4301,20 @@
     ><a href="/us-en/netapp-solutions/ai/ef-series-ai-overview.html">
         <div class="na-navbar-padding"> EF-Series AI with NVIDIA</div>
       </a>
-      <ul>
+      <ul style="display: none;">
         <li 
-      data-pdf-exists="false" 
+      data-pdf-exists="true" 
       data-pdf-filename="EF-Series AI with NVIDIA DGX A100 Systems and BeeGFS Design"
       data-li-level="4#" 
       class=" "
-    ><a class="na-navbar-padding" href="https://www.netapp.com/pdf.html?item=/media/25445-nva-1156-design.pdf">
+    ><a class="na-navbar-padding" href="/us-en/netapp-solutions/ai/nva-1156-design-link.html">
         EF-Series AI with NVIDIA DGX A100 Systems and BeeGFS Design
       </a></li><li 
-      data-pdf-exists="false" 
+      data-pdf-exists="true" 
       data-pdf-filename="EF-Series AI with NVIDIA DGX A100 Systems and BeeGFS Deployment"
       data-li-level="4#" 
       class=" "
-    ><a class="na-navbar-padding" href="https://www.netapp.com/pdf.html?item=/media/25574-nva-1156-deploy.pdf">
+    ><a class="na-navbar-padding" href="/us-en/netapp-solutions/ai/nva-1156-deploy-link.html">
         EF-Series AI with NVIDIA DGX A100 Systems and BeeGFS Deployment
       </a></li><li 
       data-pdf-exists="false" 
@@ -4320,25 +4331,25 @@
     ><a class="na-navbar-padding" href="https://www.netapp.com/us/media/tr-4782.pdf">
         BeeGFS with NetApp E-Series Reference Architecture
       </a></li><li 
-      data-pdf-exists="false" 
+      data-pdf-exists="true" 
       data-pdf-filename="Deploying IBM Spectrum Scale with NetApp E-Series Storage"
       data-li-level="3#" 
       class=" "
-    ><a class="na-navbar-padding" href="https://www.netapp.com/pdf.html?item=/media/22029-tr-4859.pdf">
+    ><a class="na-navbar-padding" href="/us-en/netapp-solutions/ai/tr-4859-link.html">
         Deploying IBM Spectrum Scale with NetApp E-Series Storage
       </a></li><li 
-      data-pdf-exists="false" 
+      data-pdf-exists="true" 
       data-pdf-filename="NetApp ONTAP and Lenovo ThinkSystem SR670 for AI and ML Model Training Workloads"
       data-li-level="3#" 
       class=" "
-    ><a class="na-navbar-padding" href="https://www.netapp.com/media/17115-tr-4810.pdf">
+    ><a class="na-navbar-padding" href="/us-en/netapp-solutions/ai/tr-4810-link.html">
         NetApp ONTAP and Lenovo ThinkSystem SR670 for AI and ML Model Training Workloads
       </a></li><li 
-      data-pdf-exists="false" 
+      data-pdf-exists="true" 
       data-pdf-filename="NetApp AFF A800 and Fujitsu Server PRIMERGY GX2570 M5 for AI and ML Model Training Workloads"
       data-li-level="3#" 
       class=" "
-    ><a class="na-navbar-padding" href="https://www.netapp.com/pdf.html?item=/media/17215-tr4815.pdf">
+    ><a class="na-navbar-padding" href="/us-en/netapp-solutions/ai/tr-4815-link.html">
         NetApp AFF A800 and Fujitsu Server PRIMERGY GX2570 M5 for AI and ML Model Training Workloads
       </a></li></ul></li><li 
       data-pdf-exists="true" 
@@ -4348,7 +4359,7 @@
     ><a href="#">
         <div class="na-navbar-padding"> Data Pipelines, Data Lakes and Management</div>
       </a>
-      <ul>
+      <ul style="display: none;">
         <li 
       data-pdf-exists="true" 
       data-pdf-filename="NVIDIA AI Enterprise with NetApp and VMware"
@@ -4357,7 +4368,7 @@
     ><a href="#">
         <div class="na-navbar-padding"> NVIDIA AI Enterprise with NetApp and VMware</div>
       </a>
-      <ul>
+      <ul style="display: none;">
         <li 
       data-pdf-exists="true" 
       data-pdf-filename="Introduction"
@@ -4394,7 +4405,7 @@
     ><a href="/us-en/netapp-solutions/ai/nvaie_ngc.html">
         <div class="na-navbar-padding"> Utilize NVIDIA NGC Software</div>
       </a>
-      <ul>
+      <ul style="display: none;">
         <li 
       data-pdf-exists="true" 
       data-pdf-filename="Setup"
@@ -4417,11 +4428,11 @@
     ><a class="na-navbar-padding" href="/us-en/netapp-solutions/ai/nvaie_additional_information.html">
         Where to Find Additional Information
       </a></li></ul></li><li 
-      data-pdf-exists="false" 
+      data-pdf-exists="true" 
       data-pdf-filename="NetApp StorageGRID Data Lake for Autonomous Driving Workloads"
       data-li-level="3#" 
       class=" "
-    ><a class="na-navbar-padding" href="http://www.netapp.com/us/media/tr-4851.pdf">
+    ><a class="na-navbar-padding" href="/us-en/netapp-solutions/ai/tr-4851-link.html">
         NetApp StorageGRID Data Lake for Autonomous Driving Workloads
       </a></li><li 
       data-pdf-exists="true" 
@@ -4431,7 +4442,7 @@
     ><a href="#">
         <div class="na-navbar-padding"> NetApp AI Control Plane</div>
       </a>
-      <ul>
+      <ul style="display: none;">
         <li 
       data-pdf-exists="true" 
       data-pdf-filename="Introduction"
@@ -4468,7 +4479,7 @@
     ><a href="/us-en/netapp-solutions/ai/aicp_netapp_trident_deployment_and_configuration_overview.html">
         <div class="na-navbar-padding"> NetApp Trident Deployment and Configuration</div>
       </a>
-      <ul>
+      <ul style="display: none;">
         <li 
       data-pdf-exists="true" 
       data-pdf-filename="Trident Deployment"
@@ -4505,7 +4516,7 @@
     ><a href="/us-en/netapp-solutions/ai/aicp_example_kubeflow_operations_and_tasks_overview.html">
         <div class="na-navbar-padding"> Example Kubeflow Operations and Tasks</div>
       </a>
-      <ul>
+      <ul style="display: none;">
         <li 
       data-pdf-exists="true" 
       data-pdf-filename="Overview"
@@ -4556,7 +4567,7 @@
     ><a href="/us-en/netapp-solutions/ai/aicp_example_high-performance_jobs_for_ontap_ai_deployments_overview.html">
         <div class="na-navbar-padding"> Example High-performance Jobs for ONTAP AI Deployments</div>
       </a>
-      <ul>
+      <ul style="display: none;">
         <li 
       data-pdf-exists="true" 
       data-pdf-filename="Overview"
@@ -4600,7 +4611,7 @@
     ><a href="#">
         <div class="na-navbar-padding"> MLRun Pipeline with Iguazio</div>
       </a>
-      <ul>
+      <ul style="display: none;">
         <li 
       data-pdf-exists="true" 
       data-pdf-filename="Introduction"
@@ -4637,7 +4648,7 @@
     ><a href="/us-en/netapp-solutions/ai/mlrun_setup_overview.html">
         <div class="na-navbar-padding"> Setup</div>
       </a>
-      <ul>
+      <ul style="display: none;">
         <li 
       data-pdf-exists="true" 
       data-pdf-filename="Configuring Kubernetes Cluster"
@@ -4660,7 +4671,7 @@
     ><a href="/us-en/netapp-solutions/ai/mlrun_deploying_the_application.html">
         <div class="na-navbar-padding"> Deploying the Application</div>
       </a>
-      <ul>
+      <ul style="display: none;">
         <li 
       data-pdf-exists="true" 
       data-pdf-filename="Get Code from GitHub"
@@ -4704,11 +4715,11 @@
     ><a class="na-navbar-padding" href="https://github.com/NetApp/netapp-dataops-toolkit">
         NetApp DataOps Toolkit
       </a></li><li 
-      data-pdf-exists="false" 
+      data-pdf-exists="true" 
       data-pdf-filename="Data Movement with E-Series and BeeGFS for AI and Analytics Workflows"
       data-li-level="3#" 
       class=" "
-    ><a class="na-navbar-padding" href="https://www.netapp.com/pdf.html?item=/media/65882-tr-4915.pdf">
+    ><a class="na-navbar-padding" href="/us-en/netapp-solutions/ai/tr-4915-link.html">
         Data Movement with E-Series and BeeGFS for AI and Analytics Workflows
       </a></li></ul></li><li 
       data-pdf-exists="true" 
@@ -4718,7 +4729,7 @@
     ><a href="#">
         <div class="na-navbar-padding"> Use Cases</div>
       </a>
-      <ul>
+      <ul style="display: none;">
         <li 
       data-pdf-exists="true" 
       data-pdf-filename="Responsible AI and confidential inferencing - NetApp AI with Protopia Image Transformation"
@@ -4727,7 +4738,7 @@
     ><a href="#">
         <div class="na-navbar-padding"> Responsible AI and confidential inferencing - NetApp AI with Protopia Image Transformation</div>
       </a>
-      <ul>
+      <ul style="display: none;">
         <li 
       data-pdf-exists="true" 
       data-pdf-filename="Overview"
@@ -4806,7 +4817,7 @@
     ><a href="#">
         <div class="na-navbar-padding"> Sentiment analysis with NetApp AI</div>
       </a>
-      <ul>
+      <ul style="display: none;">
         <li 
       data-pdf-exists="true" 
       data-pdf-filename="Introduction"
@@ -4878,7 +4889,7 @@
     ><a href="#">
         <div class="na-navbar-padding"> Distributed training in Azure - Click-Through Rate Prediction</div>
       </a>
-      <ul>
+      <ul style="display: none;">
         <li 
       data-pdf-exists="true" 
       data-pdf-filename="Introduction"
@@ -4922,7 +4933,7 @@
     ><a href="#">
         <div class="na-navbar-padding"> Setup</div>
       </a>
-      <ul>
+      <ul style="display: none;">
         <li 
       data-pdf-exists="true" 
       data-pdf-filename="Install and set up the AKS cluster"
@@ -4973,7 +4984,7 @@
     ><a href="#">
         <div class="na-navbar-padding"> Click through rate prediction data processing and model training</div>
       </a>
-      <ul>
+      <ul style="display: none;">
         <li 
       data-pdf-exists="true" 
       data-pdf-filename="Libraries for data processing and model training"
@@ -5059,7 +5070,7 @@
     ><a href="/us-en/netapp-solutions/ai/runai-ld_executive_summary.html">
         <div class="na-navbar-padding"> Distributed Azure training - Lane detection</div>
       </a>
-      <ul>
+      <ul style="display: none;">
         <li 
       data-pdf-exists="true" 
       data-pdf-filename="Solution overview"
@@ -5096,7 +5107,7 @@
     ><a href="/us-en/netapp-solutions/ai/hcaios_executive_summary.html">
         <div class="na-navbar-padding"> Hybrid Cloud AI Operating System with Data Caching</div>
       </a>
-      <ul>
+      <ul style="display: none;">
         <li 
       data-pdf-exists="true" 
       data-pdf-filename="Use Case Overview and Problem Statement"
@@ -5133,7 +5144,7 @@
     ><a href="/us-en/netapp-solutions/ai/hcaios_solution_deployment_and_validation_details.html">
         <div class="na-navbar-padding"> Solution Deployment and Validation Details</div>
       </a>
-      <ul>
+      <ul style="display: none;">
         <li 
       data-pdf-exists="true" 
       data-pdf-filename="ONTAP AI Deployment"
@@ -5191,7 +5202,7 @@
     ><a href="#">
         <div class="na-navbar-padding"> AI Inferencing at the Edge - NetApp with Lenovo ThinkSystem - Solution Design</div>
       </a>
-      <ul>
+      <ul style="display: none;">
         <li 
       data-pdf-exists="true" 
       data-pdf-filename="Introduction"
@@ -5256,7 +5267,7 @@
     ><a href="/us-en/netapp-solutions/ai/cainvidia_executive_summary.html">
         <div class="na-navbar-padding"> Conversational AI using NVIDIA</div>
       </a>
-      <ul>
+      <ul style="display: none;">
         <li 
       data-pdf-exists="true" 
       data-pdf-filename="Solution Overview"
@@ -5279,7 +5290,7 @@
     ><a href="/us-en/netapp-solutions/ai/cainvidia_build_a_virtual_assistant_using_jarvis,_cloud_sync,_and_nemo_overview.html">
         <div class="na-navbar-padding"> Build a Virtual Assistant Using Jarvis, Cloud Sync, and NeMo</div>
       </a>
-      <ul>
+      <ul style="display: none;">
         <li 
       data-pdf-exists="true" 
       data-pdf-filename="Jarvis Deployment"
@@ -5351,7 +5362,7 @@
     ><a href="/us-en/netapp-solutions/ai/osrunai_executive_summary.html">
         <div class="na-navbar-padding"> NetApp Orchestration Solution with Run:AI</div>
       </a>
-      <ul>
+      <ul style="display: none;">
         <li 
       data-pdf-exists="true" 
       data-pdf-filename="Solution Overview"
@@ -5374,7 +5385,7 @@
     ><a href="/us-en/netapp-solutions/ai/osrunai_optimal_cluster_and_gpu_utilization_with_run_ai_overview.html">
         <div class="na-navbar-padding"> Optimal Cluster and GPU Utilization with Run AI</div>
       </a>
-      <ul>
+      <ul style="display: none;">
         <li 
       data-pdf-exists="true" 
       data-pdf-filename="Run AI Installation"
@@ -5481,46 +5492,46 @@
     ><a class="na-navbar-padding" href="/us-en/netapp-solutions/ai/osrunai_where_to_find_additional_information.html">
         Where to Find Additional Information
       </a></li></ul></li><li 
-      data-pdf-exists="false" 
+      data-pdf-exists="true" 
       data-pdf-filename="NetApp ONTAP AI for Autonomous Driving Workloads Solution Design"
       data-li-level="3#" 
       class=" "
-    ><a class="na-navbar-padding" href="http://www.netapp.com/us/media/tr-4799-design.pdf">
+    ><a class="na-navbar-padding" href="/us-en/netapp-solutions/ai/tr-4799-link.html">
         NetApp ONTAP AI for Autonomous Driving Workloads Solution Design
       </a></li><li 
-      data-pdf-exists="false" 
+      data-pdf-exists="true" 
       data-pdf-filename="NetApp ONTAP AI Reference Architecture for Healthcare: Diagnostic Imaging"
       data-li-level="3#" 
       class=" "
-    ><a class="na-navbar-padding" href="https://www.netapp.com/pdf.html?item=/media/7395-tr4811.pdf">
+    ><a class="na-navbar-padding" href="/us-en/netapp-solutions/ai/tr-4811-link.html">
         NetApp ONTAP AI Reference Architecture for Healthcare: Diagnostic Imaging
       </a></li><li 
-      data-pdf-exists="false" 
+      data-pdf-exists="true" 
       data-pdf-filename="NetApp ONTAP AI Reference Architecture for Financial Services Workloads"
       data-li-level="3#" 
       class=" "
-    ><a class="na-navbar-padding" href="https://www.netapp.com/pdf.html?item=/media/17205-tr4807pdf.pdf">
+    ><a class="na-navbar-padding" href="/us-en/netapp-solutions/ai/tr-4807-link.html">
         NetApp ONTAP AI Reference Architecture for Financial Services Workloads
       </a></li><li 
-      data-pdf-exists="false" 
+      data-pdf-exists="true" 
       data-pdf-filename="AI Deployment with NetApp E-Series and BeeGFS"
       data-li-level="3#" 
       class=" "
-    ><a class="na-navbar-padding" href="https://www.netapp.com/us/media/tr-4785.pdf">
+    ><a class="na-navbar-padding" href="/us-en/netapp-solutions/ai/tr-4785-link.html">
         AI Deployment with NetApp E-Series and BeeGFS
       </a></li><li 
-      data-pdf-exists="false" 
+      data-pdf-exists="true" 
       data-pdf-filename="Quantum StorNext with NetApp E-Series Systems Design Guide"
       data-li-level="3#" 
       class=" "
-    ><a class="na-navbar-padding" href="https://www.netapp.com/pdf.html?item=/media/19426-nva-1150-design.pdf">
+    ><a class="na-navbar-padding" href="/us-en/netapp-solutions/ai/nva-1150-design-link.html">
         Quantum StorNext with NetApp E-Series Systems Design Guide
       </a></li><li 
-      data-pdf-exists="false" 
+      data-pdf-exists="true" 
       data-pdf-filename="Quantum StorNext with NetApp E-Series Systems Deployment Guide"
       data-li-level="3#" 
       class=" "
-    ><a class="na-navbar-padding" href="https://www.netapp.com/pdf.html?item=/media/19429-nva-1150-deploy.pdf">
+    ><a class="na-navbar-padding" href="/us-en/netapp-solutions/ai/nva-1150-deploy-link.html">
         Quantum StorNext with NetApp E-Series Systems Deployment Guide
       </a></li></ul></li></ul></li><li 
       data-pdf-exists="true" 
@@ -5530,7 +5541,7 @@
     ><a href="/us-en/netapp-solutions/containers/index.html">
         <div class="na-navbar-padding"> Containers</div>
       </a>
-      <ul>
+      <ul style="display: none;">
         <li 
       data-pdf-exists="true" 
       data-pdf-filename="Anthos with NetApp"
@@ -5539,7 +5550,7 @@
     ><a href="/us-en/netapp-solutions/containers/anthos-with-netapp/a-w-n_solution_overview.html">
         <div class="na-navbar-padding"> Anthos with NetApp</div>
       </a>
-      <ul>
+      <ul style="display: none;">
         <li 
       data-pdf-exists="true" 
       data-pdf-filename="Anthos Overview"
@@ -5548,7 +5559,7 @@
     ><a href="/us-en/netapp-solutions/containers/anthos-with-netapp/a-w-n_overview_anthos.html">
         <div class="na-navbar-padding"> Anthos Overview</div>
       </a>
-      <ul>
+      <ul style="display: none;">
         <li 
       data-pdf-exists="true" 
       data-pdf-filename="Anthos Clusters on VMware"
@@ -5571,7 +5582,7 @@
     ><a href="/us-en/netapp-solutions/containers/anthos-with-netapp/a-w-n_overview_netapp.html">
         <div class="na-navbar-padding"> NetApp Storage Systems Overview</div>
       </a>
-      <ul>
+      <ul style="display: none;">
         <li 
       data-pdf-exists="true" 
       data-pdf-filename="NetApp ONTAP"
@@ -5594,7 +5605,7 @@
     ><a href="/us-en/netapp-solutions/containers/anthos-with-netapp/a-w-n_overview_storint.html">
         <div class="na-navbar-padding"> NetApp Storage Integrations Overview</div>
       </a>
-      <ul>
+      <ul style="display: none;">
         <li 
       data-pdf-exists="true" 
       data-pdf-filename="NetApp Astra Trident Overview"
@@ -5603,7 +5614,7 @@
     ><a href="/us-en/netapp-solutions/containers/anthos-with-netapp/a-w-n_overview_trident.html">
         <div class="na-navbar-padding"> NetApp Astra Trident Overview</div>
       </a>
-      <ul>
+      <ul style="display: none;">
         <li 
       data-pdf-exists="true" 
       data-pdf-filename="NetApp ONTAP NFS"
@@ -5633,7 +5644,7 @@
     ><a href="/us-en/netapp-solutions/containers/anthos-with-netapp/a-w-n_overview_advanced.html">
         <div class="na-navbar-padding"> Advanced Configuration Options For Anthos</div>
       </a>
-      <ul>
+      <ul style="display: none;">
         <li 
       data-pdf-exists="true" 
       data-pdf-filename="Exploring Load Balancer Options"
@@ -5642,7 +5653,7 @@
     ><a href="/us-en/netapp-solutions/containers/anthos-with-netapp/a-w-n_load_balancers.html">
         <div class="na-navbar-padding"> Exploring Load Balancer Options</div>
       </a>
-      <ul>
+      <ul style="display: none;">
         <li 
       data-pdf-exists="true" 
       data-pdf-filename="Installing F5 BIG-IP load balancers"
@@ -5693,7 +5704,7 @@
     ><a href="/us-en/netapp-solutions/containers/devops_with_netapp/dwn_solution_overview.html">
         <div class="na-navbar-padding"> DevOps with NetApp Astra</div>
       </a>
-      <ul>
+      <ul style="display: none;">
         <li 
       data-pdf-exists="true" 
       data-pdf-filename="DevOps Overview"
@@ -5709,7 +5720,7 @@
     ><a href="/us-en/netapp-solutions/containers/devops_with_netapp/dwn_overview_netapp.html">
         <div class="na-navbar-padding"> NetApp Storage Systems Overview</div>
       </a>
-      <ul>
+      <ul style="display: none;">
         <li 
       data-pdf-exists="true" 
       data-pdf-filename="NetApp ONTAP"
@@ -5725,7 +5736,7 @@
     ><a href="/us-en/netapp-solutions/containers/devops_with_netapp/dwn_overview_storint.html">
         <div class="na-navbar-padding"> NetApp Storage Integrations Overview</div>
       </a>
-      <ul>
+      <ul style="display: none;">
         <li 
       data-pdf-exists="true" 
       data-pdf-filename="NetApp Astra Control Center Overview"
@@ -5748,7 +5759,7 @@
     ><a href="/us-en/netapp-solutions/containers/devops_with_netapp/dwn_use_cases_overview.html">
         <div class="na-navbar-padding"> Use Case Validations</div>
       </a>
-      <ul>
+      <ul style="display: none;">
         <li 
       data-pdf-exists="true" 
       data-pdf-filename="Integrate Protection into CI/CD Pipelines with NetApp Astra Control"
@@ -5792,7 +5803,7 @@
     ><a href="/us-en/netapp-solutions/containers/rh-os-n_solution_overview.html">
         <div class="na-navbar-padding"> Red Hat OpenShift with NetApp</div>
       </a>
-      <ul>
+      <ul style="display: none;">
         <li 
       data-pdf-exists="true" 
       data-pdf-filename="Red Hat Openshift Overview"
@@ -5801,7 +5812,7 @@
     ><a href="/us-en/netapp-solutions/containers/rh-os-n_overview_openshift.html">
         <div class="na-navbar-padding"> Red Hat Openshift Overview</div>
       </a>
-      <ul>
+      <ul style="display: none;">
         <li 
       data-pdf-exists="true" 
       data-pdf-filename="OpenShift on Bare Metal"
@@ -5838,7 +5849,7 @@
     ><a href="/us-en/netapp-solutions/containers/rh-os-n_overview_netapp.html">
         <div class="na-navbar-padding"> NetApp Storage Systems Overview</div>
       </a>
-      <ul>
+      <ul style="display: none;">
         <li 
       data-pdf-exists="true" 
       data-pdf-filename="NetApp ONTAP"
@@ -5861,7 +5872,7 @@
     ><a href="/us-en/netapp-solutions/containers/rh-os-n_overview_storint.html">
         <div class="na-navbar-padding"> NetApp Storage Integrations Overview</div>
       </a>
-      <ul>
+      <ul style="display: none;">
         <li 
       data-pdf-exists="true" 
       data-pdf-filename="NetApp Astra Control Center Overview"
@@ -5870,7 +5881,7 @@
     ><a href="/us-en/netapp-solutions/containers/rh-os-n_overview_astra.html">
         <div class="na-navbar-padding"> NetApp Astra Control Center Overview</div>
       </a>
-      <ul>
+      <ul style="display: none;">
         <li 
       data-pdf-exists="true" 
       data-pdf-filename="Register your Red Hat OpenShift Clusters"
@@ -5900,7 +5911,7 @@
     ><a href="/us-en/netapp-solutions/containers/rh-os-n_overview_trident.html">
         <div class="na-navbar-padding"> NetApp Astra Trident Overview</div>
       </a>
-      <ul>
+      <ul style="display: none;">
         <li 
       data-pdf-exists="true" 
       data-pdf-filename="NetApp ONTAP NFS"
@@ -5930,7 +5941,7 @@
     ><a href="#">
         <div class="na-navbar-padding"> Advanced Configuration Options For OpenShift</div>
       </a>
-      <ul>
+      <ul style="display: none;">
         <li 
       data-pdf-exists="true" 
       data-pdf-filename="Exploring Load Balancer Options"
@@ -5939,7 +5950,7 @@
     ><a href="/us-en/netapp-solutions/containers/rh-os-n_load_balancers.html">
         <div class="na-navbar-padding"> Exploring Load Balancer Options</div>
       </a>
-      <ul>
+      <ul style="display: none;">
         <li 
       data-pdf-exists="true" 
       data-pdf-filename="MetalLB"
@@ -5969,7 +5980,7 @@
     ><a href="/us-en/netapp-solutions/containers/rh-os-n_use_cases.html">
         <div class="na-navbar-padding"> Solution Validation and Use Cases</div>
       </a>
-      <ul>
+      <ul style="display: none;">
         <li 
       data-pdf-exists="true" 
       data-pdf-filename="Deploy a Jenkins CI/CD Pipeline with Persistent Storage"
@@ -5985,7 +5996,7 @@
     ><a href="#">
         <div class="na-navbar-padding"> Configure Multi-tenancy on Red Hat OpenShift with NetApp ONTAP</div>
       </a>
-      <ul>
+      <ul style="display: none;">
         <li 
       data-pdf-exists="true" 
       data-pdf-filename="Overview"
@@ -6008,7 +6019,7 @@
     ><a href="/us-en/netapp-solutions/containers/rh-os-n_use_case_multitenancy_configuration.html">
         <div class="na-navbar-padding"> Configuration</div>
       </a>
-      <ul>
+      <ul style="display: none;">
         <li 
       data-pdf-exists="true" 
       data-pdf-filename="Prerequisites"
@@ -6052,7 +6063,7 @@
     ><a href="#">
         <div class="na-navbar-padding"> Red Hat OpenShift Virtualization with NetApp ONTAP</div>
       </a>
-      <ul>
+      <ul style="display: none;">
         <li 
       data-pdf-exists="true" 
       data-pdf-filename="Overview"
@@ -6068,7 +6079,7 @@
     ><a href="#">
         <div class="na-navbar-padding"> Deployment</div>
       </a>
-      <ul>
+      <ul style="display: none;">
         <li 
       data-pdf-exists="true" 
       data-pdf-filename="Prerequisites"
@@ -6091,7 +6102,7 @@
     ><a href="#">
         <div class="na-navbar-padding"> Workflows</div>
       </a>
-      <ul>
+      <ul style="display: none;">
         <li 
       data-pdf-exists="true" 
       data-pdf-filename="Create VM"
@@ -6128,7 +6139,7 @@
     ><a href="#">
         <div class="na-navbar-padding"> Advanced Cluster Management for Kubernetes on Red Hat OpenShift with NetApp</div>
       </a>
-      <ul>
+      <ul style="display: none;">
         <li 
       data-pdf-exists="true" 
       data-pdf-filename="Overview"
@@ -6144,7 +6155,7 @@
     ><a href="#">
         <div class="na-navbar-padding"> Deployment</div>
       </a>
-      <ul>
+      <ul style="display: none;">
         <li 
       data-pdf-exists="true" 
       data-pdf-filename="Prerequisites"
@@ -6167,7 +6178,7 @@
     ><a href="#">
         <div class="na-navbar-padding"> Features</div>
       </a>
-      <ul>
+      <ul style="display: none;">
         <li 
       data-pdf-exists="true" 
       data-pdf-filename="Cluster Lifecycle Management"
@@ -6225,7 +6236,7 @@
     ><a href="/us-en/netapp-solutions/containers/tanzu_with_netapp/vtwn_solution_overview.html">
         <div class="na-navbar-padding"> VMware Tanzu with NetApp</div>
       </a>
-      <ul>
+      <ul style="display: none;">
         <li 
       data-pdf-exists="true" 
       data-pdf-filename="VMware Tanzu Overview"
@@ -6234,7 +6245,7 @@
     ><a href="/us-en/netapp-solutions/containers/tanzu_with_netapp/vtwn_overview_vmware_tanzu.html">
         <div class="na-navbar-padding"> VMware Tanzu Overview</div>
       </a>
-      <ul>
+      <ul style="display: none;">
         <li 
       data-pdf-exists="true" 
       data-pdf-filename="VMware TKG (Tanzu Kubernetes Grid) Overview"
@@ -6264,7 +6275,7 @@
     ><a href="/us-en/netapp-solutions/containers/tanzu_with_netapp/vtwn_overview_netapp.html">
         <div class="na-navbar-padding"> NetApp Storage Systems Overview</div>
       </a>
-      <ul>
+      <ul style="display: none;">
         <li 
       data-pdf-exists="true" 
       data-pdf-filename="NetApp ONTAP"
@@ -6280,7 +6291,7 @@
     ><a href="/us-en/netapp-solutions/containers/tanzu_with_netapp/vtwn_overview_storint.html">
         <div class="na-navbar-padding"> NetApp Storage Integrations Overview</div>
       </a>
-      <ul>
+      <ul style="display: none;">
         <li 
       data-pdf-exists="true" 
       data-pdf-filename="NetApp Astra Control Center Overview"
@@ -6289,7 +6300,7 @@
     ><a href="/us-en/netapp-solutions/containers/tanzu_with_netapp/vtwn_overview_astra.html">
         <div class="na-navbar-padding"> NetApp Astra Control Center Overview</div>
       </a>
-      <ul>
+      <ul style="display: none;">
         <li 
       data-pdf-exists="true" 
       data-pdf-filename="Register your Tanzu Kubernetes Clusters"
@@ -6319,7 +6330,7 @@
     ><a href="/us-en/netapp-solutions/containers/tanzu_with_netapp/vtwn_overview_trident.html">
         <div class="na-navbar-padding"> NetApp Astra Trident Overview</div>
       </a>
-      <ul>
+      <ul style="display: none;">
         <li 
       data-pdf-exists="true" 
       data-pdf-filename="NetApp ONTAP NFS"
@@ -6356,7 +6367,7 @@
     ><a href="#">
         <div class="na-navbar-padding"> Archived Solutions</div>
       </a>
-      <ul>
+      <ul style="display: none;">
         <li 
       data-pdf-exists="true" 
       data-pdf-filename="Anthos on bare metal"
@@ -6365,7 +6376,7 @@
     ><a href="/us-en/netapp-solutions/containers/baremetal-anthos/bmanthos_introduction.html">
         <div class="na-navbar-padding"> Anthos on bare metal</div>
       </a>
-      <ul>
+      <ul style="display: none;">
         <li 
       data-pdf-exists="true" 
       data-pdf-filename="Solution overview"
@@ -6416,7 +6427,7 @@
     ><a href="#">
         <div class="na-navbar-padding"> Data Migration and Data Protection</div>
       </a>
-      <ul>
+      <ul style="display: none;">
         <li 
       data-pdf-exists="true" 
       data-pdf-filename="Data Migration"
@@ -6425,7 +6436,7 @@
     ><a href="#">
         <div class="na-navbar-padding"> Data Migration</div>
       </a>
-      <ul>
+      <ul style="display: none;">
         <li 
       data-pdf-exists="true" 
       data-pdf-filename="Best-Practice Guidelines for NetApp XCP"
@@ -6434,7 +6445,7 @@
     ><a href="#">
         <div class="na-navbar-padding"> Best-Practice Guidelines for NetApp XCP</div>
       </a>
-      <ul>
+      <ul style="display: none;">
         <li 
       data-pdf-exists="true" 
       data-pdf-filename="Introduction"
@@ -6492,7 +6503,7 @@
     ><a href="#">
         <div class="na-navbar-padding"> Customer scenarios</div>
       </a>
-      <ul>
+      <ul style="display: none;">
         <li 
       data-pdf-exists="true" 
       data-pdf-filename="Overview"
@@ -6599,27 +6610,27 @@
     ><a href="#">
         <div class="na-navbar-padding"> Data Protection</div>
       </a>
-      <ul>
+      <ul style="display: none;">
         <li 
-      data-pdf-exists="false" 
+      data-pdf-exists="true" 
       data-pdf-filename="NetApp E-Series and Commvault Data Platform V11"
       data-li-level="3#" 
       class=" "
-    ><a class="na-navbar-padding" href="https://www.netapp.com/pdf.html?item=/media/17042-tr4320pdf.pdf">
+    ><a class="na-navbar-padding" href="/us-en/netapp-solutions/dp-sec/tr-4320-link.html">
         NetApp E-Series and Commvault Data Platform V11
       </a></li><li 
-      data-pdf-exists="false" 
+      data-pdf-exists="true" 
       data-pdf-filename="E-Series and EF-Series Reference Architecture and Storage Best Practices with Veeam Backup & Replication 9.5"
       data-li-level="3#" 
       class=" "
-    ><a class="na-navbar-padding" href="https://www.netapp.com/pdf.html?item=/media/17159-tr4471pdf.pdf">
+    ><a class="na-navbar-padding" href="/us-en/netapp-solutions/dp-sec/tr-4571-link.html">
         E-Series and EF-Series Reference Architecture and Storage Best Practices with Veeam Backup & Replication 9.5
       </a></li><li 
-      data-pdf-exists="false" 
+      data-pdf-exists="true" 
       data-pdf-filename="Deploying Veritas NetBackup with NetApp E-Series Storage"
       data-li-level="3#" 
       class=" "
-    ><a class="na-navbar-padding" href="https://www.netapp.com/pdf.html?item=/media/16433-tr-4704pdf.pdf">
+    ><a class="na-navbar-padding" href="/us-en/netapp-solutions/dp-sec/tr-4704-link.html">
         Deploying Veritas NetBackup with NetApp E-Series Storage
       </a></li></ul></li><li 
       data-pdf-exists="true" 
@@ -6629,13 +6640,13 @@
     ><a href="#">
         <div class="na-navbar-padding"> Security</div>
       </a>
-      <ul>
+      <ul style="display: none;">
         <li 
-      data-pdf-exists="false" 
+      data-pdf-exists="true" 
       data-pdf-filename="NIST Security Controls for FISMA with HyTrust for Multitenant Infrastructure"
       data-li-level="3#" 
       class=" "
-    ><a class="na-navbar-padding" href="https://www.netapp.com/us/media/nva-1143.pdf">
+    ><a class="na-navbar-padding" href="/us-en/netapp-solutions/dp-sec/nva-1143-link.html">
         NIST Security Controls for FISMA with HyTrust for Multitenant Infrastructure
       </a></li></ul></li></ul></li><li 
       data-pdf-exists="true" 
@@ -6645,7 +6656,7 @@
     ><a href="#">
         <div class="na-navbar-padding"> Enterprise Applications</div>
       </a>
-      <ul>
+      <ul style="display: none;">
         <li 
       data-pdf-exists="false" 
       data-pdf-filename="SAP & SAP HANA"
@@ -6661,7 +6672,7 @@
     ><a href="/us-en/netapp-solutions/databases/index.html">
         <div class="na-navbar-padding"> Enterprise Databases</div>
       </a>
-      <ul>
+      <ul style="display: none;">
         <li 
       data-pdf-exists="true" 
       data-pdf-filename="Oracle Database"
@@ -6670,20 +6681,20 @@
     ><a href="#">
         <div class="na-navbar-padding"> Oracle Database</div>
       </a>
-      <ul>
+      <ul style="display: none;">
         <li 
-      data-pdf-exists="false" 
+      data-pdf-exists="true" 
       data-pdf-filename="Oracle 19c RAC Databases on FlexPod DataCenter with Cisco UCS and NetApp AFF A800 over FC"
       data-li-level="3#" 
       class=" "
-    ><a class="na-navbar-padding" href="https://www.netapp.com/pdf.html?item=/media/25782-nva-1155.pdf">
+    ><a class="na-navbar-padding" href="/us-en/netapp-solutions/databases/nva-1155-link.html">
         Oracle 19c RAC Databases on FlexPod DataCenter with Cisco UCS and NetApp AFF A800 over FC
       </a></li><li 
-      data-pdf-exists="false" 
+      data-pdf-exists="true" 
       data-pdf-filename="SAP with Oracle on UNIX and NFS with NetApp Clustered Data ONTAP"
       data-li-level="3#" 
       class=" "
-    ><a class="na-navbar-padding" href="https://www.netapp.com/us/media/tr-4250.pdf">
+    ><a class="na-navbar-padding" href="/us-en/netapp-solutions/databases/tr-4250-link.html">
         SAP with Oracle on UNIX and NFS with NetApp Clustered Data ONTAP
       </a></li><li 
       data-pdf-exists="true" 
@@ -6693,13 +6704,13 @@
     ><a href="#">
         <div class="na-navbar-padding"> Deploying Oracle Database</div>
       </a>
-      <ul>
+      <ul style="display: none;">
         <li 
-      data-pdf-exists="false" 
+      data-pdf-exists="true" 
       data-pdf-filename="Deploy Oracle Database on NetApp ONTAP"
       data-li-level="4#" 
       class=" "
-    ><a class="na-navbar-padding" href="https://www.netapp.com/pdf.html?item=/media/8744-tr3633.pdf">
+    ><a class="na-navbar-padding" href="/us-en/netapp-solutions/databases/tr-3633-link.html">
         Deploy Oracle Database on NetApp ONTAP
       </a></li><li 
       data-pdf-exists="true" 
@@ -6709,7 +6720,7 @@
     ><a href="/us-en/netapp-solutions/databases/marketing_overview.html">
         <div class="na-navbar-padding"> Automated Deployment of Oracle 19c for ONTAP on NFS</div>
       </a>
-      <ul>
+      <ul style="display: none;">
         <li 
       data-pdf-exists="true" 
       data-pdf-filename="Getting Started and Requirements"
@@ -6739,7 +6750,7 @@
     ><a href="#">
         <div class="na-navbar-padding"> Oracle Database Data Protection</div>
       </a>
-      <ul>
+      <ul style="display: none;">
         <li 
       data-pdf-exists="true" 
       data-pdf-filename="Automated Oracle Data Protection"
@@ -6748,7 +6759,7 @@
     ><a href="/us-en/netapp-solutions/databases/db_protection_overview.html">
         <div class="na-navbar-padding"> Automated Oracle Data Protection</div>
       </a>
-      <ul>
+      <ul style="display: none;">
         <li 
       data-pdf-exists="true" 
       data-pdf-filename="Getting Started and Requirements"
@@ -6764,11 +6775,11 @@
     ><a class="na-navbar-padding" href="/us-en/netapp-solutions/databases/db_protection_awx_automation.html">
         Automated Oracle Data Protection for AWX/Tower
       </a></li></ul></li></ul></li><li 
-      data-pdf-exists="false" 
+      data-pdf-exists="true" 
       data-pdf-filename="Oracle Databases on NetApp EF-Series"
       data-li-level="3#" 
       class=" "
-    ><a class="na-navbar-padding" href="https://www.netapp.com/pdf.html?item=/media/17248-tr4794pdf.pdf">
+    ><a class="na-navbar-padding" href="/us-en/netapp-solutions/databases/tr-4794-link.html">
         Oracle Databases on NetApp EF-Series
       </a></li><li 
       data-pdf-exists="true" 
@@ -6778,7 +6789,7 @@
     ><a href="#">
         <div class="na-navbar-padding"> Oracle Database Deployment on AWS EC2/FSx Best Practices</div>
       </a>
-      <ul>
+      <ul style="display: none;">
         <li 
       data-pdf-exists="true" 
       data-pdf-filename="Use case"
@@ -6829,7 +6840,7 @@
     ><a href="#">
         <div class="na-navbar-padding"> Microsoft SQL Server</div>
       </a>
-      <ul>
+      <ul style="display: none;">
         <li 
       data-pdf-exists="true" 
       data-pdf-filename="SQL Server on Azure NetApp Files"
@@ -6838,7 +6849,7 @@
     ><a href="/us-en/netapp-solutions/databases/sql-srv-anf_overview.html">
         <div class="na-navbar-padding"> SQL Server on Azure NetApp Files</div>
       </a>
-      <ul>
+      <ul style="display: none;">
         <li 
       data-pdf-exists="true" 
       data-pdf-filename="Factors to consider"
@@ -6868,25 +6879,25 @@
     ><a class="na-navbar-padding" href="/us-en/netapp-solutions/databases/sql-srv-anf_where_to_find_additional_information.html">
         Where to find additional information
       </a></li></ul></li><li 
-      data-pdf-exists="false" 
+      data-pdf-exists="true" 
       data-pdf-filename="SAP with Microsoft SQL Server on Windows Using Clustered Data ONTAP"
       data-li-level="3#" 
       class=" "
-    ><a class="na-navbar-padding" href="https://www.netapp.com/us/media/tr-4467.pdf">
+    ><a class="na-navbar-padding" href="/us-en/netapp-solutions/databases/tr-4467-link.html">
         SAP with Microsoft SQL Server on Windows Using Clustered Data ONTAP
       </a></li><li 
-      data-pdf-exists="false" 
+      data-pdf-exists="true" 
       data-pdf-filename="Modernizing Microsoft SQL Server"
       data-li-level="3#" 
       class=" "
-    ><a class="na-navbar-padding" href="https://www.netapp.com/pdf.html?item=/media/15613-na-446.pdf">
+    ><a class="na-navbar-padding" href="/us-en/netapp-solutions/databases/na-446-link.html">
         Modernizing Microsoft SQL Server
       </a></li><li 
-      data-pdf-exists="false" 
+      data-pdf-exists="true" 
       data-pdf-filename="Best Practices Guide for Microsoft SQL Server with NetApp EF-Series"
       data-li-level="3#" 
       class=" "
-    ><a class="na-navbar-padding" href="https://www.netapp.com/pdf.html?item=/media/17086-tr4764pdf.pdf">
+    ><a class="na-navbar-padding" href="/us-en/netapp-solutions/databases/tr-4764-link.html">
         Best Practices Guide for Microsoft SQL Server with NetApp EF-Series
       </a></li></ul></li><li 
       data-pdf-exists="true" 
@@ -6896,7 +6907,7 @@
     ><a href="#">
         <div class="na-navbar-padding"> Hybrid Cloud Database Solutions with SnapCenter</div>
       </a>
-      <ul>
+      <ul style="display: none;">
         <li 
       data-pdf-exists="true" 
       data-pdf-filename="Introduction"
@@ -6926,7 +6937,7 @@
     ><a href="/us-en/netapp-solutions/databases/hybrid_dbops_snapcenter_prerequisite.html">
         <div class="na-navbar-padding"> Prerequisites configuration</div>
       </a>
-      <ul>
+      <ul style="display: none;">
         <li 
       data-pdf-exists="true" 
       data-pdf-filename="Prerequisites on-premises"
@@ -6949,7 +6960,7 @@
     ><a href="/us-en/netapp-solutions/databases/hybrid_dbops_snapcenter_getting_started.html">
         <div class="na-navbar-padding"> Getting started overview</div>
       </a>
-      <ul>
+      <ul style="display: none;">
         <li 
       data-pdf-exists="true" 
       data-pdf-filename="Getting started on-premises"
@@ -6986,7 +6997,7 @@
     ><a href="/us-en/netapp-solutions/data-analytics/index.html">
         <div class="na-navbar-padding"> Modern Data Analytics</div>
       </a>
-      <ul>
+      <ul style="display: none;">
         <li 
       data-pdf-exists="true" 
       data-pdf-filename="Confluent Kafka with NetApp ONTAP storage controllers"
@@ -6995,7 +7006,7 @@
     ><a href="#">
         <div class="na-navbar-padding"> Confluent Kafka with NetApp ONTAP storage controllers</div>
       </a>
-      <ul>
+      <ul style="display: none;">
         <li 
       data-pdf-exists="true" 
       data-pdf-filename="Overview"
@@ -7053,7 +7064,7 @@
     ><a href="#">
         <div class="na-navbar-padding"> NetApp Storage Solutions for Apache Spark</div>
       </a>
-      <ul>
+      <ul style="display: none;">
         <li 
       data-pdf-exists="true" 
       data-pdf-filename="Solution overview"
@@ -7139,7 +7150,7 @@
     ><a href="#">
         <div class="na-navbar-padding"> Big Data Analytics Data to Artificial Intelligence</div>
       </a>
-      <ul>
+      <ul style="display: none;">
         <li 
       data-pdf-exists="true" 
       data-pdf-filename="Introduction"
@@ -7218,7 +7229,7 @@
     ><a href="#">
         <div class="na-navbar-padding"> Best practices for Confluent Kafka</div>
       </a>
-      <ul>
+      <ul style="display: none;">
         <li 
       data-pdf-exists="true" 
       data-pdf-filename="Introduction"
@@ -7297,7 +7308,7 @@
     ><a href="#">
         <div class="na-navbar-padding"> NetApp hybrid cloud data solutions - Spark and Hadoop based on customer use cases</div>
       </a>
-      <ul>
+      <ul style="display: none;">
         <li 
       data-pdf-exists="true" 
       data-pdf-filename="Solution overview"
@@ -7369,11 +7380,11 @@
     ><a class="na-navbar-padding" href="/us-en/netapp-solutions/data-analytics/hdcs-sh-conclusion.html">
         Conclusion
       </a></li></ul></li><li 
-      data-pdf-exists="false" 
+      data-pdf-exists="true" 
       data-pdf-filename="Different Solutions for Different Analytics Strategies Solution Brief"
       data-li-level="2#" 
       class=" "
-    ><a class="na-navbar-padding" href="https://www.netapp.com/pdf.html?item=/media/58015-sb-4154.pdf">
+    ><a class="na-navbar-padding" href="/us-en/netapp-solutions/data-analytics/sb-4154-link.html">
         Different Solutions for Different Analytics Strategies Solution Brief
       </a></li><li 
       data-pdf-exists="false" 
@@ -7383,18 +7394,18 @@
     ><a class="na-navbar-padding" href="https://www.netapp.com/pdf.html?item=/media/20646-tr-4869.pdf">
         NetApp StorageGRID with Splunk SmartStore
       </a></li><li 
-      data-pdf-exists="false" 
+      data-pdf-exists="true" 
       data-pdf-filename="NetApp E-Series E5700 and Splunk Enterprise"
       data-li-level="2#" 
       class=" "
-    ><a class="na-navbar-padding" href="https://www.netapp.com/pdf.html?item=/media/16851-tr-4623pdf.pdf">
+    ><a class="na-navbar-padding" href="/us-en/netapp-solutions/data-analytics/tr-4623-link.html">
         NetApp E-Series E5700 and Splunk Enterprise
       </a></li><li 
-      data-pdf-exists="false" 
+      data-pdf-exists="true" 
       data-pdf-filename="Apache Spark Workload with NetApp Storage Solution (Deployment Guide)"
       data-li-level="2#" 
       class=" "
-    ><a class="na-navbar-padding" href="https://www.netapp.com/pdf.html?item=/media/26877-nva-1157-deploy.pdf">
+    ><a class="na-navbar-padding" href="/us-en/netapp-solutions/data-analytics/nva-1157-deploy-link.html">
         Apache Spark Workload with NetApp Storage Solution (Deployment Guide)
       </a></li></ul></li><li 
       data-pdf-exists="true" 
@@ -7404,7 +7415,7 @@
     ><a href="/us-en/netapp-solutions/ehc/index.html">
         <div class="na-navbar-padding"> NetApp Hybrid Multicloud with VMware</div>
       </a>
-      <ul>
+      <ul style="display: none;">
         <li 
       data-pdf-exists="true" 
       data-pdf-filename="VMware for Public Cloud"
@@ -7413,7 +7424,7 @@
     ><a href="#">
         <div class="na-navbar-padding"> VMware for Public Cloud</div>
       </a>
-      <ul>
+      <ul style="display: none;">
         <li 
       data-pdf-exists="true" 
       data-pdf-filename="Overview"
@@ -7443,7 +7454,7 @@
     ><a href="/us-en/netapp-solutions/ehc/ehc-config-vmware-intro.html">
         <div class="na-navbar-padding"> VMware in the Hyperscalers Configuration</div>
       </a>
-      <ul>
+      <ul style="display: none;">
         <li 
       data-pdf-exists="true" 
       data-pdf-filename="Configure VMC for AWS"
@@ -7473,7 +7484,7 @@
     ><a href="/us-en/netapp-solutions/ehc/ehc-datastore-intro.html">
         <div class="na-navbar-padding"> NetApp Storage in Hyperscaler Clouds</div>
       </a>
-      <ul>
+      <ul style="display: none;">
         <li 
       data-pdf-exists="true" 
       data-pdf-filename="Supplemental NFS Datastore for VMC"
@@ -7531,7 +7542,7 @@
     ><a href="#">
         <div class="na-navbar-padding"> VMware Hybrid Cloud Use Cases</div>
       </a>
-      <ul>
+      <ul style="display: none;">
         <li 
       data-pdf-exists="true" 
       data-pdf-filename="Use Case Overview"
@@ -7568,7 +7579,7 @@
     ><a href="/us-en/netapp-solutions/ehc/aws/index.html">
         <div class="na-navbar-padding"> NetApp for AWS / VMC</div>
       </a>
-      <ul>
+      <ul style="display: none;">
         <li 
       data-pdf-exists="true" 
       data-pdf-filename="Protecting Workloads"
@@ -7577,7 +7588,7 @@
     ><a href="#">
         <div class="na-navbar-padding"> Protecting Workloads</div>
       </a>
-      <ul>
+      <ul style="display: none;">
         <li 
       data-pdf-exists="true" 
       data-pdf-filename="Disaster Recovery with VMC on AWS (guest connected)"
@@ -7586,7 +7597,7 @@
     ><a href="/us-en/netapp-solutions/ehc/aws/aws-guest-dr-solution-overview.html">
         <div class="na-navbar-padding"> Disaster Recovery with VMC on AWS (guest connected)</div>
       </a>
-      <ul>
+      <ul style="display: none;">
         <li 
       data-pdf-exists="true" 
       data-pdf-filename="Solution overivew"
@@ -7609,7 +7620,7 @@
     ><a href="#">
         <div class="na-navbar-padding"> AWS guest-connected storage disaster recovery</div>
       </a>
-      <ul>
+      <ul style="display: none;">
         <li 
       data-pdf-exists="true" 
       data-pdf-filename="Overview"
@@ -7660,7 +7671,7 @@
     ><a href="#">
         <div class="na-navbar-padding"> Disaster recovery</div>
       </a>
-      <ul>
+      <ul style="display: none;">
         <li 
       data-pdf-exists="true" 
       data-pdf-filename="Overview"
@@ -7753,7 +7764,7 @@
     ><a href="#">
         <div class="na-navbar-padding"> Migrating Workloads</div>
       </a>
-      <ul>
+      <ul style="display: none;">
         <li 
       data-pdf-exists="true" 
       data-pdf-filename="Migrating Workloads to FSx for ONTAP datastore using VMware HCX"
@@ -7776,7 +7787,7 @@
     ><a href="/us-en/netapp-solutions/ehc/azure/index.html">
         <div class="na-navbar-padding"> NetApp for Azure / AVS</div>
       </a>
-      <ul>
+      <ul style="display: none;">
         <li 
       data-pdf-exists="true" 
       data-pdf-filename="Protecting Workloads"
@@ -7785,7 +7796,7 @@
     ><a href="#">
         <div class="na-navbar-padding"> Protecting Workloads</div>
       </a>
-      <ul>
+      <ul style="display: none;">
         <li 
       data-pdf-exists="true" 
       data-pdf-filename="Disaster Recovery with ANF and JetStream (supplemental NFS datastore)"
@@ -7808,7 +7819,7 @@
     ><a href="#">
         <div class="na-navbar-padding"> Migrating Workloads</div>
       </a>
-      <ul>
+      <ul style="display: none;">
         <li 
       data-pdf-exists="true" 
       data-pdf-filename="Migrate Workloads to ANF datastore using VMware HCX"
@@ -7831,7 +7842,7 @@
     ><a href="/us-en/netapp-solutions/ehc/gcp/index.html">
         <div class="na-navbar-padding"> NetApp for GCP / GCVE</div>
       </a>
-      <ul>
+      <ul style="display: none;">
         <li 
       data-pdf-exists="true" 
       data-pdf-filename="Application Disaster Recovery with SnapCenter, CVO and Veeam Replication"
@@ -7847,7 +7858,7 @@
     ><a href="#">
         <div class="na-navbar-padding"> Security overview - NetApp Cloud Volumes Service (CVS) in Google Cloud</div>
       </a>
-      <ul>
+      <ul style="display: none;">
         <li 
       data-pdf-exists="true" 
       data-pdf-filename="Overview"
@@ -7877,7 +7888,7 @@
     ><a href="#">
         <div class="na-navbar-padding"> Architecture</div>
       </a>
-      <ul>
+      <ul style="display: none;">
         <li 
       data-pdf-exists="true" 
       data-pdf-filename="Architecture overview"
@@ -7935,7 +7946,7 @@
     ><a href="#">
         <div class="na-navbar-padding"> NAS protocols</div>
       </a>
-      <ul>
+      <ul style="display: none;">
         <li 
       data-pdf-exists="true" 
       data-pdf-filename="NAS protocols overview"
@@ -8007,7 +8018,7 @@
     ><a href="/us-en/netapp-solutions/virtualization/index.html">
         <div class="na-navbar-padding"> Virtualization</div>
       </a>
-      <ul>
+      <ul style="display: none;">
         <li 
       data-pdf-exists="true" 
       data-pdf-filename="Get Started With NetApp and VMware"
@@ -8023,7 +8034,7 @@
     ><a href="#">
         <div class="na-navbar-padding"> VMware Virtualization for ONTAP</div>
       </a>
-      <ul>
+      <ul style="display: none;">
         <li 
       data-pdf-exists="true" 
       data-pdf-filename="NetApp ONTAP Benefits for VMware vSphere Administrators"
@@ -8032,7 +8043,7 @@
     ><a href="#">
         <div class="na-navbar-padding"> NetApp ONTAP Benefits for VMware vSphere Administrators</div>
       </a>
-      <ul>
+      <ul style="display: none;">
         <li 
       data-pdf-exists="true" 
       data-pdf-filename="Introduction"
@@ -8076,7 +8087,7 @@
     ><a href="/us-en/netapp-solutions/virtualization/vsphere_ontap_ontap_for_vsphere.html">
         <div class="na-navbar-padding"> VMware vSphere with ONTAP Best Practices</div>
       </a>
-      <ul>
+      <ul style="display: none;">
         <li 
       data-pdf-exists="true" 
       data-pdf-filename="ONTAP capabilities for vSphere"
@@ -8134,7 +8145,7 @@
     ><a href="/us-en/netapp-solutions/virtualization/vsrm-ontap9_1._introduction_to_srm_with_ontap.html">
         <div class="na-navbar-padding"> VMware Site Recovery Manager with NetApp ONTAP 9</div>
       </a>
-      <ul>
+      <ul style="display: none;">
         <li 
       data-pdf-exists="true" 
       data-pdf-filename="New features with SRM and ONTAP Tools"
@@ -8199,7 +8210,7 @@
     ><a href="/us-en/netapp-solutions/virtualization/vsphere_auto_introduction.html">
         <div class="na-navbar-padding"> VMware vSphere Automation</div>
       </a>
-      <ul>
+      <ul style="display: none;">
         <li 
       data-pdf-exists="true" 
       data-pdf-filename="Traditional Block Storage Provisioning"
@@ -8208,7 +8219,7 @@
     ><a href="/us-en/netapp-solutions/virtualization/vsphere_ontap_auto_block.html">
         <div class="na-navbar-padding"> Traditional Block Storage Provisioning</div>
       </a>
-      <ul>
+      <ul style="display: none;">
         <li 
       data-pdf-exists="true" 
       data-pdf-filename="VMFS - Fibre Channel"
@@ -8245,7 +8256,7 @@
     ><a href="/us-en/netapp-solutions/virtualization/vsphere_ontap_auto_file.html">
         <div class="na-navbar-padding"> Traditional File Storage Provisioning</div>
       </a>
-      <ul>
+      <ul style="display: none;">
         <li 
       data-pdf-exists="true" 
       data-pdf-filename="NFS - v3"
@@ -8282,7 +8293,7 @@
     ><a href="#">
         <div class="na-navbar-padding"> VMware Hybrid Cloud Use Cases</div>
       </a>
-      <ul>
+      <ul style="display: none;">
         <li 
       data-pdf-exists="true" 
       data-pdf-filename="Use Case Overview"
@@ -8298,7 +8309,7 @@
     ><a href="#">
         <div class="na-navbar-padding"> Virtual Desktops</div>
       </a>
-      <ul>
+      <ul style="display: none;">
         <li 
       data-pdf-exists="true" 
       data-pdf-filename="Virtual Desktop Services (VDS)"
@@ -8307,7 +8318,7 @@
     ><a href="#">
         <div class="na-navbar-padding"> Virtual Desktop Services (VDS)</div>
       </a>
-      <ul>
+      <ul style="display: none;">
         <li 
       data-pdf-exists="true" 
       data-pdf-filename="Hybrid Cloud VDI with NetApp Virtual Desktop Service"
@@ -8316,7 +8327,7 @@
     ><a href="/us-en/netapp-solutions/vdi-vds/hcvdivds_hybrid_cloud_vdi_with_virtual_desktop_service.html">
         <div class="na-navbar-padding"> Hybrid Cloud VDI with NetApp Virtual Desktop Service</div>
       </a>
-      <ul>
+      <ul style="display: none;">
         <li 
       data-pdf-exists="true" 
       data-pdf-filename="Use Cases"
@@ -8465,7 +8476,7 @@
     ><a href="#">
         <div class="na-navbar-padding"> VMware Horizon</div>
       </a>
-      <ul>
+      <ul style="display: none;">
         <li 
       data-pdf-exists="false" 
       data-pdf-filename="End User Computing with VMware (Design Guide)"
@@ -8509,7 +8520,7 @@
     ><a href="#">
         <div class="na-navbar-padding"> Demos and Tutorials</div>
       </a>
-      <ul>
+      <ul style="display: none;">
         <li 
       data-pdf-exists="true" 
       data-pdf-filename="Videos"
@@ -8525,7 +8536,7 @@
     ><a href="#">
         <div class="na-navbar-padding"> Blogs</div>
       </a>
-      <ul>
+      <ul style="display: none;">
         <li 
       data-pdf-exists="true" 
       data-pdf-filename="NetApp and VMware Cloud Foundation (VCF)"
@@ -8534,7 +8545,7 @@
     ><a href="#">
         <div class="na-navbar-padding"> NetApp and VMware Cloud Foundation (VCF)</div>
       </a>
-      <ul>
+      <ul style="display: none;">
         <li 
       data-pdf-exists="false" 
       data-pdf-filename="Part 1: Getting Started"
@@ -8585,7 +8596,7 @@
     ><a href="#">
         <div class="na-navbar-padding"> Solution Automation</div>
       </a>
-      <ul>
+      <ul style="display: none;">
         <li 
       data-pdf-exists="true" 
       data-pdf-filename="Introduction"
@@ -8674,6 +8685,7 @@
 </script>
 <!-- this highlights the active parent class in the navgoco sidebar. this is critical so that the parent expands when you're viewing a page. This must appear below the sidebar code above. Otherwise, if placed inside customscripts.js, the script runs before the sidebar code runs and the class never gets inserted.-->
 <script>$("li.active").parents('li').toggleClass("active");</script>
+<script>$("#mysidebar li.active").parents('ul').css("display","block");</script>
 
 
   </div>

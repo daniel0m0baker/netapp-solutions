@@ -2400,6 +2400,13 @@
     </url>
   
     <url>
+      <loc>https://docs.netapp.com/us-en/netapp-solutions/databases/na-446-link.html</loc>
+      
+      <lastmod>2022-10-10T16:16:41+00:00</lastmod>
+      
+    </url>
+  
+    <url>
       <loc>https://docs.netapp.com/us-en/netapp-solutions/ehc/ncvs/ncvs-gc-additional-information.html</loc>
       
       <lastmod>2022-05-12T18:59:59+00:00</lastmod>
@@ -2561,9 +2568,79 @@
     </url>
   
     <url>
+      <loc>https://docs.netapp.com/us-en/netapp-solutions/dp-sec/nva-1143-link.html</loc>
+      
+      <lastmod>2022-10-07T16:36:34+00:00</lastmod>
+      
+    </url>
+  
+    <url>
+      <loc>https://docs.netapp.com/us-en/netapp-solutions/ai/nva-1150-deploy-link.html</loc>
+      
+      <lastmod>2022-10-07T14:59:53+00:00</lastmod>
+      
+    </url>
+  
+    <url>
+      <loc>https://docs.netapp.com/us-en/netapp-solutions/ai/nva-1150-design-link.html</loc>
+      
+      <lastmod>2022-10-07T14:59:08+00:00</lastmod>
+      
+    </url>
+  
+    <url>
+      <loc>https://docs.netapp.com/us-en/netapp-solutions/ai/nva-1151-deploy-link.html</loc>
+      
+      <lastmod>2022-09-30T15:43:41+00:00</lastmod>
+      
+    </url>
+  
+    <url>
       <loc>https://docs.netapp.com/us-en/netapp-solutions/ai/nva-1151-design-link.html</loc>
       
-      <lastmod>2022-09-28T21:23:14+00:00</lastmod>
+      <lastmod>2022-09-30T15:43:41+00:00</lastmod>
+      
+    </url>
+  
+    <url>
+      <loc>https://docs.netapp.com/us-en/netapp-solutions/ai/nva-1153-deploy-link.html</loc>
+      
+      <lastmod>2022-09-30T15:43:41+00:00</lastmod>
+      
+    </url>
+  
+    <url>
+      <loc>https://docs.netapp.com/us-en/netapp-solutions/ai/nva-1153-design-link.html</loc>
+      
+      <lastmod>2022-09-30T15:43:41+00:00</lastmod>
+      
+    </url>
+  
+    <url>
+      <loc>https://docs.netapp.com/us-en/netapp-solutions/databases/nva-1155-link.html</loc>
+      
+      <lastmod>2022-10-07T16:36:34+00:00</lastmod>
+      
+    </url>
+  
+    <url>
+      <loc>https://docs.netapp.com/us-en/netapp-solutions/ai/nva-1156-deploy-link.html</loc>
+      
+      <lastmod>2022-09-30T15:43:41+00:00</lastmod>
+      
+    </url>
+  
+    <url>
+      <loc>https://docs.netapp.com/us-en/netapp-solutions/ai/nva-1156-design-link.html</loc>
+      
+      <lastmod>2022-09-30T15:43:41+00:00</lastmod>
+      
+    </url>
+  
+    <url>
+      <loc>https://docs.netapp.com/us-en/netapp-solutions/data-analytics/nva-1157-deploy-link.html</loc>
+      
+      <lastmod>2022-10-11T08:35:05+00:00</lastmod>
       
     </url>
   
@@ -3282,6 +3359,13 @@
     </url>
   
     <url>
+      <loc>https://docs.netapp.com/us-en/netapp-solutions/data-analytics/sb-4154-link.html</loc>
+      
+      <lastmod>2022-10-11T08:35:05+00:00</lastmod>
+      
+    </url>
+  
+    <url>
       <loc>https://docs.netapp.com/us-en/netapp-solutions/virtualization/scv_videos_backup_workflow.html</loc>
       
       <lastmod>2022-03-31T20:18:57+00:00</lastmod>
@@ -3319,7 +3403,7 @@
     <url>
       <loc>https://docs.netapp.com/us-en/netapp-solutions//search.html</loc>
       
-      <lastmod>2022-10-13T18:31:24+00:00</lastmod>
+      <lastmod>2022-10-14T19:31:50+00:00</lastmod>
       
     </url>
   
@@ -3432,6 +3516,132 @@
       <loc>https://docs.netapp.com/us-en/netapp-solutions/virtualization/tools-vmware-secure-development-activities.html</loc>
       
       <lastmod>2022-04-08T16:50:14+00:00</lastmod>
+      
+    </url>
+  
+    <url>
+      <loc>https://docs.netapp.com/us-en/netapp-solutions/databases/tr-3633-link.html</loc>
+      
+      <lastmod>2022-10-10T14:57:03+00:00</lastmod>
+      
+    </url>
+  
+    <url>
+      <loc>https://docs.netapp.com/us-en/netapp-solutions/databases/tr-4250-link.html</loc>
+      
+      <lastmod>2022-10-10T14:57:03+00:00</lastmod>
+      
+    </url>
+  
+    <url>
+      <loc>https://docs.netapp.com/us-en/netapp-solutions/dp-sec/tr-4320-link.html</loc>
+      
+      <lastmod>2022-10-07T16:36:34+00:00</lastmod>
+      
+    </url>
+  
+    <url>
+      <loc>https://docs.netapp.com/us-en/netapp-solutions/databases/tr-4467-link.html</loc>
+      
+      <lastmod>2022-10-07T16:36:34+00:00</lastmod>
+      
+    </url>
+  
+    <url>
+      <loc>https://docs.netapp.com/us-en/netapp-solutions/dp-sec/tr-4571-link.html</loc>
+      
+      <lastmod>2022-10-07T16:36:34+00:00</lastmod>
+      
+    </url>
+  
+    <url>
+      <loc>https://docs.netapp.com/us-en/netapp-solutions/data-analytics/tr-4623-link.html</loc>
+      
+      <lastmod>2022-10-11T08:35:05+00:00</lastmod>
+      
+    </url>
+  
+    <url>
+      <loc>https://docs.netapp.com/us-en/netapp-solutions/dp-sec/tr-4704-link.html</loc>
+      
+      <lastmod>2022-10-07T16:36:34+00:00</lastmod>
+      
+    </url>
+  
+    <url>
+      <loc>https://docs.netapp.com/us-en/netapp-solutions/databases/tr-4764-link.html</loc>
+      
+      <lastmod>2022-10-07T16:36:34+00:00</lastmod>
+      
+    </url>
+  
+    <url>
+      <loc>https://docs.netapp.com/us-en/netapp-solutions/ai/tr-4785-link.html</loc>
+      
+      <lastmod>2022-10-10T14:57:03+00:00</lastmod>
+      
+    </url>
+  
+    <url>
+      <loc>https://docs.netapp.com/us-en/netapp-solutions/databases/tr-4794-link.html</loc>
+      
+      <lastmod>2022-10-07T16:36:34+00:00</lastmod>
+      
+    </url>
+  
+    <url>
+      <loc>https://docs.netapp.com/us-en/netapp-solutions/ai/tr-4799-link.html</loc>
+      
+      <lastmod>2022-09-30T15:43:41+00:00</lastmod>
+      
+    </url>
+  
+    <url>
+      <loc>https://docs.netapp.com/us-en/netapp-solutions/ai/tr-4807-link.html</loc>
+      
+      <lastmod>2022-10-07T16:36:34+00:00</lastmod>
+      
+    </url>
+  
+    <url>
+      <loc>https://docs.netapp.com/us-en/netapp-solutions/ai/tr-4810-link.html</loc>
+      
+      <lastmod>2022-09-30T15:43:41+00:00</lastmod>
+      
+    </url>
+  
+    <url>
+      <loc>https://docs.netapp.com/us-en/netapp-solutions/ai/tr-4815-link.html</loc>
+      
+      <lastmod>2022-10-07T16:36:34+00:00</lastmod>
+      
+    </url>
+  
+    <url>
+      <loc>https://docs.netapp.com/us-en/netapp-solutions/ai/tr-4851-link.html</loc>
+      
+      <lastmod>2022-10-07T16:36:34+00:00</lastmod>
+      
+    </url>
+  
+    <url>
+      <loc>https://docs.netapp.com/us-en/netapp-solutions/ai/tr-4859-link.html</loc>
+      
+      <lastmod>2022-09-30T15:43:41+00:00</lastmod>
+      
+    </url>
+  
+    <url>
+      <loc>https://docs.netapp.com/us-en/netapp-solutions/ai/tr-4915-link.html</loc>
+      
+      <lastmod>2022-10-07T14:59:53+00:00</lastmod>
+      
+    </url>
+  
+    <url>
+      <loc>https://docs.netapp.com/us-en/netapp-solutions/ai/tr-4811-link.html</loc>
+      
+      <lastmod>2022-10-07T16:36:34+00:00</lastmod>
       
     </url>
   
