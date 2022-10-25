@@ -8725,7 +8725,7 @@
 <p class="page-details">
   
     
-    <time datetime="2022-06-17 01:54:41 +0000">06/17/2022</time>
+    <time datetime="2022-10-25 18:39:28 +0000">10/25/2022</time>
     
   
 
@@ -8747,7 +8747,7 @@
 <h2 id="awxtower-oracle-data-protection">AWX/Tower Oracle Data Protection</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="1-create-the-inventory-group-hosts-and-credentials-for-your-environment">1. Create the inventory, group, hosts, and credentials for your environment</h3>
+<h3 id="create-the-inventory-group-hosts-and-credentials-for-your-environment">Create the inventory, group, hosts, and credentials for your environment</h3>
 <div class="paragraph">
 <p>This section describes the setup of inventory, groups, hosts, and access credentials in AWX/Ansible Tower that prepare the environment for consuming NetApp automated solutions.</p>
 </div>
@@ -9082,7 +9082,7 @@ Below are instructions for creating the credential types and credentials for eit
 </div>
 </div>
 <div class="sect2">
-<h3 id="2-create-a-project">2. Create a project</h3>
+<h3 id="create-a-project">Create a project</h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -9111,7 +9111,7 @@ Below are instructions for creating the credential types and credentials for eit
 </div>
 </div>
 <div class="sect2">
-<h3 id="3-configure-global-variables">3. Configure global variables</h3>
+<h3 id="configure-global-variables">Configure global variables</h3>
 <div class="paragraph">
 <p>Variables defined in this section apply to all Oracle hosts, databases, and the ONTAP cluster.</p>
 </div>
@@ -9845,7 +9845,7 @@ function addlogvols1() {
 </div>
 </div>
 <div class="sect2">
-<h3 id="4-automation-playbooks">4. Automation Playbooks</h3>
+<h3 id="automation-playbooks">Automation Playbooks</h3>
 <div class="paragraph">
 <p>There are four separate playbooks that need to be ran.</p>
 </div>
@@ -9873,10 +9873,9 @@ function addlogvols1() {
 <div class="paragraph">
 <p>ONTAP and CVO Setup</p>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Configure and launch the job template.</p>
+<div class="paragraph">
+<p><strong>Configure and launch the job template.</strong></p>
+</div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -9934,9 +9933,6 @@ We will use this template and copy it out for the other playbooks.
 </li>
 </ol>
 </div>
-</li>
-</ol>
-</div>
 </div>
 </div>
 <div class="openblock">
@@ -9945,10 +9941,9 @@ We will use this template and copy it out for the other playbooks.
 <div class="paragraph">
 <p>Scheduling the Binary and Database Replication Playbook</p>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Configure and launch the job template.</p>
+<div class="paragraph">
+<p><strong>Configure and launch the job template.</strong></p>
+</div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -10009,9 +10004,6 @@ A separate schedule will be created for the Log volume replication, so that it c
 </li>
 </ol>
 </div>
-</li>
-</ol>
-</div>
 </div>
 </div>
 <div class="openblock">
@@ -10020,10 +10012,9 @@ A separate schedule will be created for the Log volume replication, so that it c
 <div class="paragraph">
 <p>Scheduling the Log Replication Playbook</p>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Configure and launch the job template.</p>
+<div class="paragraph">
+<p><strong>Configure and launch the job template.</strong></p>
+</div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -10069,9 +10060,6 @@ A separate schedule will be created for the Log volume replication, so that it c
 </li>
 </ol>
 </div>
-</li>
-</ol>
-</div>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -10095,10 +10083,9 @@ It is recommended to set the log schedule to update every hour to ensure the rec
 <div class="paragraph">
 <p>Scheduling the Log Replication Playbook</p>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Configure and launch the job template.</p>
+<div class="paragraph">
+<p><strong>Configure and launch the job template.</strong></p>
+</div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -10128,9 +10115,6 @@ It is recommended to set the log schedule to update every hour to ensure the rec
 </li>
 </ol>
 </div>
-</li>
-</ol>
-</div>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -10152,7 +10136,7 @@ This playbook will not be ran until you are ready to restore your database at th
 </div>
 </div>
 <div class="sect2">
-<h3 id="5-recovering-oracle-database">5. Recovering Oracle Database</h3>
+<h3 id="recovering-oracle-database">Recovering Oracle Database</h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
