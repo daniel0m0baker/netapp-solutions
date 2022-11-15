@@ -8705,7 +8705,7 @@
 <p class="page-details">
   
     
-    <time datetime="2022-10-21 11:08:56 +0000">10/21/2022</time>
+    <time datetime="2022-11-15 15:03:00 +0000">11/15/2022</time>
     
   
 
@@ -8732,21 +8732,21 @@
 <div class="ulist">
 <ul>
 <li>
-<p><a href="https://cloud.google.com/architecture/partners/netapp-cloud-volumes/security-considerations" target="_blank" rel="noopener">Ports required for NFS access</a></p>
+<p><a href="https://cloud.google.com/architecture/partners/netapp-cloud-volumes/security-considerations?hl=en_US" target="_blank" rel="noopener">Ports required for NFS access</a></p>
 </li>
 <li>
-<p><a href="https://cloud.google.com/architecture/partners/netapp-cloud-volumes/security-considerations" target="_blank" rel="noopener">Ports required for SMB access</a></p>
+<p><a href="https://cloud.google.com/architecture/partners/netapp-cloud-volumes/security-considerations?hl=en_US" target="_blank" rel="noopener">Ports required for SMB access</a></p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>Additionally, SMB, NFS with LDAP including Kerberos, and dual-protocol configurations require access to a Windows Active Directory domain. Active Directory connections must be <a href="https://cloud.google.com/architecture/partners/netapp-cloud-volumes/creating-smb-volumes" target="_blank" rel="noopener">configured</a> on a per-region basis. Active Directory Domain controllers (DC) are identified by using <a href="https://docs.microsoft.com/en-us/openspecs/windows_protocols/ms-adts/7fcdce70-5205-44d6-9c3a-260e616a2f04" target="_blank" rel="noopener">DNS-based DC discovery</a> using the specified DNS servers. Any of the DCs returned are used. The list of eligible DCs can be limited by specifying an Active Directory site.</p>
+<p>Additionally, SMB, NFS with LDAP including Kerberos, and dual-protocol configurations require access to a Windows Active Directory domain. Active Directory connections must be <a href="https://cloud.google.com/architecture/partners/netapp-cloud-volumes/creating-smb-volumes?hl=en_US" target="_blank" rel="noopener">configured</a> on a per-region basis. Active Directory Domain controllers (DC) are identified by using <a href="https://docs.microsoft.com/en-us/openspecs/windows_protocols/ms-adts/7fcdce70-5205-44d6-9c3a-260e616a2f04" target="_blank" rel="noopener">DNS-based DC discovery</a> using the specified DNS servers. Any of the DCs returned are used. The list of eligible DCs can be limited by specifying an Active Directory site.</p>
 </div>
 <div class="paragraph">
-<p>Cloud Volumes Service reaches out with IP addresses from the CIDR range allocated with the <code>gcloud compute address</code> command while <a href="https://cloud.google.com/architecture/partners/netapp-cloud-volumes/setting-up-private-services-access" target="_blank" rel="noopener">on-boarding the Cloud Volumes Service</a>. You can use this CIDR as source addresses to configure inbound firewalls to your Active Directory domain controllers.</p>
+<p>Cloud Volumes Service reaches out with IP addresses from the CIDR range allocated with the <code>gcloud compute address</code> command while <a href="https://cloud.google.com/architecture/partners/netapp-cloud-volumes/setting-up-private-services-access?hl=en_US" target="_blank" rel="noopener">on-boarding the Cloud Volumes Service</a>. You can use this CIDR as source addresses to configure inbound firewalls to your Active Directory domain controllers.</p>
 </div>
 <div class="paragraph">
-<p>Active Directory Domain Controllers must <a href="https://cloud.google.com/architecture/partners/netapp-cloud-volumes/security-considerations" target="_blank" rel="noopener">expose ports to the Cloud Volumes Service CIDRs as mentioned here</a>.</p>
+<p>Active Directory Domain Controllers must <a href="https://cloud.google.com/architecture/partners/netapp-cloud-volumes/security-considerations?hl=en_US" target="_blank" rel="noopener">expose ports to the Cloud Volumes Service CIDRs as mentioned here</a>.</p>
 </div>
 <div class="paragraph">
 <p><a href="ncvs-gc-nas-protocols_overview.html">Next: NAS protocols overview.</a></p>

@@ -8705,7 +8705,7 @@
 <p class="page-details">
   
     
-    <time datetime="2022-10-21 11:08:56 +0000">10/21/2022</time>
+    <time datetime="2022-11-15 15:03:00 +0000">11/15/2022</time>
     
   
 
@@ -8737,7 +8737,7 @@
 <h2 id="secure-architecture-and-tenancy-model">Secure architecture and tenancy model</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Cloud Volumes Service provides a secure architecture in Google Cloud by segmenting the service management (control plane) and the data access (data plane) across different endpoints so that neither can impact the other (see the section <a href="ncvs-gc-cloud-volumes-service-architecture.html">“Cloud Volumes Service architecture”</a>). It uses Google&#8217;s <a href="https://cloud.google.com/vpc/docs/private-services-access" target="_blank" rel="noopener">private services access</a> (PSA) framework to provide the service. This framework distinguishes between the service producer, which is provided and operated by NetApp, and the service consumer, which is a Virtual Private Cloud (VPC) in a customer project, hosting the clients that want to access Cloud Volumes Service file shares.</p>
+<p>Cloud Volumes Service provides a secure architecture in Google Cloud by segmenting the service management (control plane) and the data access (data plane) across different endpoints so that neither can impact the other (see the section <a href="ncvs-gc-cloud-volumes-service-architecture.html">“Cloud Volumes Service architecture”</a>). It uses Google&#8217;s <a href="https://cloud.google.com/vpc/docs/private-services-access?hl=en_US" target="_blank" rel="noopener">private services access</a> (PSA) framework to provide the service. This framework distinguishes between the service producer, which is provided and operated by NetApp, and the service consumer, which is a Virtual Private Cloud (VPC) in a customer project, hosting the clients that want to access Cloud Volumes Service file shares.</p>
 </div>
 <div class="paragraph">
 <p>In this architecture, tenants (see the section <a href="ncvs-gc-cloud-volumes-service-architecture.html#tenancy-model">“Tenancy model”</a>) are defined as Google Cloud projects that are completely isolated from each other unless explicitly connected by the user. Tenants allow complete isolation of data volumes, external name services, and other essential pieces of the solution from other tenants using the Cloud Volumes Service volume platform. Because the Cloud Volumes Service platform is connected through VPC peering, that isolation applies to it also. You can enable sharing of Cloud Volumes Service volumes between multiple projects by using a shared-VPC (see the section <a href="ncvs-gc-cloud-volumes-service-architecture.html#tenancy-model#shared-vpcs">“Shared VPCs”</a>). You can apply access controls to SMB shares and NFS exports to limit who or what can view or modify datasets.</p>
