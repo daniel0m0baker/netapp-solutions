@@ -25,28 +25,8 @@
   <!-- Elastic Search -->
   <link rel="stylesheet" href="//cdn.jsdelivr.net/searchkit/0.10.0/theme.css">
 
-  <!-- Controls AsciiDoctor Admonition Blocks -->
-  <link rel="stylesheet" type="text/css" href="/us-en/netapp-solutions/css/font-awesome.min.css">
-
-  <!-- Controls the shadow effect for search dropdown menu -->
-  <link rel="stylesheet" href="/us-en/netapp-solutions/css/boxshadowproperties.css">
-
-  <!-- NetApp CSS controls the technical content -->
-  <link rel="stylesheet" type="text/css" href="/us-en/netapp-solutions/css/netapp.css">
-
-  <!-- WWW CSS Content -->
-  <link rel="stylesheet" type="text/css" href="/us-en/netapp-solutions/css/www-luci-dotcom.min.css">
-  <link rel="stylesheet" type="text/css" href="/us-en/netapp-solutions/css/www-netapp-dotcom.css">
-  <link rel="stylesheet" href="/us-en/netapp-solutions/css/www-netapp-library-critical.min.css" media="all" >
-  <link rel="stylesheet" href="/us-en/netapp-solutions/css/www-netapp-library-non-critical.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <link rel="stylesheet" href="/us-en/netapp-solutions/css/www-netapp-library-global-header-footer.min.css">
-
-  <!-- NetApp IE Customizations -->
-  <link rel="stylesheet" href='/us-en/netapp-solutions/css/na-utility.css' type='text/css'>
-  <link rel="stylesheet" href='/us-en/netapp-solutions/css/na-sidebar.css' type='text/css'>
-  <link rel='stylesheet' href='/us-en/netapp-solutions/css/clouddocs.css' type='text/css'>
-  <link rel='stylesheet' href='/us-en/netapp-solutions/css/custom-dropdown.css' type='text/css'>
-  <link rel='stylesheet' href='/us-en/netapp-solutions/css/na-pagenav.css' type='text/css'>
+  <!-- Combined CSS -->
+  <link rel="stylesheet" type="text/css" href="/us-en/netapp-solutions/css/netappdocs.css">
 
   
   <link rel="stylesheet" href="/us-en/netapp-solutions/css/landing-page.css" type="text/css">
@@ -98,11 +78,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
 
   <!-- Used for Product Family Page Sidebar Visibility --><!-- Used to import Promise for IE. Required for SearchKit -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/bluebird/3.3.5/bluebird.min.js"></script><script src='/us-en/netapp-solutions/js/na-search.js'></script><script src='/us-en/netapp-solutions/js/na-pagenav.js'></script><link rel='stylesheet' href='/us-en/netapp-solutions/css/prism.css' type='text/css'>
-  <link rel='stylesheet' href='/us-en/netapp-solutions/css/prism-netapp.css' type='text/css'>
-
-
-  <script src='/us-en/netapp-solutions/js/na-utility.js'></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bluebird/3.3.5/bluebird.min.js"></script><script src='/us-en/netapp-solutions/js/na-search.js'></script><script src='/us-en/netapp-solutions/js/na-pagenav.js'></script><script src='/us-en/netapp-solutions/js/na-utility.js'></script>
   <script src='/us-en/netapp-solutions/js/clouddocs.js'></script>
   <script src='/us-en/netapp-solutions/js/jquery.navgoco.min.js'></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
@@ -316,6 +292,10 @@
           <a href="https://docs.netapp.com/zh-tw/netapp-solutions/ehc/ncvs/ncvs-gc-nfs.html" target="_self"><span translate="no" class="notranslate">繁體中文</span></a>
         </li><li>
           <a href="https://docs.netapp.com/ko-kr/netapp-solutions/ehc/ncvs/ncvs-gc-nfs.html" target="_self"><span translate="no" class="notranslate">한국어</span></a>
+        </li><li>
+          <a href="https://docs.netapp.com/fr-fr/netapp-solutions/ehc/ncvs/ncvs-gc-nfs.html" target="_self"><span translate="no" class="notranslate">Français</span></a>
+        </li><li>
+          <a href="https://docs.netapp.com/de-de/netapp-solutions/ehc/ncvs/ncvs-gc-nfs.html" target="_self"><span translate="no" class="notranslate">Deutsch</span></a>
         </li></ul>
     </div><!-- End Language Selector -->
 
@@ -8725,11 +8705,19 @@
 <p class="page-details">
   
     
-    <time datetime="2022-05-12 18:59:59 +0000">05/12/2022</time>
+    <time datetime="2022-10-21 11:22:09 +0000">10/21/2022</time>
     
   
 
 <span>Contributors
+  <a target="_blank" class="ext-link-indicator" href="https://github.com/okrause">
+    <img  class="avatar avatar-small"
+          alt="okrause"
+          width="20" height="20"
+          src="https://avatars.githubusercontent.com/u/3621164?v=4"
+          style="border-radius: 50%;"/>
+  </a>
+  
 </span>
 
 
@@ -8859,8 +8847,15 @@ When using NFSv4.1, the root user might display as nobody when running directory
 <p><strong>Client match.</strong> Comma-separated list of IP addresses, comma-separated list of hostnames, subnets, netgroups, domain names.</p>
 </li>
 <li>
-<p><strong>RO/RW access rules.</strong> Select read/write or read only to control level of access to export.CVS-Performance provides the following options:</p>
+<p><strong>RO/RW access rules.</strong> Select read/write or read only to control level of access to export.</p>
 </li>
+</ul>
+</div>
+<div class="paragraph">
+<p>CVS-Performance provides the following options:</p>
+</div>
+<div class="ulist">
+<ul>
 <li>
 <p><strong>Client match.</strong> Comma-separated list of IP addresses, comma-separated list of hostnames, subnets, netgroups, domain names.</p>
 </li>
@@ -9003,7 +8998,7 @@ When using NFSv4.1, the root user might display as nobody when running directory
 <p>Finally, NFS group membership (in both NFSv3 and NFSV4.x) is limited to a default maximum of 16 for AUTH_SYS as per the RPC packet limits. NFS Kerberos provides up to 32 groups and NFSv4 ACLs remove the limitation by way of granular user and group ACLs (up to 1024 entries per ACE).</p>
 </div>
 <div class="paragraph">
-<p>Additionally, Cloud Volumes Service provides extended group support to extend the maximum supported groups up to 32. This requires an LDAP connection to an LDAP server that contains valid UNIX user and group identities. For more information about configuring this, see <a href="https://cloud.google.com/architecture/partners/netapp-cloud-volumes/creating-nfs-volumes?hl=en_US" target="_blank" rel="noopener">Creating and managing NFS volumes</a> in the Google documentation.</p>
+<p>Additionally, Cloud Volumes Service provides extended group support to extend the maximum supported groups up to 32. This requires an LDAP connection to an LDAP server that contains valid UNIX user and group identities. For more information about configuring this, see <a href="https://cloud.google.com/architecture/partners/netapp-cloud-volumes/creating-nfs-volumes" target="_blank" rel="noopener">Creating and managing NFS volumes</a> in the Google documentation.</p>
 </div>
 </div>
 </div>
