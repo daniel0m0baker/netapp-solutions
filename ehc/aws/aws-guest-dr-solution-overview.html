@@ -8714,7 +8714,7 @@
 <p class="page-details">
   
     
-    <time datetime="2022-08-04 18:56:40 +0000">08/04/2022</time>
+    <time datetime="2022-12-20 18:09:50 +0000">12/20/2022</time>
     
   
 
@@ -8732,9 +8732,16 @@
 
 </p>
 
-<div class="paragraph">
-<p>Chris Reno, Josh Powell, and Suresh Thoppay</p>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph lead">
+<p>Authors: Chris Reno, Josh Powell, and Suresh Thoppay - NetApp Solutions Engineering</p>
 </div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="overview">Overview</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>A proven disaster recovery (DR) environment and plan is critical for organizations to ensure that business-critical applications can be rapidly restored in the event of a major outage. This solution focuses on demonstrating DR use cases with a focus on VMware and NetApp technologies, both on-premises and with VMware Cloud on AWS.</p>
 </div>
@@ -8747,8 +8754,1544 @@
 <div class="paragraph">
 <p><span class="image"><img src="./../../media/dr-vmc-aws-image1.png" alt="Error: Missing Graphic Image"></span></p>
 </div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="assumptions-pre-requisites-and-component-overview">Assumptions, pre-requisites and component overview</h2>
+<div class="sectionbody">
 <div class="paragraph">
-<p><a href="aws-guest-dr-technology.html">Next: Technology.</a></p>
+<p>Before deploying this solution, review the overview of the components, the required pre-requisites to deploy the solution and assumptions made in documenting this solution.</p>
+</div>
+<div class="paragraph">
+<p><a href="aws-guest-dr-sollution-prereqs.html">DR Solution Requirements, Pre-requisities and Planning</a></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="performing-dr-with-snapcenter">Performing DR with SnapCenter</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In this solution, SnapCenter provides application-consistent snapshots for SQL Server and Oracle application data. This configuration, together with SnapMirror technology, provides high-speed data replication between our on-premises AFF and FSx ONTAP cluster. Additionally, Veeam Backup &amp; Replication provides backup and restore capabilities for our virtual machines.</p>
+</div>
+<div class="paragraph">
+<p>In this section, we cover the configuration of SnapCenter, SnapMirror, and Veeam for both backup and restore.</p>
+</div>
+<div class="paragraph">
+<p>The following sections cover configuration and the steps needed to complete a failover at the secondary site:</p>
+</div>
+<div class="sect2">
+<h3 id="configure-snapmirror-relationships-and-retention-schedules">Configure SnapMirror relationships and retention schedules</h3>
+<div class="paragraph">
+<p>SnapCenter can update SnapMirror relationships within the primary storage system (primary &gt; mirror) and to secondary storage systems (primary &gt; vault) for the purpose of long-term archiving and retention. To do so, you must establish and initialize a data replication relationship between a destination volume and a source volume using SnapMirror.</p>
+</div>
+<div class="paragraph">
+<p>The source and destination ONTAP systems must be in networks that are peered using Amazon VPC peering, a transit gateway, AWS Direct Connect, or an AWS VPN.</p>
+</div>
+<div class="paragraph">
+<p>The following steps are required for setting up SnapMirror relationships between an on-premises ONTAP system and FSx ONTAP:</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/netapp-solutions/images/note.svg" alt="Note">
+</td>
+<td class="content">
+Refer to the <a href="https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/ONTAPGuide.pdf" target="_blank" rel="noopener">FSx for ONTAP – ONTAP User Guide</a> for more information on creating SnapMirror relationships with FSx.
+</td>
+</tr>
+</table>
+</div>
+<details>
+<summary class="title">Record the source and destination Intercluster logical interfaces</summary>
+<div class="content">
+<div class="paragraph">
+<p>For the source ONTAP system residing on-premises, you can retrieve the inter-cluster LIF information from System Manager or from the CLI.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>In ONTAP System Manager, navigate to the Network Overview page and retrieve the IP addresses of Type: Intercluster that are configured to communicate with the AWS VPC where FSx is installed.</p>
+<div class="paragraph">
+<p><span class="image"><img src="./../../media/dr-vmc-aws-image10.png" alt="Error: Missing Graphic Image"></span></p>
+</div>
+</li>
+<li>
+<p>To retrieve the Intercluster IP addresses for FSx, log into the CLI and run the following command:</p>
+<div class="literalblock">
+<div class="content">
+<pre>FSx-Dest::&gt; network interface show -role intercluster</pre>
+</div>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="./../../media/dr-vmc-aws-image11.png" alt="Error: Missing Graphic Image"></span></p>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</details>
+<details>
+<summary class="title">Establish cluster peering between ONTAP and FSx</summary>
+<div class="content">
+<div class="paragraph">
+<p>To establish cluster peering between ONTAP clusters, a unique passphrase entered at the initiating ONTAP cluster must be confirmed in the other peer cluster.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Set up peering on the destination FSx cluster using the <code>cluster peer create</code> command. When prompted, enter a unique passphrase that is used later on the source cluster to finalize the creation process.</p>
+<div class="literalblock">
+<div class="content">
+<pre>FSx-Dest::&gt; cluster peer create -address-family ipv4 -peer-addrs source_intercluster_1, source_intercluster_2
+Enter the passphrase:
+Confirm the passphrase:</pre>
+</div>
+</div>
+</li>
+<li>
+<p>At the source cluster,  you can establish the cluster peer relationship using either ONTAP System Manager or the CLI.  From ONTAP System Manager,  navigate to Protection &gt; Overview and select Peer Cluster.</p>
+<div class="paragraph">
+<p><span class="image"><img src="./../../media/dr-vmc-aws-image12.png" alt="Error: Missing Graphic Image"></span></p>
+</div>
+</li>
+<li>
+<p>In the Peer Cluster dialog box, fill out the required information:</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Enter the passphrase that was used to establish the peer cluster relationship on the destination FSx cluster.</p>
+</li>
+<li>
+<p>Select <code>Yes</code> to establish an encrypted relationship.</p>
+</li>
+<li>
+<p>Enter the intercluster LIF IP address(es) of the destination FSx cluster.</p>
+</li>
+<li>
+<p>Click Initiate Cluster Peering to finalize the process.</p>
+<div class="paragraph">
+<p><span class="image"><img src="./../../media/dr-vmc-aws-image13.png" alt="Error: Missing Graphic Image"></span></p>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Verify the status of the cluster peer relationship from the FSx cluster with the following command:</p>
+<div class="literalblock">
+<div class="content">
+<pre>FSx-Dest::&gt; cluster peer show</pre>
+</div>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="./../../media/dr-vmc-aws-image14.png" alt="Error: Missing Graphic Image"></span></p>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</details>
+<details>
+<summary class="title">Establish SVM peering relationship</summary>
+<div class="content">
+<div class="paragraph">
+<p>The next step is to set up an SVM relationship between the destination and source storage virtual machines that contain the volumes that will be in SnapMirror relationships.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>From the source FSx cluster, use the following command from the CLI to create the SVM peer relationship:</p>
+<div class="literalblock">
+<div class="content">
+<pre>FSx-Dest::&gt; vserver peer create -vserver DestSVM -peer-vserver Backup -peer-cluster OnPremSourceSVM -applications snapmirror</pre>
+</div>
+</div>
+</li>
+<li>
+<p>From the source ONTAP cluster, accept the peering relationship with either ONTAP System Manager or the CLI.</p>
+</li>
+<li>
+<p>From ONTAP System Manager, go to Protection &gt; Overview and select Peer Storage VMs under Storage VM Peers.</p>
+<div class="paragraph">
+<p><span class="image"><img src="./../../media/dr-vmc-aws-image15.png" alt="Error: Missing Graphic Image"></span></p>
+</div>
+</li>
+<li>
+<p>In the Peer Storage VM’s dialog box, fill out the required fields:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>The source storage VM</p>
+</li>
+<li>
+<p>The destination cluster</p>
+</li>
+<li>
+<p>The destination storage VM</p>
+<div class="paragraph">
+<p><span class="image"><img src="./../../media/dr-vmc-aws-image16.png" alt="Error: Missing Graphic Image"></span></p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Click Peer Storage VMs to complete the SVM peering process.</p>
+</li>
+</ol>
+</div>
+</div>
+</details>
+<details>
+<summary class="title">Create a snapshot retention policy</summary>
+<div class="content">
+<div class="paragraph">
+<p>SnapCenter manages retention schedules for backups that exist as snapshot copies on the primary storage system. This is established when creating a policy in SnapCenter. SnapCenter does not manage retention policies for backups that are retained on secondary storage systems. These policies are managed separately through a SnapMirror policy created on the secondary FSx cluster and associated with the destination volumes that are in a SnapMirror relationship with the source volume.</p>
+</div>
+<div class="paragraph">
+<p>When creating a SnapCenter policy, you have the option to specify a secondary policy label that is added to the SnapMirror label of each snapshot generated when a SnapCenter backup is taken.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/netapp-solutions/images/note.svg" alt="Note">
+</td>
+<td class="content">
+On the secondary storage, these labels are matched to policy rules associated with the destination volume for the purpose of enforcing retention of snapshots.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The following example shows a SnapMirror label that is present on all snapshots generated as part of a policy used for daily backups of our SQL Server database and log volumes.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="./../../media/dr-vmc-aws-image17.png" alt="Error: Missing Graphic Image"></span></p>
+</div>
+<div class="paragraph">
+<p>For more information on creating SnapCenter policies for a SQL Server database, see the <a href="https://docs.netapp.com/us-en/snapcenter/protect-scsql/task_create_backup_policies_for_sql_server_databases.html" target="_blank" rel="noopener">SnapCenter documentation</a>.</p>
+</div>
+<div class="paragraph">
+<p>You must first create a SnapMirror policy with rules that dictate the number of snapshot copies to retain.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create the SnapMirror Policy on the FSx cluster.</p>
+<div class="literalblock">
+<div class="content">
+<pre>FSx-Dest::&gt; snapmirror policy create -vserver DestSVM -policy PolicyName -type mirror-vault -restart always</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Add rules to the policy with SnapMirror labels that match the secondary policy labels specified in the SnapCenter policies.</p>
+<div class="literalblock">
+<div class="content">
+<pre>FSx-Dest::&gt; snapmirror policy add-rule -vserver DestSVM -policy PolicyName -snapmirror-label SnapMirrorLabelName -keep #ofSnapshotsToRetain</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The following script provides an example of a rule that could be added to a policy:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>FSx-Dest::&gt; snapmirror policy add-rule -vserver sql_svm_dest -policy Async_SnapCenter_SQL -snapmirror-label sql-ondemand -keep 15</pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/netapp-solutions/images/note.svg" alt="Note">
+</td>
+<td class="content">
+Create additional rules for each SnapMirror label and the number of snapshots to be retained (retention period).
+</td>
+</tr>
+</table>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</details>
+<details>
+<summary class="title">Create destination volumes</summary>
+<div class="content">
+<div class="paragraph">
+<p>To create a destination volume on FSx that will be the recipient of snapshot copies from our source volumes, run the following command on FSx ONTAP:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>FSx-Dest::&gt; volume create -vserver DestSVM -volume DestVolName -aggregate DestAggrName -size VolSize -type DP</pre>
+</div>
+</div>
+</div>
+</details>
+<details>
+<summary class="title">Create the SnapMirror relationships between source and destination volumes</summary>
+<div class="content">
+<div class="paragraph">
+<p>To create a SnapMirror relationship between a source and destination volume, run the following command on FSx ONTAP:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>FSx-Dest::&gt; snapmirror create -source-path OnPremSourceSVM:OnPremSourceVol -destination-path DestSVM:DestVol -type XDP -policy PolicyName</pre>
+</div>
+</div>
+</div>
+</details>
+<details>
+<summary class="title">Initialize the SnapMirror relationships</summary>
+<div class="content">
+<div class="paragraph">
+<p>Initialize the SnapMirror relationship. This process initiates a new snapshot generated from the source volume and copies it to the destination volume.</p>
+</div>
+<div class="paragraph">
+<p>To create a volume, run the following command on FSx ONTAP:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>FSx-Dest::&gt; volume create -vserver DestSVM -volume DestVolName -aggregate DestAggrName -size VolSize -type DP</pre>
+</div>
+</div>
+</div>
+</details>
+</div>
+<div class="sect2">
+<h3 id="deploy-and-configure-windows-snapcenter-server-on-premises">Deploy and configure Windows SnapCenter server on-premises.</h3>
+<details>
+<summary class="title">Deploy Windows SnapCenter Server on premises</summary>
+<div class="content">
+<div class="paragraph">
+<p>This solution uses NetApp SnapCenter to take application-consistent backups of SQL Server and Oracle databases. In conjunction with Veeam Backup &amp; Replication for backing up virtual machine VMDKs, this provides a comprehensive disaster recovery solution for on-premises and cloud-based datacenters.</p>
+</div>
+<div class="paragraph">
+<p>SnapCenter software is available from the NetApp support site and can be installed on Microsoft Windows systems that reside either in a domain or workgroup. A detailed planning guide and installation instructions can be found at the <a href="https://docs.netapp.com/us-en/snapcenter/install/install_workflow.html" target="_blank" rel="noopener">NetApp Documentation Center</a>.</p>
+</div>
+<div class="paragraph">
+<p>The SnapCenter software can be obtained at <a href="https://mysupport.netapp.com" target="_blank" rel="noopener">this link</a>.</p>
+</div>
+<div class="paragraph">
+<p>After it is installed, you can access the SnapCenter console from a web browser using <em>https://Virtual_Cluster_IP_or_FQDN:8146</em>.</p>
+</div>
+<div class="paragraph">
+<p>After you log into the console, you must configure SnapCenter for backup SQL Server and Oracle databases.</p>
+</div>
+</div>
+</details>
+<details>
+<summary class="title">Add storage controllers to SnapCenter</summary>
+<div class="content">
+<div class="paragraph">
+<p>To add storage controllers to SnapCenter, complete the following steps:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>From the left menu, select Storage Systems and then click New to begin the process of adding your storage controllers to SnapCenter.</p>
+<div class="paragraph">
+<p><span class="image"><img src="./../../media/dr-vmc-aws-image18.png" alt="Error: Missing Graphic Image"></span></p>
+</div>
+</li>
+<li>
+<p>In the Add Storage System dialog box, add the management IP address for the local on-premises ONTAP cluster and the username and password. Then click Submit to begin discovery of the storage system.</p>
+<div class="paragraph">
+<p><span class="image"><img src="./../../media/dr-vmc-aws-image19.png" alt="Error: Missing Graphic Image"></span></p>
+</div>
+</li>
+<li>
+<p>Repeat this process to add the FSx ONTAP system to SnapCenter. In this case, select More Options at the bottom of the Add Storage System window and click the check box for Secondary to designate the FSx system as the secondary storage system updated with SnapMirror copies or our primary backup snapshots.</p>
+<div class="paragraph">
+<p><span class="image"><img src="./../../media/dr-vmc-aws-image20.png" alt="Error: Missing Graphic Image"></span></p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>For more information related to adding storage systems to SnapCenter, see the documentation at <a href="https://docs.netapp.com/us-en/snapcenter/install/task_add_storage_systems.html" target="_blank" rel="noopener">this link</a>.</p>
+</div>
+</div>
+</details>
+<details>
+<summary class="title">Add hosts to SnapCenter</summary>
+<div class="content">
+<div class="paragraph">
+<p>The next step is adding host application servers to SnapCenter. The process is similar for both SQL Server and Oracle.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>From the left menu, select Hosts and then click Add to begin the process of adding storage controllers to SnapCenter.</p>
+</li>
+<li>
+<p>In the Add Hosts window, add the Host Type, Hostname, and the host system Credentials. Select the plug-in type. For SQL Server, select the Microsoft Windows and Microsoft SQL Server plug-in.</p>
+<div class="paragraph">
+<p><span class="image"><img src="./../../media/dr-vmc-aws-image21.png" alt="Error: Missing Graphic Image"></span></p>
+</div>
+</li>
+<li>
+<p>For Oracle, fill out the required fields in the Add Host dialog box and select the check box for the Oracle Database plug-in. Then click Submit to begin the discovery process and to add the host to SnapCenter.</p>
+<div class="paragraph">
+<p><span class="image"><img src="./../../media/dr-vmc-aws-image22.png" alt="Error: Missing Graphic Image"></span></p>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</details>
+<details>
+<summary class="title">Create SnapCenter policies</summary>
+<div class="content">
+<div class="paragraph">
+<p>Policies establish the specific rules to be followed for a backup job. They include, but are not limited to, the backup schedule, replication type,  and how SnapCenter handles backing up and truncating transaction logs.</p>
+</div>
+<div class="paragraph">
+<p>You can access policies in the Settings section of the SnapCenter web client.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="./../../media/dr-vmc-aws-image23.png" alt="Error: Missing Graphic Image"></span></p>
+</div>
+<div class="paragraph">
+<p>For complete information on creating policies for SQL Server backups, see the <a href="https://docs.netapp.com/us-en/snapcenter/protect-scsql/task_create_backup_policies_for_sql_server_databases.html" target="_blank" rel="noopener">SnapCenter documentation</a>.</p>
+</div>
+<div class="paragraph">
+<p>For complete information on creating policies for Oracle backups, see the <a href="https://docs.netapp.com/us-en/snapcenter/protect-sco/task_create_backup_policies_for_oracle_database.html" target="_blank" rel="noopener">SnapCenter documentation</a>.</p>
+</div>
+<div class="paragraph">
+<p><strong>Notes:</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>As you progress through the policy creation wizard, take special note of the Replication section. In this section you stipulate the types of secondary SnapMirror copies that you want taken during the backups process.</p>
+</li>
+<li>
+<p>The “Update SnapMirror after creating a local Snapshot copy” setting refers to updating a SnapMirror relationship when that relationship exists between two storage virtual machines residing on the same cluster.</p>
+</li>
+<li>
+<p>The “Update SnapVault after creating a local SnapShot copy” setting is used to update a SnapMirror relationship that exists between two separate cluster and between an on-premises ONTAP system and Cloud Volumes ONTAP or FSxN.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The following image shows the preceding options and how they look in the backup policy wizard.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="./../../media/dr-vmc-aws-image24.png" alt="Error: Missing Graphic Image"></span></p>
+</div>
+</div>
+</details>
+<details>
+<summary class="title">Create SnapCenter Resource Groups</summary>
+<div class="content">
+<div class="paragraph">
+<p>Resource Groups allow you to select the database resources you want to include in your backups and the policies followed for those resources.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Go to the Resources section in the left-hand menu.</p>
+</li>
+<li>
+<p>At the top of the window, select the resource type to work with (In this case Microsoft SQL Server) and then click New Resource Group.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="./../../media/dr-vmc-aws-image25.png" alt="Error: Missing Graphic Image"></span></p>
+</div>
+<div class="paragraph">
+<p>The SnapCenter documentation covers step-by-step details for creating Resource Groups for both SQL Server and Oracle databases.</p>
+</div>
+<div class="paragraph">
+<p>For backing up SQL resources, follow <a href="https://docs.netapp.com/us-en/snapcenter/protect-scsql/task_back_up_sql_resources.html" target="_blank" rel="noopener">this link</a>.</p>
+</div>
+<div class="paragraph">
+<p>For Backing up Oracle resources, follow <a href="https://docs.netapp.com/us-en/snapcenter/protect-sco/task_back_up_oracle_resources.html" target="_blank" rel="noopener">this link</a>.</p>
+</div>
+</div>
+</details>
+</div>
+<div class="sect2">
+<h3 id="deploy-and-configure-veeam-backup-server">Deploy and configure Veeam Backup Server</h3>
+<div class="paragraph">
+<p>Veeam Backup &amp; Replication software is used in the solution to back up our application virtual machines and archive a copy of the backups to an Amazon S3 bucket using a Veeam scale-out backup repository (SOBR). Veeam is deployed on a Windows server in this solution. For specific guidance on deploying Veeam, see the <a href="https://www.veeam.com/documentation-guides-datasheets.html" target="_blank" rel="noopener">Veeam help Center Technical documentation</a>.</p>
+</div>
+<details>
+<summary class="title">Configure Veeam scale-out backup repository</summary>
+<div class="content">
+<div class="paragraph">
+<p>After you deploy and license the software, you can create a scale-out backup repository (SOBR) as target storage for backup jobs. You should also include an S3 bucket as a backup of VM data offsite for disaster recovery.</p>
+</div>
+<div class="paragraph">
+<p>See the following prerequisites before getting started.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create an SMB file share on your on-premises ONTAP system as the target storage for backups.</p>
+</li>
+<li>
+<p>Create an Amazon S3 bucket to include in the SOBR. This is a repository for the offsite backups.</p>
+</li>
+</ol>
+</div>
+<details>
+<summary class="title">Add ONTAP Storage to Veeam</summary>
+<div class="content">
+<div class="paragraph">
+<p>First, add the ONTAP storage cluster and associated SMB/NFS filesystem as storage infrastructure in Veeam.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Open the Veeam console and log in. Navigate to Storage Infrastructure and then select Add Storage.</p>
+<div class="paragraph">
+<p><span class="image"><img src="./../../media/dr-vmc-aws-image26.png" alt="Error: Missing Graphic Image"></span></p>
+</div>
+</li>
+<li>
+<p>In the Add Storage wizard, select NetApp as the storage vendor and then select Data ONTAP.</p>
+</li>
+<li>
+<p>Enter the management IP address and check the NAS Filer box. Click Next.</p>
+<div class="paragraph">
+<p><span class="image"><img src="./../../media/dr-vmc-aws-image27.png" alt="Error: Missing Graphic Image"></span></p>
+</div>
+</li>
+<li>
+<p>Add your credentials to access the ONTAP cluster.</p>
+<div class="paragraph">
+<p><span class="image"><img src="./../../media/dr-vmc-aws-image28.png" alt="Error: Missing Graphic Image"></span></p>
+</div>
+</li>
+<li>
+<p>On the NAS Filer page choose the desired protocols to scan and select Next.</p>
+<div class="paragraph">
+<p><span class="image"><img src="./../../media/dr-vmc-aws-image29.png" alt="Error: Missing Graphic Image"></span></p>
+</div>
+</li>
+<li>
+<p>Complete the Apply and Summary pages of the wizard and click Finish to begin the storage discovery process. After the scan completes, the ONTAP cluster is added along with the NAS filers as available resources.</p>
+<div class="paragraph">
+<p><span class="image"><img src="./../../media/dr-vmc-aws-image30.png" alt="Error: Missing Graphic Image"></span></p>
+</div>
+</li>
+<li>
+<p>Create a backup repository using the newly discovered NAS shares. From Backup Infrastructure, select Backup Repositories and click the Add Repository menu item.</p>
+<div class="paragraph">
+<p><span class="image"><img src="./../../media/dr-vmc-aws-image31.png" alt="Error: Missing Graphic Image"></span></p>
+</div>
+</li>
+<li>
+<p>Follow all steps in the New Backup Repository Wizard to create the repository. For detailed information on creating Veeam Backup Repositories, see the <a href="https://www.veeam.com/documentation-guides-datasheets.html" target="_blank" rel="noopener">Veeam documentation</a>.</p>
+<div class="paragraph">
+<p><span class="image"><img src="./../../media/dr-vmc-aws-image32.png" alt="Error: Missing Graphic Image"></span></p>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</details>
+<details>
+<summary class="title">Add the Amazon S3 bucket as a backup repository</summary>
+<div class="content">
+<div class="paragraph">
+<p>The next step is to add the Amazon S3 storage as a backup repository.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Navigate to Backup Infrastructure &gt; Backup Repositories. Click Add Repository.</p>
+<div class="paragraph">
+<p><span class="image"><img src="./../../media/dr-vmc-aws-image33.png" alt="Error: Missing Graphic Image"></span></p>
+</div>
+</li>
+<li>
+<p>In the Add Backup Repository wizard, select Object Storage and then Amazon S3. This starts the New Object Storage Repository wizard.</p>
+<div class="paragraph">
+<p><span class="image"><img src="./../../media/dr-vmc-aws-image34.png" alt="Error: Missing Graphic Image"></span></p>
+</div>
+</li>
+<li>
+<p>Provide a name for your object storage repository and click Next.</p>
+</li>
+<li>
+<p>In the next section, provide your credentials. You need an AWS Access Key and Secret Key.</p>
+<div class="paragraph">
+<p><span class="image"><img src="./../../media/dr-vmc-aws-image35.png" alt="Error: Missing Graphic Image"></span></p>
+</div>
+</li>
+<li>
+<p>After the Amazon configuration loads, choose your datacenter, bucket, and folder and click Apply. Finally, click Finish to close out the wizard.</p>
+</li>
+</ol>
+</div>
+</div>
+</details>
+<details>
+<summary class="title">Create scale-out backup repository</summary>
+<div class="content">
+<div class="paragraph">
+<p>Now that we have added our storage repositories to Veeam, we can create the SOBR to automatically tier backup copies to our offsite Amazon S3 object storage for disaster recovery.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>From Backup Infrastructure, select Scale-out Repositories and then click the Add Scale-out Repository menu item.</p>
+<div class="paragraph">
+<p><span class="image"><img src="./../../media/dr-vmc-aws-image37.png" alt="Error: Missing Graphic Image"></span></p>
+</div>
+</li>
+<li>
+<p>In the New Scale-out Backup Repository provide a name for the SOBR and click Next.</p>
+</li>
+<li>
+<p>For the Performance Tier, choose the backup repository that contains the SMB share residing on your local ONTAP cluster.</p>
+<div class="paragraph">
+<p><span class="image"><img src="./../../media/dr-vmc-aws-image38.png" alt="Error: Missing Graphic Image"></span></p>
+</div>
+</li>
+<li>
+<p>For the Placement Policy, choose either Data Locality or Performance based your requirements. Select next.</p>
+</li>
+<li>
+<p>For Capacity Tier we extend the SOBR with Amazon S3 object storage. For the purposes of disaster recovery, select Copy Backups to Object Storage as Soon as They are Created to ensure timely delivery of our secondary backups.</p>
+<div class="paragraph">
+<p><span class="image"><img src="./../../media/dr-vmc-aws-image39.png" alt="Error: Missing Graphic Image"></span></p>
+</div>
+</li>
+<li>
+<p>Finally, select Apply and Finish to finalize creation of the SOBR.</p>
+</li>
+</ol>
+</div>
+</div>
+</details>
+<details>
+<summary class="title">Create the scale-out backup repository jobs</summary>
+<div class="content">
+<div class="paragraph">
+<p>The final step to configuring Veeam is to create backup jobs using the newly created SOBR as the backup destination. Creating backup jobs is a normal part of any storage administrator’s repertoire and we do not cover the detailed steps here. For more complete information on creating backup jobs in Veeam, see the <a href="https://www.veeam.com/documentation-guides-datasheets.html" target="_blank" rel="noopener">Veeam Help Center Technical Documentation</a>.</p>
+</div>
+</div>
+</details>
+</div>
+</details>
+</div>
+<div class="sect2">
+<h3 id="cloud-backup-tools-and-configuration">Cloud backup tools and configuration</h3>
+<div class="paragraph">
+<p>To conduct a failover of application VMs and database volumes to VMware Cloud Volume services running in AWS, you must install and configure a running instance of both SnapCenter Server and Veeam Backup and Replication Server. After the failover is complete, you must also configure these tools to resume normal backup operations until a failback to the on-premises datacenter is planned and executed.</p>
+</div>
+<details>
+<summary class="title">Deploy secondary Windows SnapCenter Server</summary>
+<div class="content">
+<div class="paragraph">
+<p>SnapCenter Server is deployed in the VMware Cloud SDDC or installed on an EC2 instance residing in a VPC with network connectivity to the VMware Cloud environment.</p>
+</div>
+<div class="paragraph">
+<p>SnapCenter software is available from the NetApp support site and can be installed on Microsoft Windows systems that reside either in a domain or workgroup. A detailed planning guide and installation instructions can be found at the <a href="https://docs.netapp.com/us-en/snapcenter/install/install_workflow.html" target="_blank" rel="noopener">NetApp documentation center</a>.</p>
+</div>
+<div class="paragraph">
+<p>You can find the SnapCenter software at <a href="https://mysupport.netapp.com" target="_blank" rel="noopener">this link</a>.</p>
+</div>
+</div>
+</details>
+<details>
+<summary class="title">Configure secondary Windows SnapCenter Server</summary>
+<div class="content">
+<div class="paragraph">
+<p>To perform a restore of application data mirrored to FSx ONTAP, you must first perform a full restore of the on-premises SnapCenter database. After this process is complete, communication with the VMs is reestablished and application backups can now resume using FSx ONTAP as the primary storage.</p>
+</div>
+<div class="paragraph">
+<p>To achieve this, you must complete the following items on the SnapCenter Server:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Configure the computer name to be identical to the original on-premises SnapCenter Server.</p>
+</li>
+<li>
+<p>Configure networking to communicate with VMware Cloud and the FSx ONTAP instance.</p>
+</li>
+<li>
+<p>Complete the procedure to restore the SnapCenter database.</p>
+</li>
+<li>
+<p>Confirm that SnapCenter is in Disaster Recovery mode to make sure that FSx is now the primary storage for backups.</p>
+</li>
+<li>
+<p>Confirm that communication is reestablished with the restored virtual machines.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>For more information on completing these steps, see to section <a href="aws-guest-dr-failover.html#snapcenter-database-restore-process">"SnapCenter database Restore Process"</a>.</p>
+</div>
+</div>
+</details>
+<details>
+<summary class="title">Deploy secondary Veeam Backup &amp; Replication server</summary>
+<div class="content">
+<div class="paragraph">
+<p>You can install the Veeam Backup &amp; Replication server on a Windows server in the VMware Cloud on AWS or on an EC2 instance. For detailed implementation guidance, see the <a href="https://www.veeam.com/documentation-guides-datasheets.html" target="_blank" rel="noopener">Veeam Help Center Technical Documentation</a>.</p>
+</div>
+</div>
+</details>
+<details>
+<summary class="title">Configure secondary Veeam Backup &amp; Replication server</summary>
+<div class="content">
+<div class="paragraph">
+<p>To perform a restore of virtual machines that have been backed up to Amazon S3 storage, you must install the Veeam Server on a Windows server and configure it to communicate with VMware Cloud, FSx ONTAP, and the S3 bucket that contains the original backup repository. It must also have a new backup repository configured on FSx ONTAP to conduct new backups of the VMs after they are restored.</p>
+</div>
+<div class="paragraph">
+<p>To perform this process, the following items must be completed:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Configure networking to communicate with VMware Cloud, FSx ONTAP, and the S3 bucket containing the original backup repository.</p>
+</li>
+<li>
+<p>Configure an SMB share on FSx ONTAP to be a new backup repository.</p>
+</li>
+<li>
+<p>Mount the original S3 bucket that was used as part of the scale-out backup repository on premises.</p>
+</li>
+<li>
+<p>After restoring the VM, establish new backup jobs to protect SQL and Oracle VMs.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>For more information on restoring VMs using Veeam, see the section <a href="aws-guest-dr-restore-veeam-full.html">"Restore Application VMs with Veeam Full Restore"</a>.</p>
+</div>
+</div>
+</details>
+</div>
+<div class="sect2">
+<h3 id="snapcenter-database-backup-for-disaster-recovery">SnapCenter database backup for disaster recovery</h3>
+<div class="paragraph">
+<p>SnapCenter allows for the backup and recovery of its underlying MySQL database and configuration data for the purpose of recovering the SnapCenter server in the case of a disaster. For our solution, we recovered the SnapCenter database and configuration on an AWS EC2 instance residing in our VPC. For more information on this step, see <a href="https://docs.netapp.com/us-en/snapcenter/sc-automation/rest_api_workflows_disaster_recovery_of_snapcenter_server.html" target="_blank" rel="noopener">this link</a>.</p>
+</div>
+<details>
+<summary class="title">SnapCenter backup prerequisites</summary>
+<div class="content">
+<div class="paragraph">
+<p>The following prerequisites are required for SnapCenter backup:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>A volume and SMB share created on the on-premises ONTAP system to locate the backed-up database and configuration files.</p>
+</li>
+<li>
+<p>A SnapMirror relationship between the on-premises ONTAP system and FSx or CVO in the AWS account. This relationship is used for transporting the snapshot containing the backed-up SnapCenter database and configuration files.</p>
+</li>
+<li>
+<p>Windows Server installed in the cloud account, either on an EC2 instance or on a VM in the VMware Cloud SDDC.</p>
+</li>
+<li>
+<p>SnapCenter installed on the Windows EC2 instance or VM in VMware Cloud.</p>
+</li>
+</ul>
+</div>
+</div>
+</details>
+<details>
+<summary class="title">SnapCenter backup and restore process summary</summary>
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Create a volume on the on-premises ONTAP system for hosting the backup db and config files.</p>
+</li>
+<li>
+<p>Set up a SnapMirror relationship between on-premises and FSx/CVO.</p>
+</li>
+<li>
+<p>Mount the SMB share.</p>
+</li>
+<li>
+<p>Retrieve the Swagger authorization token for performing API tasks.</p>
+</li>
+<li>
+<p>Start the db restore process.</p>
+</li>
+<li>
+<p>Use the xcopy utility to copy the db and config file local directory to the SMB share.</p>
+</li>
+<li>
+<p>On FSx, create a clone of the ONTAP volume (copied via SnapMirror from on-premises).</p>
+</li>
+<li>
+<p>Mount the SMB share from FSx to EC2/VMware Cloud.</p>
+</li>
+<li>
+<p>Copy the restore directory from the SMB share to a local directory.</p>
+</li>
+<li>
+<p>Run the SQL Server restore process from Swagger.</p>
+</li>
+</ul>
+</div>
+</div>
+</details>
+<details>
+<summary class="title">Back up the SnapCenter database and configuration</summary>
+<div class="content">
+<div class="paragraph">
+<p>SnapCenter provides a web client interface for executing REST API commands. For information on accessing the REST APIs through Swagger, see the SnapCenter documentation at <a href="https://docs.netapp.com/us-en/snapcenter/sc-automation/overview_rest_apis.html" target="_blank" rel="noopener">this link</a>.</p>
+</div>
+<details>
+<summary class="title">Log into Swagger and obtain authorization token</summary>
+<div class="content">
+<div class="paragraph">
+<p>After you have navigated to the Swagger page, you must retrieve an authorization token to initiate the database restore process.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Access the SnapCenter Swagger API web page at <em>https://&lt;SnapCenter Server IP&gt;:8146/swagger/</em>.</p>
+<div class="paragraph">
+<p><span class="image"><img src="./../../media/dr-vmc-aws-image40.png" alt="Error: Missing Graphic Image"></span></p>
+</div>
+</li>
+<li>
+<p>Expand the Auth section and click Try it Out.</p>
+<div class="paragraph">
+<p><span class="image"><img src="./../../media/dr-vmc-aws-image41.png" alt="Error: Missing Graphic Image"></span></p>
+</div>
+</li>
+<li>
+<p>In the UserOperationContext area, fill in the SnapCenter credentials and role and click Execute.</p>
+<div class="paragraph">
+<p><span class="image"><img src="./../../media/dr-vmc-aws-image42.png" alt="Error: Missing Graphic Image"></span></p>
+</div>
+</li>
+<li>
+<p>In the Response body below, you can see the token. Copy the token text for authentication when executing the backup process.</p>
+<div class="paragraph">
+<p><span class="image"><img src="./../../media/dr-vmc-aws-image43.png" alt="Error: Missing Graphic Image"></span></p>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</details>
+<details>
+<summary class="title">Perform a SnapCenter database backup</summary>
+<div class="content">
+<div class="paragraph">
+<p>Next go to the Disaster Recovery area on the Swagger page to begin the SnapCenter backup process.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Expand the Disaster Recovery area by clicking it.</p>
+<div class="paragraph">
+<p><span class="image"><img src="./../../media/dr-vmc-aws-image44.png" alt="Error: Missing Graphic Image"></span></p>
+</div>
+</li>
+<li>
+<p>Expand the <code>/4.6/disasterrecovery/server/backup</code> section and click Try it Out.</p>
+<div class="paragraph">
+<p><span class="image"><img src="./../../media/dr-vmc-aws-image45.png" alt="Error: Missing Graphic Image"></span></p>
+</div>
+</li>
+<li>
+<p>In the SmDRBackupRequest section, add the correct local target path and select Execute to start the backup of the SnapCenter database and configuration.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/netapp-solutions/images/note.svg" alt="Note">
+</td>
+<td class="content">
+The backup process does not allow backing up directly to an NFS or CIFS file share.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="./../../media/dr-vmc-aws-image46.png" alt="Error: Missing Graphic Image"></span></p>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</details>
+<details>
+<summary class="title">Monitor the backup job from SnapCenter</summary>
+<div class="content">
+<div class="paragraph">
+<p>Log into SnapCenter to review log files when starting the database restore process. Under the Monitor section, you can view the details of the SnapCenter server disaster recovery backup.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="./../../media/dr-vmc-aws-image47.png" alt="Error: Missing Graphic Image"></span></p>
+</div>
+</div>
+</details>
+<details>
+<summary class="title">Use XCOPY utility to copy the database backup file to the SMB share</summary>
+<div class="content">
+<div class="paragraph">
+<p>Next you must move the backup from the local drive on the SnapCenter server to the CIFS share that is used to SnapMirror copy the data to the secondary location located on the FSx instance in AWS. Use xcopy with specific options that retain the permissions of the files.</p>
+</div>
+<div class="paragraph">
+<p>Open a command prompt as Administrator. From the command prompt, enter the following commands:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>xcopy  &lt;Source_Path&gt;  \\&lt;Destination_Server_IP&gt;\&lt;Folder_Path&gt; /O /X /E /H /K
+xcopy c:\SC_Backups\SnapCenter_DR \\10.61.181.185\snapcenter_dr /O /X /E /H /K</pre>
+</div>
+</div>
+</div>
+</details>
+</div>
+</details>
+</div>
+<div class="sect2">
+<h3 id="failover">Failover</h3>
+<details>
+<summary class="title">Disaster occurs at primary site</summary>
+<div class="content">
+<div class="paragraph">
+<p>For a disaster that occurs at the primary on-premises datacenter, our scenario includes failover to a secondary site residing on Amazon Web Services infrastructure using VMware Cloud on AWS. We assume that the virtual machines and our on-premises ONTAP cluster are no longer accessible. In addition, both the SnapCenter and Veeam virtual machines are no longer accessible and must be rebuilt at our secondary site.</p>
+</div>
+<div class="paragraph">
+<p>This section address failover of our infrastructure to the cloud, and we cover the following topics:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>SnapCenter database restore. After a new SnapCenter server has been established, restore the MySQL database and configuration files and toggle the database into disaster recovery mode in order to allow the secondary FSx storage to become the primary storage device.</p>
+</li>
+<li>
+<p>Restore the application virtual machines using Veeam Backup &amp; Replication. Connect the S3 storage that contains the VM backups, import the backups, and restore them to VMware Cloud on AWS.</p>
+</li>
+<li>
+<p>Restore the SQL Server application data using SnapCenter.</p>
+</li>
+<li>
+<p>Restore the Oracle application data using SnapCenter.</p>
+</li>
+</ul>
+</div>
+</div>
+</details>
+<details>
+<summary class="title">SnapCenter database restore process</summary>
+<div class="content">
+<div class="paragraph">
+<p>SnapCenter supports disaster recovery scenarios by allowing the backup and restore of its MySQL database and configuration files. This allows an administrator to maintain regular backups of the SnapCenter database at the on-premises datacenter and later restore that database to a secondary SnapCenter database.</p>
+</div>
+<div class="paragraph">
+<p>To access the SnapCenter backup files on the remote SnapCenter server, complete the following steps:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Break the SnapMirror relationship from the FSx cluster,  which makes the volume read/write.</p>
+</li>
+<li>
+<p>Create a CIFS server (if necessary) and create a CIFS share pointing to the junction path of the cloned volume.</p>
+</li>
+<li>
+<p>Use xcopy to copy the backup files to a local directory on the secondary SnapCenter system.</p>
+</li>
+<li>
+<p>Install SnapCenter v4.6.</p>
+</li>
+<li>
+<p>Ensure that SnapCenter server has the same FQDN as the original server. This is required for the db restore to be successful.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>To start the restore process, complete the following steps:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Navigate to the Swagger API web page for the secondary SnapCenter server and follow the previous instructions to obtain an authorization token.</p>
+</li>
+<li>
+<p>Navigate to the Disaster Recovery section of the Swagger page, select <code>/4.6/disasterrecovery/server/restore</code>, and click Try it Out.</p>
+<div class="paragraph">
+<p><span class="image"><img src="./../../media/dr-vmc-aws-image48.png" alt="Error: Missing Graphic Image"></span></p>
+</div>
+</li>
+<li>
+<p>Paste in your authorization token and, in the SmDRResterRequest section, paste in the name of the backup and the local directory on the secondary SnapCenter server.</p>
+<div class="paragraph">
+<p><span class="image"><img src="./../../media/dr-vmc-aws-image49.png" alt="Error: Missing Graphic Image"></span></p>
+</div>
+</li>
+<li>
+<p>Select the Execute button to start the restore process.</p>
+</li>
+<li>
+<p>From SnapCenter, navigate to the Monitor section to view the progress of the restore job.</p>
+<div class="paragraph">
+<p><span class="image"><img src="./../../media/dr-vmc-aws-image50.png" alt="Error: Missing Graphic Image"></span></p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="./../../media/dr-vmc-aws-image51.png" alt="Error: Missing Graphic Image"></span></p>
+</div>
+</li>
+<li>
+<p>To enable SQL Server restores from secondary storage,  you must toggle the SnapCenter database into Disaster Recovery mode. This is performed as a separate operation and initiated on the Swagger API web page.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Navigate to the Disaster Recovery section and click <code>/4.6/disasterrecovery/storage</code>.</p>
+</li>
+<li>
+<p>Paste in the user authorization token.</p>
+</li>
+<li>
+<p>In the SmSetDisasterRecoverySettingsRequest section, change <code>EnableDisasterRecover</code> to <code>true</code>.</p>
+</li>
+<li>
+<p>Click Execute to enable disaster recovery mode for SQL Server.</p>
+<div class="paragraph">
+<p><span class="image"><img src="./../../media/dr-vmc-aws-image52.png" alt="Error: Missing Graphic Image"></span></p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/netapp-solutions/images/note.svg" alt="Note">
+</td>
+<td class="content">
+See comments regarding additional procedures.
+</td>
+</tr>
+</table>
+</div>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</details>
+</div>
+<div class="sect2">
+<h3 id="restore-application-vms-with-veeam-full-restore">Restore application VMs with Veeam full restore</h3>
+<details>
+<summary class="title">Create a backup repository and import backups from S3</summary>
+<div class="content">
+<div class="paragraph">
+<p>From the secondary Veeam server, import the backups from S3 storage and restore the SQL Server and Oracle VMs to your VMware Cloud cluster.</p>
+</div>
+<div class="paragraph">
+<p>To import the backups from the S3 object that was part of the on-premises scale-out backup repository, complete the following steps:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Go to Backup Repositories and click Add Repository in the top menu to launch the Add Backup Repository wizard. On the first page of the wizard,  select Object Storage as the backup repository type.</p>
+<div class="paragraph">
+<p><span class="image"><img src="./../../media/dr-vmc-aws-image53.png" alt="Error: Missing Graphic Image"></span></p>
+</div>
+</li>
+<li>
+<p>Select Amazon S3 as the Object Storage type.</p>
+<div class="paragraph">
+<p><span class="image"><img src="./../../media/dr-vmc-aws-image54.png" alt="Error: Missing Graphic Image"></span></p>
+</div>
+</li>
+<li>
+<p>From the list of Amazon Cloud Storage Services, select Amazon S3.</p>
+<div class="paragraph">
+<p><span class="image"><img src="./../../media/dr-vmc-aws-image55.png" alt="Error: Missing Graphic Image"></span></p>
+</div>
+</li>
+<li>
+<p>Select your pre-entered credentials from the drop-down list or add a new credential for accessing the cloud storage resource. Click Next to continue.</p>
+<div class="paragraph">
+<p><span class="image"><img src="./../../media/dr-vmc-aws-image56.png" alt="Error: Missing Graphic Image"></span></p>
+</div>
+</li>
+<li>
+<p>On the Bucket page, enter the data center, bucket, folder, and any desired options. Click Apply.</p>
+<div class="paragraph">
+<p><span class="image"><img src="./../../media/dr-vmc-aws-image57.png" alt="Error: Missing Graphic Image"></span></p>
+</div>
+</li>
+<li>
+<p>Finally, select Finish to complete the process and add the repository.</p>
+</li>
+</ol>
+</div>
+</div>
+</details>
+<details>
+<summary class="title">Import backups from S3 object storage</summary>
+<div class="content">
+<div class="paragraph">
+<p>To import the backups from the S3 repository that was added in the previous section, complete the following steps.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>From the S3 backup repository, select Import Backups to launch the Import Backups wizard.</p>
+<div class="paragraph">
+<p><span class="image"><img src="./../../media/dr-vmc-aws-image58.png" alt="Error: Missing Graphic Image"></span></p>
+</div>
+</li>
+<li>
+<p>After the database records for the import have been created, select Next and then Finish at the summary screen to start the import process.</p>
+<div class="paragraph">
+<p><span class="image"><img src="./../../media/dr-vmc-aws-image59.png" alt="Error: Missing Graphic Image"></span></p>
+</div>
+</li>
+<li>
+<p>After the import is complete, you can restore VMs into the VMware Cloud cluster.</p>
+<div class="paragraph">
+<p><span class="image"><img src="./../../media/dr-vmc-aws-image60.png" alt="Error: Missing Graphic Image"></span></p>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</details>
+<details>
+<summary class="title">Restore application VMs with Veeam full restore to VMware Cloud</summary>
+<div class="content">
+<div class="paragraph">
+<p>To restore SQL and Oracle virtual machines to the VMware Cloud on AWS workload domain/cluster, complete the following steps.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>From the Veeam Home page, select the object storage containing the imported backups, select the VMs to restore, and then right click and select Restore Entire VM.</p>
+<div class="paragraph">
+<p><span class="image"><img src="./../../media/dr-vmc-aws-image61.png" alt="Error: Missing Graphic Image"></span></p>
+</div>
+</li>
+<li>
+<p>On the first page of the Full VM Restore wizard, modify the VMs to backup if desired and select Next.</p>
+<div class="paragraph">
+<p><span class="image"><img src="./../../media/dr-vmc-aws-image62.png" alt="Error: Missing Graphic Image"></span></p>
+</div>
+</li>
+<li>
+<p>On the Restore Mode page,  select Restore to a New Location, or with Different Settings.</p>
+<div class="paragraph">
+<p><span class="image"><img src="./../../media/dr-vmc-aws-image63.png" alt="Error: Missing Graphic Image"></span></p>
+</div>
+</li>
+<li>
+<p>On the host page, select the Target ESXi host or cluster to restore the VM to.</p>
+<div class="paragraph">
+<p><span class="image"><img src="./../../media/dr-vmc-aws-image64.png" alt="Error: Missing Graphic Image"></span></p>
+</div>
+</li>
+<li>
+<p>On the Datastores page, select the target datastore location for both the configuration files and hard disk.</p>
+<div class="paragraph">
+<p><span class="image"><img src="./../../media/dr-vmc-aws-image65.png" alt="Error: Missing Graphic Image"></span></p>
+</div>
+</li>
+<li>
+<p>On the Network page, map the original networks on the VM to the networks in the new target location.</p>
+<div class="paragraph">
+<p><span class="image"><img src="./../../media/dr-vmc-aws-image66.png" alt="Error: Missing Graphic Image"></span></p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="./../../media/dr-vmc-aws-image67.png" alt="Error: Missing Graphic Image"></span></p>
+</div>
+</li>
+<li>
+<p>Select whether to scan the restored VM for malware, review the summary page, and click Finish to start the restore.</p>
+</li>
+</ol>
+</div>
+</div>
+</details>
+</div>
+<div class="sect2">
+<h3 id="restore-sql-server-application-data">Restore SQL Server application data</h3>
+<div class="paragraph">
+<p>The following process provides instructions on how to recover a SQL Server in VMware Cloud Services in AWS in the event of a disaster that renders the on-premises site inoperable.</p>
+</div>
+<div class="paragraph">
+<p>The following prerequisites are assumed to be complete in order to continue with the recovery steps:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The Windows Server VM has been restored to the VMware Cloud SDDC using Veeam Full Restore.</p>
+</li>
+<li>
+<p>A secondary SnapCenter server has been established and SnapCenter database restore and configuration has been completed using the steps outlined in the section <a href="aws-guest-dr-snapcenter-db-backup.html#snapcenter-backup-and-restore-process-summary">"SnapCenter backup and restore process summary."</a></p>
+</li>
+</ol>
+</div>
+<details>
+<summary class="title">VM: Post restore configuration for SQL Server VM</summary>
+<div class="content">
+<div class="paragraph">
+<p>After the restore of the VM is complete, you must configure networking and other items in preparation for rediscovering the host VM within SnapCenter.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Assign new IP addresses for Management and iSCSI or NFS.</p>
+</li>
+<li>
+<p>Join the host to the Windows domain.</p>
+</li>
+<li>
+<p>Add the hostnames to DNS or to the hosts file on the SnapCenter server.</p>
+</li>
+</ol>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/netapp-solutions/images/note.svg" alt="Note">
+</td>
+<td class="content">
+If the SnapCenter plug-in was deployed using domain credentials different than the current domain, you must change the Log On account for the Plug-in for Windows Service on the SQL Server VM. After changing the Log On account, restart the SnapCenter SMCore, Plug-in for Windows, and Plug-in for SQL Server services.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/netapp-solutions/images/note.svg" alt="Note">
+</td>
+<td class="content">
+To automatically rediscover the restored VMs in SnapCenter, the FQDN must be identical to the VM that was originally added to the SnapCenter on premises.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</details>
+<details>
+<summary class="title">Configure FSx storage for SQL Server restore</summary>
+<div class="content">
+<div class="paragraph">
+<p>To accomplish the disaster recovery restore process for a SQL Server VM, you must break the existing SnapMirror relationship from the FSx cluster and grant access to the volume. To do so, complete the following steps.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>To break the existing SnapMirror relationship for the SQL Server database and log volumes, run the following command from the FSx CLI:</p>
+<div class="literalblock">
+<div class="content">
+<pre>FSx-Dest::&gt; snapmirror break -destination-path DestSVM:DestVolName</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Grant access to the LUN by creating an initiator group containing the iSCSI IQN of the SQL Server Windows VM:</p>
+<div class="literalblock">
+<div class="content">
+<pre>FSx-Dest::&gt; igroup create -vserver DestSVM -igroup igroupName -protocol iSCSI -ostype windows -initiator IQN</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Finally, map the LUNs to the initiator group that you just created:</p>
+<div class="literalblock">
+<div class="content">
+<pre>FSx-Dest::&gt; lun mapping create -vserver DestSVM -path LUNPath igroup igroupName</pre>
+</div>
+</div>
+</li>
+<li>
+<p>To find the path name, run the <code>lun show</code> command.</p>
+</li>
+</ol>
+</div>
+</div>
+</details>
+<details>
+<summary class="title">Set up the Windows VM for iSCSI access and discover the file systems</summary>
+<div class="content">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>From the SQL Server VM, set up your iSCSI network adapter to communicate on the VMware Port Group that has been established with connectivity to the iSCSI target interfaces on your FSx instance.</p>
+</li>
+<li>
+<p>Open the iSCSI Initiator Properties utility and clear out the old connectivity settings on the Discovery, Favorite Targets, and Targets tabs.</p>
+</li>
+<li>
+<p>Locate the IP address(es) for accessing the iSCSI logical interface on the FSx instance/cluster. This can be found in the AWS console under Amazon FSx &gt; ONTAP &gt; Storage Virtual Machines.</p>
+<div class="paragraph">
+<p><span class="image"><img src="./../../media/dr-vmc-aws-image68.png" alt="Error: Missing Graphic Image"></span></p>
+</div>
+</li>
+<li>
+<p>From the Discovery tab, click Discover Portal and enter the IP addresses for your FSx iSCSI targets.</p>
+<div class="paragraph">
+<p><span class="image"><img src="./../../media/dr-vmc-aws-image69.png" alt="Error: Missing Graphic Image"></span></p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="./../../media/dr-vmc-aws-image70.png" alt="Error: Missing Graphic Image"></span></p>
+</div>
+</li>
+<li>
+<p>On the Target tab, click Connect, select Enable Multi-Path if appropriate for your configuration and then click OK to connect to the target.</p>
+<div class="paragraph">
+<p><span class="image"><img src="./../../media/dr-vmc-aws-image71.png" alt="Error: Missing Graphic Image"></span></p>
+</div>
+</li>
+<li>
+<p>Open the Computer Management utility and bring the disks online. Verify that they retain the same drive letters that they previously held.</p>
+<div class="paragraph">
+<p><span class="image"><img src="./../../media/dr-vmc-aws-image72.png" alt="Error: Missing Graphic Image"></span></p>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</details>
+<details>
+<summary class="title">Attach the SQL Server databases</summary>
+<div class="content">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>From the SQL Server VM, open Microsoft SQL Server Management Studio and select Attach to start the process of connecting to the database.</p>
+<div class="paragraph">
+<p><span class="image"><img src="./../../media/dr-vmc-aws-image73.png" alt="Error: Missing Graphic Image"></span></p>
+</div>
+</li>
+<li>
+<p>Click Add and navigate to the folder containing the SQL Server primary database file, select it, and click OK.</p>
+<div class="paragraph">
+<p><span class="image"><img src="./../../media/dr-vmc-aws-image74.png" alt="Error: Missing Graphic Image"></span></p>
+</div>
+</li>
+<li>
+<p>If the transaction logs are on a separate drive, choose the folder that contains the transaction log.</p>
+</li>
+<li>
+<p>When finished, click OK to attach the database.</p>
+<div class="paragraph">
+<p><span class="image"><img src="./../../media/dr-vmc-aws-image75.png" alt="Error: Missing Graphic Image"></span></p>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</details>
+<details>
+<summary class="title">Confirm SnapCenter communication with SQL Server Plug-in</summary>
+<div class="content">
+<div class="paragraph">
+<p>With the SnapCenter database restored to its previous state, it automatically rediscovers the SQL Server hosts. For this to work correctly, keep in mind the following prerequisites:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>SnapCenter must be placed in Disaster Recover mode. This can be accomplished through the Swagger API or in Global Settings under Disaster Recovery.</p>
+</li>
+<li>
+<p>The FQDN of the SQL Server must be identical to the instance that was running in the on-premises datacenter.</p>
+</li>
+<li>
+<p>The original SnapMirror relationship must be broken.</p>
+</li>
+<li>
+<p>The LUNs containing the database must be mounted to the SQL Server instance and the database attached.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>To confirm that SnapCenter is in Disaster Recovery mode, navigate to Settings from within the SnapCenter web client. Go to the Global Settings tab and then click Disaster Recovery. Make sure that the Enable Disaster Recovery checkbox is enabled.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="./../../media/dr-vmc-aws-image76.png" alt="Error: Missing Graphic Image"></span></p>
+</div>
+</div>
+</details>
+</div>
+<div class="sect2">
+<h3 id="restore-oracle-application-data">Restore Oracle application data</h3>
+<div class="paragraph">
+<p>The following process provides instructions on how to recover Oracle application data in VMware Cloud Services in AWS in the event of a disaster that renders the on-premises site inoperable.</p>
+</div>
+<div class="paragraph">
+<p>Complete the following prerequisites to continue with the recovery steps:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The Oracle Linux server VM has been restored to the VMware Cloud SDDC using Veeam Full Restore.</p>
+</li>
+<li>
+<p>A secondary SnapCenter server has been established and the SnapCenter database and configuration files have been restored using the steps outlined in this section <a href="aws-guest-dr-snapcenter-db-backup.html#snapcenter-backup-and-restore-process-summary">"SnapCenter backup and restore process summary."</a></p>
+</li>
+</ol>
+</div>
+<details>
+<summary class="title">Configure FSx for Oracle restore – Break the SnapMirror relationship</summary>
+<div class="content">
+<div class="paragraph">
+<p>To make the secondary storage volumes hosted on the FSxN instance accessible to the Oracle servers, you must first break the existing SnapMirror relationship.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>After logging into the FSx CLI, run the following command to view the volumes filtered by the correct name.</p>
+<div class="literalblock">
+<div class="content">
+<pre>FSx-Dest::&gt; volume show -volume VolumeName*</pre>
+</div>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="./../../media/dr-vmc-aws-image77.png" alt="Error: Missing Graphic Image"></span></p>
+</div>
+</li>
+<li>
+<p>Run the following command to break the existing SnapMirror relationships.</p>
+<div class="literalblock">
+<div class="content">
+<pre>FSx-Dest::&gt; snapmirror break -destination-path DestSVM:DestVolName</pre>
+</div>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="./../../media/dr-vmc-aws-image78.png" alt="Error: Missing Graphic Image"></span></p>
+</div>
+</li>
+<li>
+<p>Update the junction-path in the Amazon FSx web client:</p>
+<div class="paragraph">
+<p><span class="image"><img src="./../../media/dr-vmc-aws-image79.png" alt="Error: Missing Graphic Image"></span></p>
+</div>
+</li>
+<li>
+<p>Add the junction path name and click Update. Specify this junction path when mounting the NFS volume from the Oracle server.</p>
+<div class="paragraph">
+<p><span class="image"><img src="./../../media/dr-vmc-aws-image80.png" alt="Error: Missing Graphic Image"></span></p>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</details>
+<details>
+<summary class="title">Mount NFS volumes on Oracle Server</summary>
+<div class="content">
+<div class="paragraph">
+<p>In Cloud Manager, you can obtain the mount command with the correct NFS LIF IP address for mounting the NFS volumes that contain the Oracle database files and logs.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>In Cloud Manager, access the list of volumes for your FSx cluster.</p>
+<div class="paragraph">
+<p><span class="image"><img src="./../../media/dr-vmc-aws-image81.png" alt="Error: Missing Graphic Image"></span></p>
+</div>
+</li>
+<li>
+<p>From the action menu, select Mount Command to view and copy the mount command to be used on our Oracle Linux server.</p>
+<div class="paragraph">
+<p><span class="image"><img src="./../../media/dr-vmc-aws-image82.png" alt="Error: Missing Graphic Image"></span></p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="./../../media/dr-vmc-aws-image83.png" alt="Error: Missing Graphic Image"></span></p>
+</div>
+</li>
+<li>
+<p>Mount the NFS file system to the Oracle Linux Server. The directories for mounting the NFS share already exist on the Oracle Linux host.</p>
+</li>
+<li>
+<p>From the Oracle Linux server,  use the mount command to mount the NFS volumes.</p>
+<div class="literalblock">
+<div class="content">
+<pre>FSx-Dest::&gt; mount -t oracle_server_ip:/junction-path</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Repeat this step for each volume associated with the Oracle databases.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/netapp-solutions/images/note.svg" alt="Note">
+</td>
+<td class="content">
+To make the NFS mount persistent upon rebooting, edit the <code>/etc/fstab</code> file to include the mount commands.
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Reboot the Oracle server. The Oracle databases should start up normally and be available for use.</p>
+</li>
+</ol>
+</div>
+</div>
+</details>
+</div>
+<div class="sect2">
+<h3 id="failback">Failback</h3>
+<div class="paragraph">
+<p>Upon successful completion of the failover process outlined in this solution, SnapCenter and Veeam resume their backup functions running in AWS, and FSx for ONTAP is now designated as primary storage with no existing SnapMirror relationships with the original on-premises datacenter. After normal function has resumed on premises, you can use a process identical to the one outlined in this documentation to mirror data back to the on-premises ONTAP storage system.</p>
+</div>
+<div class="paragraph">
+<p>As is also outlined in this documentation, you can configure SnapCenter to mirror the application data volumes from FSx for ONTAP to an ONTAP storage system residing on premises. Similarly, you can configure Veeam to replicate backup copies to Amazon S3 using a scale-out backup repository so that those backups are accessible to a Veeam backup server residing at the on-premises datacenter.</p>
+</div>
+<div class="paragraph">
+<p>Failback is outside the scope of this documentation, but failback differs little from the detailed process outlined here.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="conclusion">Conclusion</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The use case presented in this documentation focuses on proven disaster recovery technologies that highlight the integration between NetApp and VMware. NetApp ONTAP storage systems provide proven data-mirroring technologies that allow organizations to design disaster recovery solutions that span on-premises and ONTAP technologies residing with the leading cloud providers.</p>
+</div>
+<div class="paragraph">
+<p>FSx for ONTAP on AWS is one such solution that allows for seamless integration with SnapCenter and SyncMirror for replicating application data to the cloud. Veeam Backup &amp; Replication is another well-known technology that integrates well with NetApp ONTAP storage systems and can provide failover to vSphere- native storage.</p>
+</div>
+<div class="paragraph">
+<p>This solution presented a disaster recovery solution using guest connect storage from an ONTAP system hosting SQL Server and Oracle application data. SnapCenter with SnapMirror provides an easy-to-manage solution for protecting application volumes on ONTAP systems and replicating them to FSx or CVO residing in the cloud. SnapCenter is a DR-enabled solution for failing over all application data to VMware Cloud on AWS.</p>
+</div>
+<div class="sect2">
+<h3 id="where-to-find-additional-information">Where to find additional information</h3>
+<div class="paragraph">
+<p>To learn more about the information that is described in this document, review the following documents and/or websites:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Links to solution documentation</p>
+<div class="paragraph">
+<p><a href="https://docs.netapp.com/us-en/netapp-solutions/ehc/index.html">NetApp Hybrid Multicloud with VMware Solutions</a></p>
+</div>
+<div class="paragraph">
+<p><a href="https://docs.netapp.com/us-en/netapp-solutions/index.html">NetApp Solutions</a></p>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
 </div>
 
     </article>

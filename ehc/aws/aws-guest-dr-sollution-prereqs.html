@@ -1,23 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
   <head class="at-element-marker">
-  <title>Cloud backup tools and configuration</title>
+  <title>DR Solution Requirements, Pre-requisities and Planning</title>
   <meta charset="utf-8">
   <meta http-equiv="x-ua-compatible" content="ie=edge,chrome=1">
   <meta http-equiv="language" content="en">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta property="og:title" content="Cloud backup tools and configuration" />
+  <meta property="og:title" content="DR Solution Requirements, Pre-requisities and Planning" />
 	<meta property="og:type" content="website" />
-	<meta property="og:url" content="https://docs.netapp.com/us-en/netapp-solutions/ehc/aws/aws-guest-dr-cloud-backup-config.html" />
-	<meta property="og:description" content="To conduct a failover of application VMs and database volumes to VMware Cloud Volume services running in AWS, you must install and configure a running instan..." />
+	<meta property="og:url" content="https://docs.netapp.com/us-en/netapp-solutions/ehc/aws/aws-guest-dr-sollution-prereqs.html" />
+	<meta property="og:description" content="In this solution, SnapCenter provides application-consistent snapshots for SQL Server and Oracle application data. This configuration, together with SnapMirr..." />
   <meta property="og:image" content="https://docs.netapp.com/us-en/netapp-solutions/images/logo-tophat-social.png" />
   <meta property="og:image:alt" content="NetApp Logo" />
   <meta name="format-detection" content="telephone=no">
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <meta http-equiv="encoding" content="utf-8">
   <meta http-equiv="nss-type" content="Product Documentation"/>
-  <meta http-equiv="nss-subtype" content="User Guide"/><meta name="description" content="To conduct a failover of application VMs and database volumes to VMware Cloud Volume services running in AWS, you must install and configure a running instan...">
-  <meta name="keywords" content=" secondary, windows, snapcenter server, veeam server"><!-- Icons -->
+  <meta http-equiv="nss-subtype" content="User Guide"/><meta name="description" content="In this solution, SnapCenter provides application-consistent snapshots for SQL Server and Oracle application data. This configuration, together with SnapMirr...">
+  <meta name="keywords" content=" overview, dr, snapcenter, data replication, snapmirror"><!-- Icons -->
   <link rel="icon" href="/us-en/netapp-solutions/images/favicon.ico" type="image/x-icon">
 
   <!-- RSS Feed --><!-- CSS Definitions: NetApp CSS should be defined after generic css -->
@@ -160,7 +160,7 @@
   
   <!-- Start Page Toolbar -->
   
-  <div class="page-nav-toolbar"><div class="page-nav-contribute"><a target="_blank" href="https://github.com/NetAppDocs/netapp-solutions/issues/new?body=Page%3A%20[Cloud backup tools and configuration](https://docs.netapp.com/us-en/netapp-solutions/ehc/aws/aws-guest-dr-cloud-backup-config.html)&template=public-issue-template.md" class="page-nav-contribute-link" role="button"><img src="/us-en/netapp-solutions/images/discuss-sm.svg" alt="" class="github-icon" />Request doc changes</a><a target="_blank" href="https://github.com/NetAppDocs/netapp-solutions/blob/main/ehc/aws/aws-guest-dr-cloud-backup-config.adoc" class="page-nav-contribute-link" role="button"><img src="/us-en/netapp-solutions/images/edit-sm.svg" alt="" class="github-icon" />Edit this page</a><a target="_blank" href="https://docs.netapp.com/us-en/contribute/" class="page-nav-contribute-link"  ><img src="/us-en/netapp-solutions/images/article-sm.svg" alt="" class="github-icon" />Learn how to contribute</a></div>
+  <div class="page-nav-toolbar"><div class="page-nav-contribute"><a target="_blank" href="https://github.com/NetAppDocs/netapp-solutions/issues/new?body=Page%3A%20[DR Solution Requirements, Pre-requisities and Planning](https://docs.netapp.com/us-en/netapp-solutions/ehc/aws/aws-guest-dr-sollution-prereqs.html)&template=public-issue-template.md" class="page-nav-contribute-link" role="button"><img src="/us-en/netapp-solutions/images/discuss-sm.svg" alt="" class="github-icon" />Request doc changes</a><a target="_blank" href="https://github.com/NetAppDocs/netapp-solutions/blob/main/ehc/aws/aws-guest-dr-solution-prereqs.adoc" class="page-nav-contribute-link" role="button"><img src="/us-en/netapp-solutions/images/edit-sm.svg" alt="" class="github-icon" />Edit this page</a><a target="_blank" href="https://docs.netapp.com/us-en/contribute/" class="page-nav-contribute-link"  ><img src="/us-en/netapp-solutions/images/article-sm.svg" alt="" class="github-icon" />Learn how to contribute</a></div>
     <div class="page-nav-container">
       <nav class="page-nav-fixed">
         <div class="page-nav-title">ON THIS PAGE</div>
@@ -283,19 +283,19 @@
       </div>
 
       <ul class="custom-dropdown-menu"><li>
-          <a href="https://docs.netapp.com/us-en/netapp-solutions/ehc/aws/aws-guest-dr-cloud-backup-config.html" target="_self"><span translate="no" class="notranslate">English</span></a>
+          <a href="https://docs.netapp.com/us-en/netapp-solutions/ehc/aws/aws-guest-dr-sollution-prereqs.html" target="_self"><span translate="no" class="notranslate">English</span></a>
         </li><li>
-          <a href="https://docs.netapp.com/ja-jp/netapp-solutions/ehc/aws/aws-guest-dr-cloud-backup-config.html" target="_self"><span translate="no" class="notranslate">日本語</span></a>
+          <a href="https://docs.netapp.com/ja-jp/netapp-solutions/ehc/aws/aws-guest-dr-sollution-prereqs.html" target="_self"><span translate="no" class="notranslate">日本語</span></a>
         </li><li>
-          <a href="https://docs.netapp.com/zh-cn/netapp-solutions/ehc/aws/aws-guest-dr-cloud-backup-config.html" target="_self"><span translate="no" class="notranslate">简体中文</span></a>
+          <a href="https://docs.netapp.com/zh-cn/netapp-solutions/ehc/aws/aws-guest-dr-sollution-prereqs.html" target="_self"><span translate="no" class="notranslate">简体中文</span></a>
         </li><li>
-          <a href="https://docs.netapp.com/zh-tw/netapp-solutions/ehc/aws/aws-guest-dr-cloud-backup-config.html" target="_self"><span translate="no" class="notranslate">繁體中文</span></a>
+          <a href="https://docs.netapp.com/zh-tw/netapp-solutions/ehc/aws/aws-guest-dr-sollution-prereqs.html" target="_self"><span translate="no" class="notranslate">繁體中文</span></a>
         </li><li>
-          <a href="https://docs.netapp.com/ko-kr/netapp-solutions/ehc/aws/aws-guest-dr-cloud-backup-config.html" target="_self"><span translate="no" class="notranslate">한국어</span></a>
+          <a href="https://docs.netapp.com/ko-kr/netapp-solutions/ehc/aws/aws-guest-dr-sollution-prereqs.html" target="_self"><span translate="no" class="notranslate">한국어</span></a>
         </li><li>
-          <a href="https://docs.netapp.com/fr-fr/netapp-solutions/ehc/aws/aws-guest-dr-cloud-backup-config.html" target="_self"><span translate="no" class="notranslate">Français</span></a>
+          <a href="https://docs.netapp.com/fr-fr/netapp-solutions/ehc/aws/aws-guest-dr-sollution-prereqs.html" target="_self"><span translate="no" class="notranslate">Français</span></a>
         </li><li>
-          <a href="https://docs.netapp.com/de-de/netapp-solutions/ehc/aws/aws-guest-dr-cloud-backup-config.html" target="_self"><span translate="no" class="notranslate">Deutsch</span></a>
+          <a href="https://docs.netapp.com/de-de/netapp-solutions/ehc/aws/aws-guest-dr-sollution-prereqs.html" target="_self"><span translate="no" class="notranslate">Deutsch</span></a>
         </li></ul>
     </div><!-- End Language Selector -->
 
@@ -3353,8 +3353,6 @@
 
 
 
-    <ul class="subfolders" id="pdf-remove" style="display:none;"><li class="active"></li></ul>
-  
 
 
 
@@ -7695,7 +7693,7 @@
       data-pdf-exists="true" 
       data-pdf-filename="Cloud backup tools and configuration"
       data-li-level="6#" 
-      class="  active "
+      class=" "
     ><a class="na-navbar-padding" href="/us-en/netapp-solutions/ehc/aws/aws-guest-dr-cloud-backup-config.html">
         Cloud backup tools and configuration
       </a></li><li 
@@ -8707,14 +8705,14 @@
 </div>
 
       <div class="n-doc__component-detail-heading-wrap">
-  <h1 class="n-doc__component-detail-heading">Cloud backup tools and configuration</h1>
+  <h1 class="n-doc__component-detail-heading">DR Solution Requirements, Pre-requisities and Planning</h1>
 </div>
 
 
 <p class="page-details">
   
     
-    <time datetime="2022-08-04 18:56:40 +0000">08/04/2022</time>
+    <time datetime="2022-12-20 18:09:50 +0000">12/20/2022</time>
     
   
 
@@ -8732,102 +8730,1265 @@
 
 </p>
 
-<div id="preamble">
+<div class="sect1">
+<h2 id="technology">Technology</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><a href="aws-guest-dr-config-veeam.html">Previous: Deploy and configure Veeam Backup Server.</a></p>
+<p>This solution includes innovative technologies from NetApp, VMware, Amazon Web Services (AWS), and Veeam.</p>
+</div>
+<div class="sect2">
+<h3 id="vmware">VMware</h3>
+<details>
+<summary class="title">VMware Cloud Foundation</summary>
+<div class="content">
+<div class="paragraph">
+<p>The VMware Cloud Foundation platform integrates multiple products offerings that enable administrators to provision logical infrastructures across a heterogenous environment. These infrastructures (known as domains) provide consistent operations across private and public clouds. Accompanying the Cloud Foundation software is a bill of materials that identifies prevalidated and qualified components to reduce risk for customers and ease deployment.</p>
 </div>
 <div class="paragraph">
-<p>To conduct a failover of application VMs and database volumes to VMware Cloud Volume services running in AWS, you must install and configure a running instance of both SnapCenter Server and Veeam Backup and Replication Server. After the failover is complete, you must also configure these tools to resume normal backup operations until a failback to the on-premises datacenter is planned and executed.</p>
+<p>The components of the Cloud Foundation BoM include the following:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Cloud Builder</p>
+</li>
+<li>
+<p>SDDC Manager</p>
+</li>
+<li>
+<p>VMware vCenter Server Appliance</p>
+</li>
+<li>
+<p>VMware ESXi</p>
+</li>
+<li>
+<p>VMware NSX</p>
+</li>
+<li>
+<p>vRealize Automation</p>
+</li>
+<li>
+<p>vRealize Suite Lifecycle Manager</p>
+</li>
+<li>
+<p>vRealize Log Insight</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>For more information on the VMware Cloud Foundation, see the <a href="https://docs.vmware.com/en/VMware-Cloud-Foundation/index.html" target="_blank" rel="noopener">VMware Cloud Foundation documentation</a>.</p>
+</div>
+</div>
+</details>
+<details>
+<summary class="title">VMware vSphere</summary>
+<div class="content">
+<div class="paragraph">
+<p>VMware vSphere is a virtualization platform that transforms physical resources into pools of compute, network, and storage that can be used to satisfy customers’ workload and application requirements. The main components of VMware vSphere include the following:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>ESXi.</strong> This VMware hypervisor enables the abstraction of compute processors, memory, network, and other resources and makes them available to virtual machines and container workloads.</p>
+</li>
+<li>
+<p><strong>vCenter.</strong> VMware vCenter creates a central management experience for interacting with compute resources, networking, and storage as part of your virtual infrastructure.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Customers realize the full potential of their vSphere environment by using NetApp ONTAP with deep product integration, robust support, and powerful features and storage efficiencies to create a robust hybrid multi-cloud.</p>
+</div>
+<div class="paragraph">
+<p>For more information about VMware vSphere, follow <a href="https://docs.vmware.com/en/VMware-vSphere/index.html" target="_blank" rel="noopener">this link</a>.</p>
+</div>
+<div class="paragraph">
+<p>For more information about NetApp solutions with VMware, follow <a href="https://docs.netapp.com/us-en/netapp-solutions/virtualization/netapp-vmware.html" target="_blank" rel="noopener">this link</a>.</p>
+</div>
+</div>
+</details>
+<details>
+<summary class="title">VMware NSX</summary>
+<div class="content">
+<div class="paragraph">
+<p>Commonly referred to as a network hypervisor, VMware NSX employs a software-defined model to connect virtualized workloads. VMware NSX is ubiquitous on premises and in VMware Cloud on AWS where it powers network virtualization and security for customer applications and workloads.</p>
+</div>
+<div class="paragraph">
+<p>For more information on VMware NSX, follow <a href="https://docs.vmware.com/en/VMware-NSX-T-Data-Center/index.html" target="_blank" rel="noopener">this link</a>.</p>
+</div>
+</div>
+</details>
+</div>
+<div class="sect2">
+<h3 id="netapp">NetApp</h3>
+<details>
+<summary class="title">NetApp ONTAP</summary>
+<div class="content">
+<div class="paragraph">
+<p>NetApp ONTAP software has been a leading storage solution for VMware vSphere environments for almost two decades and continues to add innovative capabilities to simplify management while reducing costs. Using ONTAP together with vSphere is a great combination that lets you reduce host hardware and VMware software expenses. You can also protect your data at lower cost with consistent high performance while taking advantage of native storage efficiencies.</p>
+</div>
+<div class="paragraph">
+<p>For more information on NetApp ONTAP, follow <a href="https://docs.vmware.com/en/VMware-Cloud-on-AWS/index.html" target="_blank" rel="noopener">this link</a>.</p>
+</div>
+</div>
+</details>
+<details>
+<summary class="title">NetApp ONTAP tools for VMware</summary>
+<div class="content">
+<div class="paragraph">
+<p>ONTAP tools for VMware combine multiple plugins into a single virtual appliance that provides end-to-end lifecycle management for virtual machines in VMware environments that use NetApp storage systems. ONTAP tools for VMware includes the following:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Virtual Storage Console (VSC).</strong> Performs comprehensive administrative tasks for VMs and datastores using NetApp storage.</p>
+</li>
+<li>
+<p><strong>VASA Provider for ONTAP.</strong> Enables Storage Policy- Based Management (SPBM) with VMware virtual volumes (vVols) and NetApp storage.</p>
+</li>
+<li>
+<p><strong>Storage Replication Adapter (SRA)</strong>. Recovers vCenter datastores and virtual machines in the event of a failure when coupled with VMware Site Recovery Manager (SRM).</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>ONTAP tools for VMware allows users to manage not only external storage but also integrate with vVols as well as VMware Site Recovery Manager. This makes it much easier to deploy and operate NetApp storage from within your vCenter environment.</p>
+</div>
+<div class="paragraph">
+<p>For more information on NetApp ONTAP tools for VMware, follow <a href="https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere/index.html" target="_blank" rel="noopener">this link</a>.</p>
+</div>
+</div>
+</details>
+<details>
+<summary class="title">NetApp SnapCenter</summary>
+<div class="content">
+<div class="paragraph">
+<p>NetApp SnapCenter software is an easy-to-use enterprise platform to securely coordinate and manage data protection across applications, databases, and file systems. SnapCenter simplifies backup, restore, and clone lifecycle management by offloading these tasks to application owners without sacrificing the ability to oversee and regulate activity on the storage systems. By leveraging storage-based data management, SnapCenter increases performance and availability as well as reducing testing and development times.</p>
+</div>
+<div class="paragraph">
+<p>The SnapCenter Plug-in for VMware vSphere supports crash-consistent and VM-consistent backup and restore operations for virtual machines (VMs), datastores, and virtual machine disks (VMDKs). It also supports SnapCenter application-specific plug-ins to protect application-consistent backup and restore operations for virtualized databases and file systems.</p>
+</div>
+<div class="paragraph">
+<p>For more information on NetApp SnapCenter, follow <a href="https://docs.netapp.com/us-en/snapcenter/" target="_blank" rel="noopener">this link</a>.</p>
+</div>
+</div>
+</details>
+</div>
+<div class="sect2">
+<h3 id="third-party-data-protection">Third-party data protection</h3>
+<details>
+<summary class="title">Veeam Backup &amp; Replication</summary>
+<div class="content">
+<div class="paragraph">
+<p>Veeam Backup &amp; Replication is a backup, recovery, and data management solution for cloud, virtual, and physical workloads. Veeam Backup &amp; Replication has specialized integrations with NetApp Snapshot technology that further protect vSphere environments.</p>
+</div>
+<div class="paragraph">
+<p>For more information on Veeam Backup &amp; Replication, follow <a href="https://www.veeam.com/vm-backup-recovery-replication-software.html" target="_blank" rel="noopener">this link</a>.</p>
+</div>
+</div>
+</details>
+</div>
+<div class="sect2">
+<h3 id="public-cloud">Public cloud</h3>
+<details>
+<summary class="title">AWS identity and access management</summary>
+<div class="content">
+<div class="paragraph">
+<p>AWS environments contain a wide variety of products including compute, storage, database, network, analytics, and much more to help solve business challenges. Enterprises must be able to define who is authorized to access these products, services, and resources. It is equally important to determine under which conditions users are allowed to manipulate, change, or add configurations.</p>
+</div>
+<div class="paragraph">
+<p>AWS Identity and Access Management (AIM) provides a secure control plane for managing access to AWS services and products. Properly configured users, access keys, and permissions allow for the deployment of VMware Cloud on AWS and Amazon FSx.</p>
+</div>
+<div class="paragraph">
+<p>For more information on AIM, follow <a href="https://docs.aws.amazon.com/iam/index.html" target="_blank" rel="noopener">this link</a>.</p>
+</div>
+</div>
+</details>
+<details>
+<summary class="title">VMware Cloud on AWS</summary>
+<div class="content">
+<div class="paragraph">
+<p>VMware Cloud on AWS brings VMware’s enterprise-class SDDC software to the AWS Cloud with optimized access to native AWS services. Powered by the VMware Cloud Foundation, VMware Cloud on AWS integrates VMware’s compute, storage, and network virtualization products (VMware vSphere, VMware vSAN, and VMware NSX) along with VMware vCenter Server management optimized to run on dedicated, elastic, bare-metal AWS infrastructure.</p>
+</div>
+<div class="paragraph">
+<p>For more information on VMware Cloud on AWS, follow <a href="https://docs.vmware.com/en/VMware-Cloud-on-AWS/index.html" target="_blank" rel="noopener">this link</a>.</p>
+</div>
+</div>
+</details>
+<details>
+<summary class="title">Amazon FSx for NetApp ONTAP</summary>
+<div class="content">
+<div class="paragraph">
+<p>Amazon FSx for NetApp ONTAP is a fully featured and fully managed ONTAP system available as a native AWS service. Built on NetApp ONTAP, it offers familiar features while offering the simplicity of a fully managed cloud service.</p>
+</div>
+<div class="paragraph">
+<p>Amazon FSx for ONTAP offers multiprotocol support to a variety of compute types including VMware in the public cloud or on premises. Available for guest-connected use cases today and NFS datastores in tech preview, Amazon FSx for ONTAP allows enterprises to take advantage of familiar features from their on-premises environments and in the cloud.</p>
+</div>
+<div class="paragraph">
+<p>For more information on Amazon FSx for NetApp ONTAP, follow <a href="https://aws.amazon.com/fsx/netapp-ontap/">this link</a>.</p>
+</div>
+</div>
+</details>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="deploy-secondary-windows-snapcenter-server">Deploy secondary Windows SnapCenter Server</h2>
+<h2 id="overview-aws-guest-connected-storage-disaster-recovery">Overview - AWS guest-connected storage disaster recovery</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>SnapCenter Server is deployed in the VMware Cloud SDDC or installed on an EC2 instance residing in a VPC with network connectivity to the VMware Cloud environment.</p>
+<p>This section provides instructions to help users verify, configure, and validate their on-premises and cloud environments for use with NetApp and VMware. Specifically, this solution is focused on the VMware guest-connected use case with ONTAP AFF on-premises and VMware Cloud and AWS FSx ONTAP for the cloud. This solution is demonstrated with two applications: Oracle and MS SQL in a disaster recovery scenario.</p>
+</div>
+<details>
+<summary class="title">Skills and knowledge</summary>
+<div class="content">
+<div class="paragraph">
+<p>The following skills and information are required to access Cloud Volumes Service for AWS:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Access to and knowledge of your VMware and ONTAP on-premises environment.</p>
+</li>
+<li>
+<p>Access to and knowledge of VMware Cloud and AWS.</p>
+</li>
+<li>
+<p>Access to and knowledge of AWS and Amazon FSx ONTAP.</p>
+</li>
+<li>
+<p>Knowledge of your SDDC and AWS resources.</p>
+</li>
+<li>
+<p>Knowledge of the network connectivity between your on-premises and cloud resources.</p>
+</li>
+<li>
+<p>Working knowledge of disaster recovery scenarios.</p>
+</li>
+<li>
+<p>Working knowledge of applications deployed on VMware.</p>
+</li>
+</ul>
+</div>
+</div>
+</details>
+<details>
+<summary class="title">Administrative</summary>
+<div class="content">
+<div class="paragraph">
+<p>Whether interacting with resources on-premises or in the cloud, users and administrators must have the ability and entitlements to provision those resources where they need them when they need according to their entitlements. The interaction of your roles and permissions for your on-premises systems, including ONTAP and VMware, and your cloud resources, including VMware Cloud and AWS, is paramount for a successful hybrid cloud deployment.</p>
 </div>
 <div class="paragraph">
-<p>SnapCenter software is available from the NetApp support site and can be installed on Microsoft Windows systems that reside either in a domain or workgroup. A detailed planning guide and installation instructions can be found at the <a href="https://docs.netapp.com/us-en/snapcenter/install/install_workflow.html" target="_blank" rel="noopener">NetApp documentation center</a>.</p>
+<p>The following administrative tasks must be in place to construct a DR solution with VMware and ONTAP on-premises and VMware Cloud on AWS and FSx ONTAP.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Roles and accounts enabling provisioning of the following:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>ONTAP storage resources</p>
+</li>
+<li>
+<p>VMware VMs, datastores, and so on</p>
+</li>
+<li>
+<p>AWS VPC and security groups</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Provisioning of on-premises VMware environment and ONTAP</p>
+</li>
+<li>
+<p>VMware Cloud environment</p>
+</li>
+<li>
+<p>An Amazon for FSx for ONTAP file system</p>
+</li>
+<li>
+<p>Connectivity between your on-premises environment and AWS</p>
+</li>
+<li>
+<p>Connectivity for your AWS VPC</p>
+</li>
+</ul>
+</div>
+</div>
+</details>
+<details>
+<summary class="title">On-premises</summary>
+<div class="content">
+<div class="paragraph">
+<p>The VMware virtual environment includes licensing of ESXi hosts, VMware vCenter Server, NSX networking, and other components, as can be seen in the following figure. All are licensed differently, and it is important to understand how the underlying components consume the available licensed capacity.</p>
 </div>
 <div class="paragraph">
-<p>You can find the SnapCenter software at <a href="https://mysupport.netapp.com" target="_blank" rel="noopener">this link</a>.</p>
+<p><span class="image"><img src="./../../media/dr-vmc-aws-image2.png" alt="Error: Missing Graphic Image"></span></p>
 </div>
+<details>
+<summary class="title">ESXi hosts</summary>
+<div class="content">
+<div class="paragraph">
+<p>Compute hosts in a VMware environment are deployed with ESXi. When licensed with vSphere at various capacity tiers, virtual machines can take advantage of the physical CPUs on each host and applicable entitled features.</p>
+</div>
+</div>
+</details>
+<details>
+<summary class="title">VMware vCenter</summary>
+<div class="content">
+<div class="paragraph">
+<p>Managing ESXi hosts and storage is one of the many capabilities made available to the VMware administrator with vCenter Server. As of VMware vCenter 7.0, there are three editions of VMware vCenter available, depending on the license:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>vCenter Server Essentials</p>
+</li>
+<li>
+<p>vCenter Server Foundation</p>
+</li>
+<li>
+<p>vCenter Server Standard</p>
+</li>
+</ul>
+</div>
+</div>
+</details>
+<details>
+<summary class="title">VMware NSX</summary>
+<div class="content">
+<div class="paragraph">
+<p>VMware NSX provides administrators with the flexibility required to enable advanced features. Features are enabled depending upon the version of NSX-T Edition that is licensed:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Professional</p>
+</li>
+<li>
+<p>Advanced</p>
+</li>
+<li>
+<p>Enterprise Plus</p>
+</li>
+<li>
+<p>Remote Office/Branch Office</p>
+</li>
+</ul>
+</div>
+</div>
+</details>
+<details>
+<summary class="title">NetApp ONTAP</summary>
+<div class="content">
+<div class="paragraph">
+<p>Licensing with NetApp ONTAP refers to how administrators gain access to various capabilities and features within NetApp storage. A license is a record of one or more software entitlements. Installing license keys, also known as license codes, enables you to use certain features or services on your storage system. For instance, ONTAP supports all major industry-standard client protocols (NFS, SMB, FC, FCoE, iSCSI, and NVMe/FC) through licensing.</p>
+</div>
+<div class="paragraph">
+<p>Data ONTAP feature licenses are issued as packages, each of which contains multiple features or a single feature. A package requires a license key, and installing the key enables you to access all features in the package.</p>
+</div>
+<div class="paragraph">
+<p>License types are as follows:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Node-locked license.</strong> Installing a node-locked license entitles a node to the licensed functionality. For the cluster to use the licensed functionality, at least one node must be licensed for the functionality.</p>
+</li>
+<li>
+<p><strong>Master/site license.</strong> A master or site license is not tied to a specific system serial number. When you install a site license, all the nodes in the cluster are entitled to the licensed functionality.</p>
+</li>
+<li>
+<p><strong>Demo/temporary license.</strong> A demo or temporary license expires after a certain time. This license enables you to try certain software functionality without purchasing an entitlement.</p>
+</li>
+<li>
+<p><strong>Capacity license (ONTAP Select and FabricPool only).</strong> An ONTAP Select instance is licensed according to the amount of data that the user wants to manage. Starting with ONTAP 9.4, FabricPool requires a capacity license to be used with a third-party storage tier (for example, AWS).</p>
+</li>
+</ul>
+</div>
+</div>
+</details>
+<details>
+<summary class="title">NetApp SnapCenter</summary>
+<div class="content">
+<div class="paragraph">
+<p>SnapCenter requires several licenses to enable data protection operations. The type of SnapCenter licenses you install depends on your storage environment and the features that you want to use. The SnapCenter Standard license protects applications, databases, files systems, and virtual machines. Before you add a storage system to SnapCenter, you must install one or more SnapCenter licenses.</p>
+</div>
+<div class="paragraph">
+<p>To enable the protection of applications, databases, file systems, and virtual machines, you must have either a Standard controller-based license installed on your FAS or AFF storage system or a Standard capacity-based license installed on your ONTAP Select and Cloud Volumes ONTAP platforms.</p>
+</div>
+<div class="paragraph">
+<p>See the following SnapCenter Backup prerequisites for this solution:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>A volume and SMB share created on the on-premises ONTAP system to locate the backed- up database and configuration files.</p>
+</li>
+<li>
+<p>A SnapMirror relationship between the on-premises ONTAP system and FSx or CVO in the AWS account. Used for transporting the snapshot containing the backed up SnapCenter database and configuration files.</p>
+</li>
+<li>
+<p>Windows Server installed in the cloud account, either on an EC2 instance or on a VM in the VMware Cloud SDDC.</p>
+</li>
+<li>
+<p>SnapCenter installed on the Windows EC2 instance or VM in VMware Cloud.</p>
+</li>
+</ul>
+</div>
+</div>
+</details>
+<details>
+<summary class="title">MS SQL</summary>
+<div class="content">
+<div class="paragraph">
+<p>As part of this solution validation, we use MS SQL to demonstrate disaster recovery.</p>
+</div>
+<div class="paragraph">
+<p>For more information regarding best practices with MS SQL and NetApp ONTAP, follow <a href="https://www.netapp.com/media/8585-tr4590.pdf" target="_blank" rel="noopener">this link</a>.</p>
+</div>
+</div>
+</details>
+<details>
+<summary class="title">Oracle</summary>
+<div class="content">
+<div class="paragraph">
+<p>As part of this solution validation, we use ORACLE to demonstrate disaster recovery. For more information regarding best practices with ORACLE and NetApp ONTAP, follow <a href="https://www.netapp.com/media/8744-tr3633.pdf" target="_blank" rel="noopener">this link</a>.</p>
+</div>
+</div>
+</details>
+<details>
+<summary class="title">Veeam</summary>
+<div class="content">
+<div class="paragraph">
+<p>As part of this solution validation, we use Veeam to demonstrate disaster recovery. For more information regarding best practices with Veeam and NetApp ONTAP, follow <a href="https://www.veeam.com/wp-netapp-configuration-best-practices-guide.html" target="_blank" rel="noopener">this link</a>.</p>
+</div>
+</div>
+</details>
+</div>
+</details>
+<details>
+<summary class="title">Cloud</summary>
+<div class="content">
+<details>
+<summary class="title">AWS</summary>
+<div class="content">
+<div class="paragraph">
+<p>You must be able to perform the following tasks:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Deploy and configure domain services.</p>
+</li>
+<li>
+<p>Deploy FSx ONTAP per application requirements in a given VPC.</p>
+</li>
+<li>
+<p>Configure VMware Cloud on the AWS Compute gateway to allow for traffic from FSx ONTAP.</p>
+</li>
+<li>
+<p>Configure an AWS security group to allow communication between the VMware Cloud on AWS subnets to the AWS VPC subnets where FSx ONTAP service is deployed.</p>
+</li>
+</ul>
+</div>
+</div>
+</details>
+<details>
+<summary class="title">VMware Cloud</summary>
+<div class="content">
+<div class="paragraph">
+<p>You must be able to perform the following tasks:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Configure the VMware Cloud on AWS SDDC.</p>
+</li>
+</ul>
+</div>
+</div>
+</details>
+<details>
+<summary class="title">Cloud Manager account verification</summary>
+<div class="content">
+<div class="paragraph">
+<p>You must be able to deploy resources with NetApp Cloud Manager. To verify that you can, complete the following tasks:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://docs.netapp.com/us-en/cloud-manager-setup-admin/task-signing-up.html" target="_blank" rel="noopener">Sign up for Cloud Central</a> if you haven’t already.</p>
+</li>
+<li>
+<p><a href="https://docs.netapp.com/us-en/cloud-manager-setup-admin/task-logging-in.html" target="_blank" rel="noopener">Log into Cloud Manager</a>.</p>
+</li>
+<li>
+<p><a href="https://docs.netapp.com/us-en/cloud-manager-setup-admin/task-setting-up-netapp-accounts.html" target="_blank" rel="noopener">Set up Workspaces and Users</a>.</p>
+</li>
+<li>
+<p><a href="https://docs.netapp.com/us-en/cloud-manager-setup-admin/concept-connectors.html" target="_blank" rel="noopener">Create a connector</a>.</p>
+</li>
+</ul>
+</div>
+</div>
+</details>
+<details>
+<summary class="title">Amazon FSx for NetApp ONTAP</summary>
+<div class="content">
+<div class="paragraph">
+<p>You must be able to perform the following task after you have an AWS account:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Create an IAM administrative user capable of provisioning Amazon FSx for the NetApp ONTAP file system.</p>
+</li>
+</ul>
+</div>
+</div>
+</details>
+</div>
+</details>
+<details>
+<summary class="title">Configuration prerequisites</summary>
+<div class="content">
+<div class="paragraph">
+<p>Given the varying topologies that customers have, this section focuses on the ports necessary to enable communication from on-premises to cloud resources.</p>
+</div>
+<details>
+<summary class="title">Required ports and firewall considerations</summary>
+<div class="content">
+<div class="paragraph">
+<p>The following tables describe the ports that must be enabled throughout your infrastructure.</p>
+</div>
+<div class="paragraph">
+<p>For a more comprehensive list of required ports for Veeam Backup &amp; Replication software, follow <a href="https://helpcenter.veeam.com/docs/backup/vsphere/used_ports.html?zoom_highlight=port+requirements&amp;ver=110" target="_blank" rel="noopener">this link</a>.</p>
+</div>
+<div class="paragraph">
+<p>For a more comprehensive list of port requirements for SnapCenter, follow <a href="https://docs.netapp.com/ocsc-41/index.jsp?topic=%2Fcom.netapp.doc.ocsc-isg%2FGUID-6B5E4464-FE9A-4D2A-B526-E6F4298C9550.html" target="_blank" rel="noopener">this link</a>.</p>
+</div>
+<div class="paragraph">
+<p>The following table lists the Veeam port requirements for Microsoft Windows Server.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">From</th>
+<th class="tableblock halign-left valign-top">To</th>
+<th class="tableblock halign-left valign-top">Protocol</th>
+<th class="tableblock halign-left valign-top">Port</th>
+<th class="tableblock halign-left valign-top">Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Backup server</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Microsoft Windows server</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TCP</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">445</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Port required for deploying Veeam Backup &amp; Replication components.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Backup proxy</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TCP</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">6160</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Default port used by the Veeam Installer Service.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Backup repository</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TCP</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2500 to 3500</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Default range of ports used as data transmission channels and for collecting log files.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Mount server</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TCP</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">6162</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Default port used by the Veeam Data Mover.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/netapp-solutions/images/note.svg" alt="Note">
+</td>
+<td class="content">
+For every TCP connection that a job uses, one port from this range is assigned.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The following table lists the Veeam port requirements for Linux Server.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">From</th>
+<th class="tableblock halign-left valign-top">To</th>
+<th class="tableblock halign-left valign-top">Protocol</th>
+<th class="tableblock halign-left valign-top">Port</th>
+<th class="tableblock halign-left valign-top">Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Backup server</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Linux server</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TCP</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">22</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Port used as a control channel from the console to the target Linux host.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TCP</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">6162</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Default port used by the Veeam Data Mover.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TCP</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2500 to 3500</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Default range of ports used as data transmission channels and for collecting log files.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/netapp-solutions/images/note.svg" alt="Note">
+</td>
+<td class="content">
+For every TCP connection that a job uses, one port from this range is assigned.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The following table lists the Veeam Backup Server port requirements.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">From</th>
+<th class="tableblock halign-left valign-top">To</th>
+<th class="tableblock halign-left valign-top">Protocol</th>
+<th class="tableblock halign-left valign-top">Port</th>
+<th class="tableblock halign-left valign-top">Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Backup server</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">vCenter Server</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">HTTPS, TCP</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">443</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Default port used for connections to vCenter Server. Port used as a control channel from the console to the target Linux host.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Microsoft SQL Server hosting the Veeam Backup &amp; Replication configuration database</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TCP</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1443</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Port used for communication with Microsoft SQL Server on which the Veeam Backup &amp; Replication configuration database is deployed (if you use a Microsoft SQL Server default instance).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DNS Server with name resolution of all backup servers</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TCP</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3389</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Port used for communication with the DNS Server</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/netapp-solutions/images/note.svg" alt="Note">
+</td>
+<td class="content">
+If you use vCloud Director, make sure to open port 443 on underlying vCenter Servers.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The following table lists Veeam Backup Proxy port requirements.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">From</th>
+<th class="tableblock halign-left valign-top">To</th>
+<th class="tableblock halign-left valign-top">Protocol</th>
+<th class="tableblock halign-left valign-top">Port</th>
+<th class="tableblock halign-left valign-top">Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Backup server</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Backup proxy</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TCP</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">6210</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Default port used by the Veeam Backup VSS Integration Service for taking a VSS snapshot during the SMB file share backup.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Backup proxy</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">vCenter Server</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TCP</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1443</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Default VMware web service port that can be customized in vCenter settings.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>The following table lists SnapCenter port requirements.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Port Type</th>
+<th class="tableblock halign-left valign-top">Protocol</th>
+<th class="tableblock halign-left valign-top">Port</th>
+<th class="tableblock halign-left valign-top">Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SnapCenter management port</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">HTTPS</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">8146</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">This port is used for communication between the SnapCenter client (the SnapCenter user) and the SnapCenter Server. Also used for communication from the plug-in hosts to the SnapCenter Server.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SnapCenter SMCore communication port</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">HTTPS</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">8043</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">This port is used for communication between the SnapCenter Server and the hosts where the SnapCenter plug-ins are installed.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Windows plug-in hosts, installation</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TCP</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">135, 445</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">These ports are used for communication between the SnapCenter Server and the host where the plug-in is being installed. The ports can be closed after installation. In addition, Windows Instrumentation Services searches ports 49152 through 65535, which must be open.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Linux plug-in hosts, installation</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SSH</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">22</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">These ports are used for communication between the SnapCenter Server and the host where the plug-in is being installed. The ports are used by SnapCenter to copy plug-in package binaries to Linux plug-in hosts.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SnapCenter Plug-ins Package for Windows / Linux</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">HTTPS</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">8145</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">This port is used for communication between SMCore and hosts where the SnapCenter plug-ins are installed.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">VMware vSphere vCenter Server port</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">HTTPS</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">443</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">This port is used for communication between the SnapCenter Plug-in for Vmware vSphere and vCenter server.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SnapCenter Plug-in for Vmware vSphere port</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">HTTPS</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">8144</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">This port is used for communication from the vCenter vSphere web client and from the SnapCenter Server.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</details>
+</div>
+</details>
 </div>
 </div>
 <div class="sect1">
-<h2 id="configure-secondary-windows-snapcenter-server">Configure secondary Windows SnapCenter Server</h2>
+<h2 id="networking">Networking</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>To perform a restore of application data mirrored to FSx ONTAP, you must first perform a full restore of the on-premises SnapCenter database. After this process is complete, communication with the VMs is reestablished and application backups can now resume using FSx ONTAP as the primary storage.</p>
+<p>This solution requires successful communication from the on-premises ONTAP cluster to AWS FSx for NetApp ONTAP interconnect cluster network addresses to perform NetApp SyncMirror operations. Also, a Veeam backup server must have access to an AWS S3 bucket. Instead of using Internet transport, an existing VPN or Direct Connect link can be used as a private link to an S3 bucket.</p>
+</div>
+<details>
+<summary class="title">On premises</summary>
+<div class="content">
+<div class="paragraph">
+<p>ONTAP supports all major storage protocols used for virtualization, including iSCSI, Fibre Channel (FC), Fibre Channel over Ethernet (FCoE), or Non-Volatile Memory Express over Fibre Channel (NVMe/FC) for SAN environments. ONTAP also supports NFS (v3 and v4.1) and SMB or S3 for guest connections. You are free to pick what works best for your environment, and you can combine protocols as needed on a single system. For example, you can augment general use of NFS datastores with a few iSCSI LUNs or guest shares.</p>
 </div>
 <div class="paragraph">
-<p>To achieve this, you must complete the following items on the SnapCenter Server:</p>
+<p>This solution leverages NFS datastores for on-premises datastores for guest VMDKs and both iSCSI and NFS for guest application data.</p>
+</div>
+<details>
+<summary class="title">Client networks</summary>
+<div class="content">
+<div class="paragraph">
+<p>VMkernel network ports and software-defined networking provide connectivity to ESXi hosts allowing them to communicate with elements outside the VMware environment. Connectivity depends on the type of VMkernel interfaces used.</p>
+</div>
+<div class="paragraph">
+<p>For this solution, the following VMkernel interfaces were configured:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Management</p>
+</li>
+<li>
+<p>vMotion</p>
+</li>
+<li>
+<p>NFS</p>
+</li>
+<li>
+<p>iSCSI</p>
+</li>
+</ul>
+</div>
+</div>
+</details>
+<details>
+<summary class="title">Storage networks provisioned</summary>
+<div class="content">
+<div class="paragraph">
+<p>A LIF (logical interface) represents a network access point to a node in the cluster. This allows communication with the storage virtual machines that house the data accessed by clients. You can configure LIFs on ports over which the cluster sends and receives communications over the network.</p>
+</div>
+<div class="paragraph">
+<p>For this solution, LIFs are configured for the following storage protocols:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>NFS</p>
+</li>
+<li>
+<p>iSCSI</p>
+</li>
+</ul>
+</div>
+</div>
+</details>
+</div>
+</details>
+<details>
+<summary class="title">Cloud connectivity options</summary>
+<div class="content">
+<div class="paragraph">
+<p>Customers have a lot of options when connecting their on-premises environment to cloud resources, including deploying VPN or Direct Connect topologies.</p>
+</div>
+<details>
+<summary class="title">Virtual Private Network (VPN)</summary>
+<div class="content">
+<div class="paragraph">
+<p>VPNs (Virtual Private Networks) are often used to create a secure IPSec tunnel with internet-based or private MPLS networks. A VPN is easy to set up, but it lacks reliability (if internet-based) and speed. The end point can be terminated at the AWS VPC or at the VMware Cloud SDDC. For this disaster recovery solution, we created connectivity to AWS FSx for NetApp ONTAP from the on-premises network. So, it can be terminated at the AWS VPC (Virtual Private Gateway or Transit Gateway) where FSx for NetApp ONTAP is connected.</p>
+</div>
+<div class="paragraph">
+<p>VPN setup can be route-based or policy-based. With a route-based setup, the endpoints exchange the routes automatically and setup learns the route to the newly created subnets. With a policy- based setup, you must define the local and remote subnets, and, when new subnets are added and allowed to communicate in the IPSec tunnel, you must update the routes.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/netapp-solutions/images/note.svg" alt="Note">
+</td>
+<td class="content">
+If the IPSec VPN tunnel is not created on the default gateway, remote network routes must be defined in route tables via the local VPN tunnel end point.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The following figure depicts typical VPN connection options.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="./../../media/dr-vmc-aws-image3.png" alt="Error: Missing Graphic Image"></span></p>
+</div>
+</div>
+</details>
+<details>
+<summary class="title">Direct Connect</summary>
+<div class="content">
+<div class="paragraph">
+<p>Direct Connect provides a dedicated link to the AWS network. Dedicated connections create links to AWS using a 1Gbps, 10Gbps, or 100Gbps Ethernet port. AWS Direct Connect partners provide hosted connections using pre-established network links between themselves and AWS and are available from 50Mbps up to 10Gbps. By default, the traffic is unencrypted. However, options are available to secure traffic with MACsec or IPsec. MACsec provides layer-2 encryption while IPsec provides layer-3 encryption. MACsec provides better security by concealing which devices are communicating.</p>
+</div>
+<div class="paragraph">
+<p>Customers must have their router equipment in an AWS Direct Connect location. To set this up, you can work with AWS Partner Network (APN). A physical connection is made between that router and the AWS router. To enable access to FSx for NetApp ONTAP on VPC, you must have either a private virtual interface or a transit virtual interface from Direct Connect to a VPC. With a private virtual interface, the Direct Connect to VPC connection scalability is limited.</p>
+</div>
+<div class="paragraph">
+<p>The following figure depicts the Direct Connect interface options.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="./../../media/dr-vmc-aws-image4.png" alt="Error: Missing Graphic Image"></span></p>
+</div>
+</div>
+</details>
+<details>
+<summary class="title">Transit gateway</summary>
+<div class="content">
+<div class="paragraph">
+<p>The transit gateway is a region-level construct that allows increased scalability of a Direct Connect-to-VPC connection within a region. If a cross- region connection is required, the transit gateways must be peered. For more information, check the <a href="https://docs.aws.amazon.com/directconnect/latest/UserGuide/Welcome.html" target="_blank" rel="noopener">AWS Direct Connect documentation</a>.</p>
+</div>
+</div>
+</details>
+</div>
+</details>
+<details>
+<summary class="title">Cloud network considerations</summary>
+<div class="content">
+<div class="paragraph">
+<p>In the cloud, the underlying network infrastructure is managed by the cloud service provider, whereas customers must manage the VPC networks, subnets, route tables, and so on in AWS. They must also manage NSX network segments at the compute edge. SDDC groups routes for the external VPC and Transit Connect.</p>
+</div>
+<div class="paragraph">
+<p>When FSx for NetApp ONTAP with Multi-AZ availability is deployed on a VPC connected to VMware Cloud, iSCSI traffic receives necessary route table updates to enable communication. By default, there is no route available from VMware Cloud to the FSx ONTAP NFS/SMB subnet on the connected VPC for Multi-AZ deployment. To define that route, we used the VMware Cloud SDDC group,  which is a VMware- managed transit gateway, to allow communication between the VMware Cloud SDDCs in the same region as well as to external VPCs and other transit gateways.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/netapp-solutions/images/note.svg" alt="Note">
+</td>
+<td class="content">
+There are data transfer costs associated with using a transit gateway. For cost details specific to a region, see <a href="https://aws.amazon.com/transit-gateway/pricing/" target="_blank" rel="noopener">this link</a>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>VMware Cloud SDDC can be deployed in a single availability zone, which is like having a single datacenter. A stretch cluster option is also available, which is like a NetApp MetroCluster solution that can provide higher availability and reduced downtime in case of availability-zone failure.</p>
+</div>
+<div class="paragraph">
+<p>To minimize data-transfer cost, keep the VMware Cloud SDDC and AWS Instances or services in the same availability zone. It is better to match with an availability zone ID rather than with a name because AWS provides the AZ order list specific to the account to spread the load across availability zones. For example, one account (US-East-1a) might point to AZ ID 1 whereas another account (US-East-1c) might point to AZ ID 1. The availability zone ID can be retrieved in several ways. In the following example,  we retrieved the AZ ID from the VPC subnet.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="./../../media/dr-vmc-aws-image5.png" alt="Error: Missing Graphic Image"></span></p>
+</div>
+<div class="paragraph">
+<p>In the VMware Cloud SDDC, networking is managed with NSX, and the edge gateway (Tier-0 router) that handles the north-south traffic uplink port is connected to the AWS VPC. The compute gateway and the management gateways (Tier-1 routers) handle east-west traffic. If the uplink ports of the edge becomes heavily used, you can create traffic groups to associate with specific host IPs or subnets. Creation of a traffic group creates additional edge nodes to separate the traffic. Check the <a href="https://docs.vmware.com/en/VMware-Cloud-on-AWS/services/com.vmware.vmc-aws-networking-security/GUID-306D3EDC-F94E-4216-B306-413905A4A784.html" target="_blank" rel="noopener">VMware documentation</a> on the minimum number of vSphere hosts required to use a multi-edge setup.</p>
+</div>
+<details>
+<summary class="title">Client networks</summary>
+<div class="content">
+<div class="paragraph">
+<p>When you provision the VMware Cloud SDDC, VMKernel ports are already configured and are ready for consumption. VMware manages those ports and there is no need to make any updates.</p>
+</div>
+<div class="paragraph">
+<p>The following figure depicts sample Host VMKernel info.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="./../../media/dr-vmc-aws-image6.png" alt="Error: Missing Graphic Image"></span></p>
+</div>
+</div>
+</details>
+<details>
+<summary class="title">Storage networks provisioned (iSCSI, NFS)</summary>
+<div class="content">
+<div class="paragraph">
+<p>For VM guest storage networks, we typically create port groups. With NSX, we create segments that are consumed on vCenter as port groups. Because storage networks are in a routable subnet, you can access the LUNs or mount the NFS exports using the default NIC even without creating separate network segments. To separate storage traffic, you can create additional segments, define rules,  and control the MTU size on those segments. To provide fault tolerance, it is better to have at least two segments dedicated for the storage network. As we mentioned previously, if uplink bandwidth becomes an issue, you can create traffic groups and assign IP prefixes and gateways to perform source-based routing.</p>
+</div>
+<div class="paragraph">
+<p>We recommend matching the segments in the DR SDDC with the source environment to prevent guessing of mapping network segments during failover.</p>
+</div>
+</div>
+</details>
+<details>
+<summary class="title">Security groups</summary>
+<div class="content">
+<div class="paragraph">
+<p>Many security options provide secure communication on the AWS VPC and the VMware Cloud SDDC network. Within the VMware Cloud SDDC network, you can use NSX trace flow to identify the path, including the rules used. Then, you can use a network analyzer on the VPC network to identify the path,  including the route tables, security groups, and network access control lists, that is consumed during the flow.</p>
+</div>
+</div>
+</details>
+</div>
+</details>
+</div>
+</div>
+<div class="sect1">
+<h2 id="storage">Storage</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>NetApp AFF A-Series systems deliver a high-performance storage infrastructure with flexible data management options that are cloud enabled to meet a wide variety of enterprise scenarios. In this solution, we used an ONTAP AFF A300 as our primary on-premises storage system.</p>
+</div>
+<div class="paragraph">
+<p>NetApp ONTAP together with ONTAP Tools for VMware and SnapCenter were used in the solution to provide comprehensive management and application backup capabilities that are tightly integrated with VMware vSphere.</p>
+</div>
+<details>
+<summary class="title">On-premises</summary>
+<div class="content">
+<div class="paragraph">
+<p>We used ONTAP storage for the VMware datastores that hosted the virtual machines and their VMDK files. VMware supports multiple storage protocols for connected datastores, and, in this solution, we used NFS volumes for datastores on the ESXi hosts. However, ONTAP storage systems support all protocols supported by VMware.</p>
+</div>
+<div class="paragraph">
+<p>The following figure depicts VMware storage options.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="./../../media/dr-vmc-aws-image7.png" alt="Error: Missing Graphic Image"></span></p>
+</div>
+<div class="paragraph">
+<p>ONTAP volumes were used for both iSCSI and NFS guest-connected storage for our application VMs. We used the following storage protocols for application data:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>NFS volumes for guest connected Oracle database files.</p>
+</li>
+<li>
+<p>iSCSI LUNs for guest connected Microsoft SQL Server databases and transaction logs.</p>
+</li>
+</ul>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Operating system</th>
+<th class="tableblock halign-left valign-top">Database type</th>
+<th class="tableblock halign-left valign-top">Storage protocol</th>
+<th class="tableblock halign-left valign-top">Volume description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Windows Server 2019</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SQL Server 2019</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">iSCSI</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Database files</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">iSCSI</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Log files</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Oracle Linux 8.5</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Oracle 19c</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">NFS</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Oracle binary</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">NFS</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Oracle data</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">NFS</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Oracle recovery files</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>We also used ONTAP storage for the primary Veeam backup repository as well as for a backup target for the SnapCenter database backups.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>SMB share for the Veeam backup repository.</p>
+</li>
+<li>
+<p>SMB share as a target for the SnapCenter database backups.</p>
+</li>
+</ul>
+</div>
+</div>
+</details>
+<details>
+<summary class="title">Cloud storage</summary>
+<div class="content">
+<div class="paragraph">
+<p>This solution includes VMware Cloud on AWS for hosting virtual machines that are restored as a part of the failover process. As of this writing,  VMware supports vSAN storage for the datastores that host the VMs and VMDKs.</p>
+</div>
+<div class="paragraph">
+<p>FSX for ONTAP is used as the secondary storage for application data that is mirrored using SnapCenter and SyncMirror. As a part of the failover process, the FSx for ONTAP cluster is converted to primary storage, and the database applications can resume normal function running on the FSx storage cluster.</p>
+</div>
+<details>
+<summary class="title">Amazon FSx for NetApp ONTAP setup</summary>
+<div class="content">
+<div class="paragraph">
+<p>To deploy AWS FSx for NetApp ONTAP using Cloud Manager, follow the instructions at <a href="https://docs.netapp.com/us-en/cloud-manager-fsx-ontap/start/task-getting-started-fsx.html" target="_blank" rel="noopener">this link</a>.</p>
+</div>
+<div class="paragraph">
+<p>After FSx ONTAP is deployed, drag and drop the on-premises ONTAP instances into FSx ONTAP to start replication setup of volumes.</p>
+</div>
+<div class="paragraph">
+<p>The following figure depicts our FSx ONTAP environment.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="./../../media/dr-vmc-aws-image8.png" alt="Error: Missing Graphic Image"></span></p>
+</div>
+</div>
+</details>
+<details>
+<summary class="title">Network interfaces created</summary>
+<div class="content">
+<div class="paragraph">
+<p>FSx for NetApp ONTAP has network interfaces preconfigured and ready to use for iSCSI, NFS, SMB, and inter-cluster networks.</p>
+</div>
+</div>
+</details>
+<details>
+<summary class="title">VM datastore storage</summary>
+<div class="content">
+<div class="paragraph">
+<p>The VMware Cloud SDDC comes with two VSAN datastores named <code>vsandatastore</code> and <code>workloaddatastore</code>. We used <code>vsandatastore</code> to host management VMs with access restricted to cloudadmin credential. For workloads, we used <code>workloaddatastore</code>.</p>
+</div>
+</div>
+</details>
+</div>
+</details>
+</div>
+</div>
+<div class="sect1">
+<h2 id="compute">Compute</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>VMware vSphere provides virtualized infrastructure in the datacenter and across all the major cloud providers. This ecosystem is ideal for disaster recovery scenarios for which virtualized compute stays consistent regardless of location. This solution uses VMware virtualized compute resources at both the datacenter location and in the VMware Cloud on AWS.</p>
+</div>
+<details>
+<summary class="title">On-premises</summary>
+<div class="content">
+<div class="paragraph">
+<p>This solution uses HPE Proliant DL360 Gen 10 Servers running VMware vSphere v7.0U3. We deployed six compute instances to provide adequate resources for our SQL server and Oracle servers.</p>
+</div>
+<div class="paragraph">
+<p>We deployed 10 Windows Server 2019 VMs running SQL Server 2019 with varying database sizes and 10 Oracle Linux 8.5 VMs running Oracle 19c, again, with varying database sizes.</p>
+</div>
+</div>
+</details>
+<details>
+<summary class="title">Cloud</summary>
+<div class="content">
+<div class="paragraph">
+<p>We deployed an SDDC in VMware Cloud on AWS with two hosts to provide adequate resources to run the virtual machines restored from our primary site.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="./../../media/dr-vmc-aws-image9.png" alt="Error: Missing Graphic Image"></span></p>
+</div>
+</div>
+</details>
+</div>
+</div>
+<div class="sect1">
+<h2 id="cloud-backup-tools">Cloud Backup Tools</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>To conduct a failover of our application VMs and database volumes to VMware Cloud Volume services running in AWS, it was necessary to install and configure a running instance of both SnapCenter Server and Veeam Backup and Replication Server. After failover is complete, these tools must also be configured to resume normal backup operations until a failback to the on-premises datacenter is planned and executed.</p>
+</div>
+<details>
+<summary class="title">Deployment of backup tools</summary>
+<div class="content">
+<div class="paragraph">
+<p>SnapCenter server and Veeam Backup &amp; Replication server can be installed in the VMware Cloud SDDC or they can be installed on EC2 instances residing in a VPC with network connectivity to the VMware Cloud environment.</p>
+</div>
+<details>
+<summary class="title">SnapCenter Server</summary>
+<div class="content">
+<div class="paragraph">
+<p>SnapCenter software is available from the NetApp support site and can be installed on Microsoft Windows systems that reside either in a Domain or Workgroup. A detailed planning guide and installation instructions can be found at the <a href="https://docs.netapp.com/us-en/snapcenter/install/install_workflow.html" target="_blank" rel="noopener">NetApp documentation center</a>.</p>
+</div>
+<div class="paragraph">
+<p>The SnapCenter software can be found at <a href="https://mysupport.netapp.com" target="_blank" rel="noopener">this link</a>.</p>
+</div>
+</div>
+</details>
+<details>
+<summary class="title">Veeam Backup &amp; Replication server</summary>
+<div class="content">
+<div class="paragraph">
+<p>You can install the Veeam Backup &amp; Replication server on a Windows server in VMware Cloud on AWS or on an EC2 instance. For detailed implementation guidance, see the <a href="https://www.veeam.com/documentation-guides-datasheets.html" target="_blank" rel="noopener">Veeam Help Center Technical Documentation</a>.</p>
+</div>
+</div>
+</details>
+</div>
+</details>
+<details>
+<summary class="title">Backup tools and configuration</summary>
+<div class="content">
+<div class="paragraph">
+<p>After they are installed, SnapCenter and Veeam Backup &amp; Replication must be configured to perform the necessary tasks to restore data to VMware Cloud on AWS.</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Configure the computer name to be identical to the original on-premises SnapCenter Server.</p>
-</li>
-<li>
-<p>Configure networking to communicate with VMware Cloud and the FSx ONTAP instance.</p>
-</li>
-<li>
-<p>Complete the procedure to restore the SnapCenter database.</p>
-</li>
-<li>
-<p>Confirm that SnapCenter is in Disaster Recovery mode to make sure that FSx is now the primary storage for backups.</p>
-</li>
-<li>
-<p>Confirm that communication is reestablished with the restored virtual machines.</p>
+<p>SnapCenter configuration</p>
 </li>
 </ol>
 </div>
+<div class="exampleblock">
+<div class="content">
 <div class="paragraph">
-<p>For more information on completing these steps, see to section <a href="aws-guest-dr-failover.html#snapcenter-database-restore-process">"SnapCenter database Restore Process"</a>.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="deploy-secondary-veeam-backup-replication-server">Deploy secondary Veeam Backup &amp; Replication server</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>You can install the Veeam Backup &amp; Replication server on a Windows server in the VMware Cloud on AWS or on an EC2 instance. For detailed implementation guidance, see the <a href="https://www.veeam.com/documentation-guides-datasheets.html" target="_blank" rel="noopener">Veeam Help Center Technical Documentation</a>.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="configure-secondary-veeam-backup-replication-server">Configure secondary Veeam Backup &amp; Replication server</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>To perform a restore of virtual machines that have been backed up to Amazon S3 storage, you must install the Veeam Server on a Windows server and configure it to communicate with VMware Cloud, FSx ONTAP, and the S3 bucket that contains the original backup repository. It must also have a new backup repository configured on FSx ONTAP to conduct new backups of the VMs after they are restored.</p>
+<p>To restore application data that has been mirrored to FSx ONTAP, you must first perform a full restore of the on-premises SnapCenter database. After this process is complete, communication with the VMs is reestablished and application backups can now resume using FSx ONTAP as primary storage.</p>
 </div>
 <div class="paragraph">
-<p>To perform this process, the following items must be completed:</p>
+<p>For a list of steps to be completed on the SnapCenter Server residing in AWS, see the section <a href="aws-guest-dr-cloud-backup-config.html#deploy-secondary-windows-snapcenter-server">Deploy Secondary Windows SnapCenter Server</a>.</p>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Configure networking to communicate with VMware Cloud, FSx ONTAP, and the S3 bucket containing the original backup repository.</p>
-</li>
-<li>
-<p>Configure an SMB share on FSx ONTAP to be a new backup repository.</p>
-</li>
-<li>
-<p>Mount the original S3 bucket that was used as part of the scale-out backup repository on premises.</p>
-</li>
-<li>
-<p>After restoring the VM, establish new backup jobs to protect SQL and Oracle VMs.</p>
-</li>
-</ol>
+</div>
+</div>
+<details>
+<summary class="title">Veeam Backup &amp; Replication configuration</summary>
+<div class="content">
+<div class="paragraph">
+<p>To restore virtual machines that have been backed up to Amazon S3 storage, the Veeam Server must be installed on a Windows server and configured to communicate with VMware Cloud, FSx ONTAP, and the S3 bucket that contains the original backup repository. It must also have a new backup repository configured on FSx ONTAP to conduct new backups of the VMs once they are restored.</p>
 </div>
 <div class="paragraph">
-<p>For more information on restoring VMs using Veeam, see the section <a href="aws-guest-dr-restore-veeam-full.html">"Restore Application VMs with Veeam Full Restore"</a>.</p>
+<p>For a complete list of steps required to complete failover of the application VMs, see the section <a href="aws-guest-dr-cloud-backup-config.html#deploy-secondary-veeam-backup-&amp;-replication-server">Deploy Secondary Veeam Backup &amp; Replication Server</a>.</p>
 </div>
-<div class="paragraph">
-<p><a href="aws-guest-dr-snapcenter-db-backup.html">Next: SnapCenter database backup for disaster recovery.</a></p>
 </div>
+</details>
+</div>
+</details>
 </div>
 </div>
 
