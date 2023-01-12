@@ -8732,7 +8732,7 @@
 <p class="page-details">
   
     
-    <time datetime="2022-05-20 14:06:36 +0000">05/20/2022</time>
+    <time datetime="2023-01-12 20:53:23 +0000">01/12/2023</time>
     
   
 
@@ -8762,12 +8762,12 @@
 <h2 id="vsphere-datastore-and-protocol-features">vSphere datastore and protocol features</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Five protocols are used to connect VMware vSphere to datastores on a system running ONTAP software:</p>
+<p>Seven protocols are used to connect VMware vSphere to datastores on a system running ONTAP software:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>FC</p>
+<p>FCP</p>
 </li>
 <li>
 <p>FCoE</p>
@@ -8776,31 +8776,39 @@
 <p>NVMe/FC</p>
 </li>
 <li>
+<p>NVMe/TCP</p>
+</li>
+<li>
 <p>iSCSI</p>
 </li>
 <li>
-<p>NFS</p>
+<p>NFS v3</p>
+</li>
+<li>
+<p>NFS v4.1</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>FC, FCoE, NVMe/FC, and iSCSI are block protocols that use the vSphere Virtual Machine File System (VMFS) to store VMs inside ONTAP LUNs or namespaces that are contained in an ONTAP volume. Note that, starting from vSphere 7.0, VMware no longer supports software FCoE in production environments. NFS is a file protocol that places VMs into datastores (which are simply ONTAP volumes) without the need for VMFS. SMB, iSCSI, or NFS can also be used directly from a guest OS to ONTAP.</p>
+<p>FCP, FCoE, NVMe/FC, NVMe/TCP, and iSCSI are block protocols that use the vSphere Virtual Machine File System (VMFS) to store VMs inside ONTAP LUNs or NVMe namespaces that are contained in an ONTAP FlexVol volume. Note that, starting from vSphere 7.0, VMware no longer supports software FCoE in production environments. NFS is a file protocol that places VMs into datastores (which are simply ONTAP volumes) without the need for VMFS. SMB (CIFS), iSCSI, NVMe/TCP, or NFS can also be used directly from a guest OS to ONTAP.</p>
 </div>
 <div class="paragraph">
-<p>The following tables presents vSphere supported traditional datastore features with ONTAP. This information does not apply to vVols datastores, but it does generally applies to vSphere 6.x and 7.x releases using supported ONTAP releases. You can also consult <a href="https://www.vmware.com/support/pubs/" target="_blank" rel="noopener">VMware Configuration Maximums</a> for specific vSphere releases to confirm specific limits.</p>
+<p>The following tables presents vSphere supported traditional datastore features with ONTAP. This information does not apply to vVols datastores, but it does generally applies to vSphere 6.x and later releases using supported ONTAP releases. You can also consult <a href="https://www.vmware.com/support/pubs/" target="_blank" rel="noopener">VMware Configuration Maximums</a> for specific vSphere releases to confirm specific limits.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
-<col style="width: 25%;">
-<col style="width: 25%;">
-<col style="width: 25%;">
-<col style="width: 25%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
 </colgroup>
 <thead>
 <tr>
 <th class="tableblock halign-left valign-top">Capability/Feature</th>
 <th class="tableblock halign-left valign-top">FC/FCoE</th>
 <th class="tableblock halign-left valign-top">iSCSI</th>
+<th class="tableblock halign-left valign-top">NVMe-oF</th>
 <th class="tableblock halign-left valign-top">NFS</th>
 </tr>
 </thead>
@@ -8809,12 +8817,14 @@
 <td class="tableblock halign-left valign-top"><p class="tableblock">Format</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">VMFS or raw device mapping (RDM)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">VMFS or RDM</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">VMFS</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">N/A</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Maximum number of datastores or LUNs</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">256 targets/HBA</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">256 targets</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1024 LUNs per host</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1024 LUNs per server</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">256 Namespeces per server</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">256 mounts<br>
 Default NFS. MaxVolumes is 8. Use ONTAP tools for VMware vSphere to increase to 256.</p></td>
 </tr>
@@ -8822,20 +8832,22 @@ Default NFS. MaxVolumes is 8. Use ONTAP tools for VMware vSphere to increase to 
 <td class="tableblock halign-left valign-top"><p class="tableblock">Maximum datastore size</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">64TB</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">64TB</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">64TB</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">100TB FlexVol volume or greater with FlexGroup volume</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Maximum datastore file size (for VMDKs using vSphere version 5.5 and VMFS 5 or later)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Maximum datastore file size</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">62TB</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">62TB</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">16TB<br>
-62TB is the maximum size supported by vSphere.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">62TB</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">16TB or 62TB with ONTAP 9.12.1RC1 and later with large files enabled</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Optimal queue depth per LUN or file system</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">64</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">64</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">N/A</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Autonegotiated</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Refer to NFS.MaxQueueDepth in <a href="https://docs.netapp.com/us-en/netapp-solutions/virtualization/vsphere_ontap_recommended_esxi_host_and_other_ontap_settings.html" target="_blank" rel="noopener">Recommended ESXi host and other ONTAP settings</a>.</p></td>
 </tr>
 </tbody>
 </table>
@@ -8844,16 +8856,18 @@ Default NFS. MaxVolumes is 8. Use ONTAP tools for VMware vSphere to increase to 
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
-<col style="width: 25%;">
-<col style="width: 25%;">
-<col style="width: 25%;">
-<col style="width: 25%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
 </colgroup>
 <thead>
 <tr>
 <th class="tableblock halign-left valign-top">Capacity/Feature</th>
 <th class="tableblock halign-left valign-top">FC/FCoE</th>
 <th class="tableblock halign-left valign-top">iSCSI</th>
+<th class="tableblock halign-left valign-top">NVMe-oF</th>
 <th class="tableblock halign-left valign-top">NFS</th>
 </tr>
 </thead>
@@ -8863,9 +8877,11 @@ Default NFS. MaxVolumes is 8. Use ONTAP tools for VMware vSphere to increase to 
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Storage vMotion</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
@@ -8875,9 +8891,11 @@ Default NFS. MaxVolumes is 8. Use ONTAP tools for VMware vSphere to increase to 
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Storage Distributed Resource Scheduler (SDRS)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
@@ -8887,10 +8905,12 @@ Default NFS. MaxVolumes is 8. Use ONTAP tools for VMware vSphere to increase to 
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Microsoft Cluster Service (MSCS) or failover clustering within a VM</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes*</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes*</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Not supported</p></td>
 </tr>
@@ -8899,15 +8919,18 @@ Default NFS. MaxVolumes is 8. Use ONTAP tools for VMware vSphere to increase to 
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Site Recovery Manager</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No**</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">V3 only**</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Thin-provisioned VMs (virtual disks)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes<br>
@@ -8917,34 +8940,35 @@ This setting is the default for all VMs on NFS when not using VAAI.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">VMware native multipathing</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes, using the new High Performance Plugin (HPP)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">N/A</p></td>
 </tr>
 </tbody>
 </table>
 <div class="paragraph">
-<p>*NetApp recommends using in-guest iSCSI for Microsoft clusters rather than multi- writer enabled VMDKs in a VMFS datastore. This approach is fully supported by Microsoft and VMware, offers great flexibility with ONTAP (SnapMirror to ONTAP systems on-premises or in the cloud), is easy to configure and automate, and can be protected with SnapCenter. vSphere 7 adds a new clustered VMDK option. This is different from multi-writer enabled VMDKs but requires a datastore presented via the FC protocol, which has clustered VMDK support enabled. Other restrictions apply. See VMware’s <a href="https://docs.vmware.com/en/VMware-vSphere/7.0/vsphere-esxi-vcenter-server-70-setup-wsfc.pdf" target="_blank" rel="noopener">Setup for Windows Server Failover Clustering</a> documentation for configuration guidelines.</p>
-</div>
-<div class="paragraph">
 <p>The following table lists supported ONTAP storage management features.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
-<col style="width: 25%;">
-<col style="width: 25%;">
-<col style="width: 25%;">
-<col style="width: 25%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
 </colgroup>
 <thead>
 <tr>
 <th class="tableblock halign-left valign-top">Capability/Feature</th>
 <th class="tableblock halign-left valign-top">FC/FCoE</th>
 <th class="tableblock halign-left valign-top">iSCSI</th>
+<th class="tableblock halign-left valign-top">NVMe-oF</th>
 <th class="tableblock halign-left valign-top">NFS</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Data deduplication</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Savings in the array</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Savings in the array</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Savings in the array</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Savings in the datastore</p></td>
@@ -8954,9 +8978,11 @@ This setting is the default for all VMs on NFS when not using VAAI.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Datastore or RDM</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Datastore or RDM</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Datastore</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Datastore</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Resize datastore</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Grow only</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Grow only</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Grow only</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Grow, autogrow, and shrink</p></td>
@@ -8965,18 +8991,21 @@ This setting is the default for all VMs on NFS when not using VAAI.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">SnapCenter plug-ins for Windows, Linux applications (in guest)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Monitoring and host configuration using ONTAP tools for VMware vSphere</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Provisioning using ONTAP tools for VMware vSphere</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 </tr>
 </tbody>
@@ -8986,16 +9015,18 @@ This setting is the default for all VMs on NFS when not using VAAI.</p></td>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
-<col style="width: 25%;">
-<col style="width: 25%;">
-<col style="width: 25%;">
-<col style="width: 25%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
 </colgroup>
 <thead>
 <tr>
 <th class="tableblock halign-left valign-top">Capability/Feature</th>
 <th class="tableblock halign-left valign-top">FC/FCoE</th>
 <th class="tableblock halign-left valign-top">iSCSI</th>
+<th class="tableblock halign-left valign-top">NVMe-oF</th>
 <th class="tableblock halign-left valign-top">NFS</th>
 </tr>
 </thead>
@@ -9005,15 +9036,18 @@ This setting is the default for all VMs on NFS when not using VAAI.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">SRM supported by replicated backups</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No**</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">V3 only**</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Volume SnapMirror</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
@@ -9022,10 +9056,12 @@ This setting is the default for all VMs on NFS when not using VAAI.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">VMDK image access</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">VADP-enabled backup software</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">VADP-enabled backup software</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">VADP-enabled backup software</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">VADP-enabled backup software, vSphere Client, and vSphere Web Client datastore browser</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">VMDK file-level access</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">VADP-enabled backup software, Windows only</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">VADP-enabled backup software, Windows only</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">VADP-enabled backup software, Windows only</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">VADP-enabled backup software and third-party applications</p></td>
@@ -9034,10 +9070,17 @@ This setting is the default for all VMs on NFS when not using VAAI.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">NDMP granularity</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Datastore</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Datastore</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Datastore</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Datastore or VM</p></td>
 </tr>
 </tbody>
 </table>
+<div class="paragraph">
+<p>*NetApp recommends using in-guest iSCSI for Microsoft clusters rather than multiwriter-enabled VMDKs in a VMFS datastore. This approach is fully supported by Microsoft and VMware, offers great flexibility with ONTAP (SnapMirror to ONTAP systems on-premises or in the cloud), is easy to configure and automate, and can be protected with SnapCenter. vSphere 7 adds a new clustered VMDK option. This is different from multiwriter-enabled VMDKs, which requires a datastore presented via the FC protocol that has clustered VMDK support enabled. Other restrictions apply. See VMware’s <a href="https://docs.vmware.com/en/VMware-vSphere/7.0/vsphere-esxi-vcenter-server-70-setup-wsfc.pdf" target="_blank" rel="noopener">Setup for Windows Server Failover Clustering</a> documentation for configuration guidelines.</p>
+</div>
+<div class="paragraph">
+<p>**Datastores using NVMe-oF and NFS v4.1 require vSphere replication. Array-based replication is not supported by SRM.</p>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -9076,16 +9119,16 @@ This setting is the default for all VMs on NFS when not using VAAI.</p></td>
 <div class="ulist">
 <ul>
 <li>
-<p>Deploying vSphere with ONTAP NFS datastores results in a high-performing, easy-to-manage implementation that provides VM-to-datastore ratios that cannot be obtained with block-based storage protocols. This architecture can result in a tenfold increase in datastore density with a correlating reduction in the number of datastores. Although a larger datastore can benefit storage efficiency and provide operational benefits, consider using at least four datastores (FlexVol volumes) to store your VMs on a single ONTAP controller to get maximum performance from the hardware resources. This approach also allows you to establish datastores with different recovery policies.  Some can be backed up or replicated more frequently than others, based on business needs. Multiple datastores are not required with FlexGroup volumes for performance as it scales by design.</p>
+<p>Deploying vSphere with ONTAP NFS datastores results in a high-performing, easy-to-manage implementation that provides VM-to-datastore ratios that cannot be obtained with block-based storage protocols. This architecture can result in a tenfold increase in datastore density with a correlating reduction in the number of datastores. Although a larger datastore can benefit storage efficiency and provide operational benefits, consider using at least four datastores (FlexVol volumes) to store your VMs on a single ONTAP controller to get maximum performance from the hardware resources. This approach also allows you to establish datastores with different recovery policies. Some can be backed up or replicated more frequently than others based on business needs. Multiple datastores are not required with FlexGroup volumes for performance because they scale by design.</p>
 </li>
 <li>
-<p>NetApp recommends the use of FlexVol volumes and, starting with ONTAP 9.8 FlexGroup volumes,  NFS datastores. Other ONTAP storage containers such as qtrees are not generally recommended because these are not currently supported by ONTAP tools for VMware vSphere. Deploying datastores as multiple qtrees in a single volume might be useful for highly automated environments that can benefit from datastore-level quotas or VM file clones.</p>
+<p>NetApp recommends the use of FlexVol volumes and, starting with ONTAP 9.8 FlexGroup volumes, NFS datastores. Other ONTAP storage containers such as qtrees are not generally recommended because these are not currently supported by ONTAP tools for VMware vSphere. Deploying datastores as multiple qtrees in a single volume might be useful for highly automated environments that can benefit from datastore-level quotas or VM file clones.</p>
 </li>
 <li>
 <p>A good size for a FlexVol volume datastore is around 4TB to 8TB. This size is a good balance point for performance, ease of management, and data protection. Start small (say, 4TB) and grow the datastore as needed (up to the maximum 100TB). Smaller datastores are faster to recover from backup or after a disaster and can be moved quickly across the cluster. Consider the use of ONTAP autosize to automatically grow and shrink the volume as used space changes. The ONTAP tools for VMware vSphere Datastore Provisioning Wizard use autosize by default for new datastores. Additional customization of the grow and shrink thresholds and maximum and minimum size can be done with System Manager or the command line.</p>
 </li>
 <li>
-<p>Alternately, VMFS datastores can be configured with LUNs that are accessed by FC, iSCSI, or FCoE. VMFS allows traditional LUNs to be accessed simultaneously by every ESX server in a cluster. VMFS datastores can be up to 64TB in size and consist of up to 32 2TB LUNs (VMFS 3) or a single 64TB LUN (VMFS 5). The ONTAP maximum LUN size is 16TB on most systems, and 128TB on All SAN Array systems. Therefore, a maximum size VMFS 5 datastore on most ONTAP systems can be created by using four 16TB LUNs. While there can be performance benefit for high-I/O workloads with multiple LUNs (with high-end FAS or AFF systems), this benefit is offset by added management complexity to create, manage, and protect the datastore LUNs and increased availability risk. NetApp generally recommends using a single, large LUN for each datastore and only span if there is a special need to go beyond a 16TB datastore. As with NFS, consider using multiple datastores (volumes) to maximize performance on a single ONTAP controller.</p>
+<p>Alternately, VMFS datastores can be configured with LUNs that are accessed by FC, iSCSI, or FCoE. VMFS allows traditional LUNs to be accessed simultaneously by every ESX server in a cluster. VMFS datastores can be up to 64TB in size and consist of up to 32 2TB LUNs (VMFS 3) or a single 64TB LUN (VMFS 5). The ONTAP maximum LUN size is 16TB on most systems, and 128TB on All-SAN-Array systems. Therefore, a maximum size VMFS 5 datastore on most ONTAP systems can be created by using four 16TB LUNs. While there can be a performance benefit for high-I/O workloads with multiple LUNs (with high-end FAS or AFF systems), this benefit is offset by added management complexity to create, manage, and protect the datastore LUNs and increased availability risk. NetApp generally recommends using a single, large LUN for each datastore and only span if there is a special need to go beyond a 16TB datastore. As with NFS, consider using multiple datastores (volumes) to maximize performance on a single ONTAP controller.</p>
 </li>
 <li>
 <p>Older guest operating systems (OSs) needed alignment with the storage system for best performance and storage efficiency. However, modern vendor-supported OSs from Microsoft and Linux distributors such as Red Hat no longer require adjustments to align the file system partition with the blocks of the underlying storage system in a virtual environment. If you are using an old OS that might require alignment, search the NetApp Support Knowledgebase for articles using “VM alignment” or request a copy of TR-3747 from a NetApp sales or partner contact.</p>
@@ -9172,16 +9215,16 @@ This setting is the default for all VMs on NFS when not using VAAI.</p></td>
 <div class="ulist">
 <ul>
 <li>
-<p>Use switches that support link aggregation of ports on two separate switch chassis, using a multichassis link aggregation group approach such as Cisco’s Virtual PortChannel (vPC).</p>
+<p>Use switches that support link aggregation of ports on two separate switch chassis using a multichassis link aggregation group approach such as Cisco’s Virtual PortChannel (vPC).</p>
 </li>
 <li>
-<p>Disable LACP for switch ports connected to ESXi unless using dvSwitches 5.1 or later with LACP configured.</p>
+<p>Disable LACP for switch ports connected to ESXi unless you are using dvSwitches 5.1 or later with LACP configured.</p>
 </li>
 <li>
-<p>Use LACP to create link aggregates for ONTAP storage systems, with dynamic multimode interface groups with IP hash.</p>
+<p>Use LACP to create link aggregates for ONTAP storage systems with dynamic multimode interface groups with IP hash.</p>
 </li>
 <li>
-<p>Use IP hash teaming policy on ESXi.</p>
+<p>Use an IP hash teaming policy on ESXi.</p>
 </li>
 </ul>
 </div>
@@ -9261,7 +9304,7 @@ This setting is the default for all VMs on NFS when not using VAAI.</p></td>
 </tbody>
 </table>
 <div class="paragraph">
-<p>*SVM LIFs connect to ports, interface groups, or VLAN interfaces that have VLAN, MTU, and other settings, but the settings are not managed at the SVM level.</p>
+<p>*SVM LIFs connect to ports, interface groups, or VLAN interfaces that have VLAN, MTU, and other settings. However, the settings are not managed at the SVM level.</p>
 </div>
 <div class="paragraph">
 <p>**These devices have IP addresses of their own for management, but these addresses are not used in the context of ESXi storage networking.</p>
@@ -9300,7 +9343,7 @@ This setting is the default for all VMs on NFS when not using VAAI.</p></td>
 <p>ESXi 6 supports up to 256 LUNs and up to 1,024 total paths to LUNs. Any LUNs or paths beyond these limits are not seen by ESXi. Assuming the maximum number of LUNs, the path limit allows four paths per LUN. In a larger ONTAP cluster, it is possible to reach the path limit before the LUN limit. To address this limitation, ONTAP supports selective LUN map (SLM) in release 8.3 and later.</p>
 </div>
 <div class="paragraph">
-<p>SLM limits the nodes that advertise paths to a given LUN. It is a NetApp best practice to have at least one LIF per node per SVM and to use SLM to limit the paths advertised to the node hosting the LUN and its HA partner. Although other paths exist, they aren’t advertised by default. It is possible to modify the paths advertised with the add and remove reporting node arguments within SLM. Note that LUNs created in releases prior to 8.3 advertise all paths and need to be modified to only advertise the paths to the hosting HA pair. For more information about SLM, review section 5.9 of <a href="http://www.netapp.com/us/media/tr-4080.pdf" target="_blank" rel="noopener">TR-4080</a>. The previous method of portsets can also be used to further reduce the available paths for a LUN.  Portsets help by reducing the number of visible paths through which initiators in an igroup can see LUNs.</p>
+<p>SLM limits the nodes that advertise paths to a given LUN. It is a NetApp best practice to have at least one LIF per node per SVM and to use SLM to limit the paths advertised to the node hosting the LUN and its HA partner. Although other paths exist, they aren’t advertised by default. It is possible to modify the paths advertised with the add and remove reporting node arguments within SLM. Note that LUNs created in releases prior to 8.3 advertise all paths and need to be modified to only advertise the paths to the hosting HA pair. For more information about SLM, review section 5.9 of <a href="http://www.netapp.com/us/media/tr-4080.pdf" target="_blank" rel="noopener">TR-4080</a>. The previous method of portsets can also be used to further reduce the available paths for a LUN. Portsets help by reducing the number of visible paths through which initiators in an igroup can see LUNs.</p>
 </div>
 <div class="ulist">
 <ul>
@@ -9360,7 +9403,7 @@ This setting is the default for all VMs on NFS when not using VAAI.</p></td>
 <p>Use a single logical interface (LIF) for each SVM on each node in the ONTAP cluster. Past recommendations of a LIF per datastore are no longer necessary. While direct access (LIF and datastore on same node) is best, don’t worry about indirect access because the performance effect is generally minimal (microseconds).</p>
 </li>
 <li>
-<p>VMware has supported NFSv3 since VMware Infrastructure 3. vSphere 6.0 added support for NFSv4.1, which enables some advanced capabilities such as Kerberos security. Where NFSv3 uses client-side locking, NFSv4.1 uses server-side locking. Although an ONTAP volume can be exported through both protocols, ESXi can only mount through one protocol. This single protocol mount does not preclude other ESXi hosts from mounting the same datastore through a different version. Make sure to specify the protocol version to use when mounting so that all hosts use the same version and, therefore, the same locking style.  Do not mix NFS versions across hosts. If possible, use host profiles to check compliancy.</p>
+<p>VMware has supported NFSv3 since VMware Infrastructure 3. vSphere 6.0 added support for NFSv4.1, which enables some advanced capabilities such as Kerberos security. Where NFSv3 uses client-side locking, NFSv4.1 uses server-side locking. Although an ONTAP volume can be exported through both protocols, ESXi can only mount through one protocol. This single protocol mount does not preclude other ESXi hosts from mounting the same datastore through a different version. Make sure to specify the protocol version to use when mounting so that all hosts use the same version and, therefore, the same locking style. Do not mix NFS versions across hosts. If possible, use host profiles to check compliancy.</p>
 <div class="ulist">
 <ul>
 <li>
@@ -9373,7 +9416,7 @@ This setting is the default for all VMs on NFS when not using VAAI.</p></td>
 </div>
 </li>
 <li>
-<p>NFS export policies are used to control access by vSphere hosts. You can use one policy with multiple volumes (datastores). With NFSv3, ESXi uses the sys (UNIX) security style and requires the root mount option to execute VMs. In ONTAP, this option is referred to as superuser, and when the superuser option is used, it is not necessary to specify the anonymous user ID.  Note that export policy rules with different values for <code>-anon</code> and <code>-allow-suid</code> can cause SVM discovery problems with the ONTAP tools. Here’s a sample policy:</p>
+<p>NFS export policies are used to control access by vSphere hosts. You can use one policy with multiple volumes (datastores). With NFSv3, ESXi uses the sys (UNIX) security style and requires the root mount option to execute VMs. In ONTAP, this option is referred to as superuser, and when the superuser option is used, it is not necessary to specify the anonymous user ID. Note that export policy rules with different values for <code>-anon</code> and <code>-allow-suid</code> can cause SVM discovery problems with the ONTAP tools. Here’s a sample policy:</p>
 <div class="ulist">
 <ul>
 <li>
@@ -9389,7 +9432,7 @@ This setting is the default for all VMs on NFS when not using VAAI.</p></td>
 <p>RW Access Rule: sys</p>
 </li>
 <li>
-<p>Anonymous UID:</p>
+<p>Anonymous UID</p>
 </li>
 <li>
 <p>Superuser: sys</p>
@@ -9401,26 +9444,26 @@ This setting is the default for all VMs on NFS when not using VAAI.</p></td>
 <p>If the NetApp NFS Plug-In for VMware VAAI is used, the protocol should be set as <code>nfs</code> when the export policy rule is created or modified. The NFSv4 protocol is required for VAAI copy offload to work, and specifying the protocol as <code>nfs</code> automatically includes both the NFSv3 and the NFSv4 versions.</p>
 </li>
 <li>
-<p>NFS datastore volumes are junctioned from the root volume of the SVM; therefore, ESXi must also have access to the root volume to navigate and mount datastore volumes. The export policy for the root volume,  and for any other volumes in which the datastore volume’s junction is nested, must include a rule or rules for the ESXi servers granting them read-only access. Here’s a sample policy for the root volume, also using the VAAI plug-in:</p>
+<p>NFS datastore volumes are junctioned from the root volume of the SVM; therefore, ESXi must also have access to the root volume to navigate and mount datastore volumes. The export policy for the root volume, and for any other volumes in which the datastore volume’s junction is nested, must include a rule or rules for the ESXi servers granting them read-only access. Here’s a sample policy for the root volume, also using the VAAI plug-in:</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Access Protocol. nfs (which includes both nfs3 and nfs4)</p>
+<p>Access Protocol: nfs (which includes both nfs3 and nfs4)</p>
 </li>
 <li>
-<p>Client Match Spec. 192.168.42.21</p>
+<p>Client Match Spec: 192.168.42.21</p>
 </li>
 <li>
-<p>RO Access Rule. sys</p>
+<p>RO Access Rule: sys</p>
 </li>
 <li>
-<p>RW Access Rule. never (best security for root volume)</p>
+<p>RW Access Rule: never (best security for root volume)</p>
 </li>
 <li>
-<p>Anonymous UID.</p>
+<p>Anonymous UID</p>
 </li>
 <li>
-<p>Superuser. sys (also required for root volume with VAAI)</p>
+<p>Superuser: sys (also required for root volume with VAAI)</p>
 </li>
 </ul>
 </div>
@@ -9433,7 +9476,7 @@ This setting is the default for all VMs on NFS when not using VAAI.</p></td>
 <p>Use ONTAP tools for VMware vSphere to provision datastores because it simplifies management of export policies automatically.</p>
 </li>
 <li>
-<p>When creating datastores for VMware clusters with the plug- in, select the cluster rather than a single ESX server.  This choice triggers it to automatically mount the datastore to all hosts in the cluster.</p>
+<p>When creating datastores for VMware clusters with the plug-in, select the cluster rather than a single ESX server. This choice triggers it to automatically mount the datastore to all hosts in the cluster.</p>
 </li>
 <li>
 <p>Use the plug- in mount function to apply existing datastores to new servers.</p>
@@ -9520,7 +9563,7 @@ This setting is the default for all VMs on NFS when not using VAAI.</p></td>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Hardware acceleration (VAAI)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yes (vSphere 6.5 and later, NetApp VAAI Plug-in 1.1.2)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Kerberos authentication</p></td>
@@ -9530,7 +9573,7 @@ This setting is the default for all VMs on NFS when not using VAAI.</p></td>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Multipathing support</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">No (ESXi 6.5 and later supports through session trunking; ONTAP supports through pNFS)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ESXi 7.0U3f and later support session trunking with ONTAP 9.12.1RC1 and later</p></td>
 </tr>
 </tbody>
 </table>
@@ -9563,7 +9606,7 @@ This setting is the default for all VMs on NFS when not using VAAI.</p></td>
 <p>Allow FlexGroup to manage datastore space. Autosize and Elastic Sizing have been tested with vSphere datastores. Should the datastore get close to full capacity, use ONTAP tools for VMware vSphere or another tool to resize the FlexGroup volume. FlexGroup keeps capacity and inodes balanced across constituents, prioritizing files within a folder (VM) to the same constituent if capacity allows.</p>
 </li>
 <li>
-<p>VMware and NetApp do not currently support a common multipath networking approach. For NFSv4.1, NetApp supports pNFS, whereas VMware supports session trunking. NFSv3 does not support multiple physical paths to a volume. For FlexGroup with ONTAP 9.8, our recommended best practice is to let ONTAP tools for VMware vSphere make the single mount, because the effect of indirect access is typically minimal (microseconds).  It’s possible to use round-robin DNS to distribute ESXi hosts across LIFs on different nodes in the FlexGroup, but this would require the FlexGroup to be created and mounted without ONTAP tools for VMware vSphere. Then the performance management features would not be available.</p>
+<p>VMware and NetApp do not currently support a common multipath networking approach. For NFSv4.1, NetApp supports pNFS, whereas VMware supports session trunking. NFSv3 does not support multiple physical paths to a volume. For FlexGroup with ONTAP 9.8, our recommended best practice is to let ONTAP tools for VMware vSphere make the single mount, because the effect of indirect access is typically minimal (microseconds). It’s possible to use round-robin DNS to distribute ESXi hosts across LIFs on different nodes in the FlexGroup, but this would require the FlexGroup to be created and mounted without ONTAP tools for VMware vSphere. Then the performance management features would not be available.</p>
 </li>
 <li>
 <p>FlexGroup vSphere datastore support has been tested up to 1500 VMs with the 9.8 release.</p>
