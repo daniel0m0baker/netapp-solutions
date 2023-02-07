@@ -195,15 +195,12 @@
           <li class="n-top-hat__list-item">
             <a href="https://customers.netapp.com/en/" class="n-top-hat__link">Customer Stories</a>
           </li>
-          <li class="n-top-hat__list-item">
-            <a href="https://www.netapp.com/us/contact-us/index.aspx" target="_self" class="n-top-hat__link" data-ntap-ui="contact-us">Contact</a>
-          </li>
         </ul>
       </div>
       <div class="n-top-hat__utils">
         <ul class="n-top-hat__list">
           <li class="n-top-hat__list-item">
-            <a href="https://www.netapp.com/us/contact-us/index.aspx" target="_self" class="n-top-hat__link" data-ntap-ui="contact-us">Contact</a>
+            <a href="https://www.netapp.com/company/contact-us/" target="_self" class="n-top-hat__link" data-ntap-ui="contact-us">Contact</a>
           </li>
         </ul>
       </div>
@@ -287,47 +284,20 @@
         </li><li>
           <a href="https://docs.netapp.com/ja-jp/netapp-solutions/ehc/gcp/gcp-setup.html" target="_self"><span translate="no" class="notranslate">日本語</span></a>
         </li><li>
+          <a href="https://docs.netapp.com/ko-kr/netapp-solutions/ehc/gcp/gcp-setup.html" target="_self"><span translate="no" class="notranslate">한국어</span></a>
+        </li><li>
           <a href="https://docs.netapp.com/zh-cn/netapp-solutions/ehc/gcp/gcp-setup.html" target="_self"><span translate="no" class="notranslate">简体中文</span></a>
         </li><li>
           <a href="https://docs.netapp.com/zh-tw/netapp-solutions/ehc/gcp/gcp-setup.html" target="_self"><span translate="no" class="notranslate">繁體中文</span></a>
         </li><li>
-          <a href="https://docs.netapp.com/ko-kr/netapp-solutions/ehc/gcp/gcp-setup.html" target="_self"><span translate="no" class="notranslate">한국어</span></a>
+          <a href="https://docs.netapp.com/de-de/netapp-solutions/ehc/gcp/gcp-setup.html" target="_self"><span translate="no" class="notranslate">Deutsch</span></a>
         </li><li>
           <a href="https://docs.netapp.com/fr-fr/netapp-solutions/ehc/gcp/gcp-setup.html" target="_self"><span translate="no" class="notranslate">Français</span></a>
-        </li><li>
-          <a href="https://docs.netapp.com/de-de/netapp-solutions/ehc/gcp/gcp-setup.html" target="_self"><span translate="no" class="notranslate">Deutsch</span></a>
         </li></ul>
     </div><!-- End Language Selector -->
 
     <div class="n-property-bar__cta"></div>
   </div>
-  <script>
-    $(function(){
-        var currentLocalization = $('html').attr('lang');
-
-        var localizationsDictionary = {
-            "en-CA" : "https://www.netapp.com/search/index.aspx?for_cr=canada&",
-            "en-IN" : "https://www.netapp.com/search/index.aspx?for_cr=india&",
-            "nl-NL" : "https://www.netapp.com/search/index.aspx?for_cr=netherlands&",
-            "ru-RU" : "https://www.netapp.com/search/index.aspx?for_cr=russia&",
-            "sv-SE" : "https://www.netapp.com/search/index.aspx?for_cr=sweden&",
-            "it-IT" : "https://www.netapp.com/search/index.aspx?for_cr=italy&",
-            "he-IL" : "https://www.netapp.com/search/index.aspx?for_cr=israel&",
-            "ko-KR" : "https://www.netapp.com/search/index.aspx?for_cr=korea&",
-            "zh-TW" : "https://www.netapp.com/search/index.aspx?for_cr=taiwan&",
-            "en-GB" : "https://www.netapp.com/search/index.aspx?for_cr=unitedkingdom&",
-            "en-SG" : "https://www.netapp.com/search/index.aspx?for_cr=asean&",
-            "en-AU" : "https://www.netapp.com/search/index.aspx?for_cr=australia&",
-            "pt-BR" : "https://www.netapp.com/search/index.aspx?for_cr=brasil&",
-            "de-CH" : "https://www.netapp.com/search/index.aspx?for_cr=switzerland&",
-            "es-MX" : "https://www.netapp.com/search/index.aspx?for_cr=mexico&"
-        };
-
-        if($('html').hasClass('ntap-whitelisted') && localizationsDictionary.hasOwnProperty(currentLocalization)) {
-            $('.n-property-bar__property-link').attr('href', '/');
-        }
-    });
-  </script>
   <!-- End property bar -->
 </header>
 
@@ -3311,6 +3281,8 @@
             Protecting Workloads
           </a>
           
+
+
 
 
         </li>
@@ -7570,6 +7542,13 @@
       class=" "
     ><a class="na-navbar-padding" href="/us-en/netapp-solutions/ehc/aws/aws-guest-dr-solution-overview.html">
         Disaster Recovery with VMC on AWS (guest connected)
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Disaster Recovery (DRO) with FSx for ONTAP and VMC"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/us-en/netapp-solutions/ehc/dro/dro-overview.html">
+        Disaster Recovery (DRO) with FSx for ONTAP and VMC
       </a></li></ul></li><li 
       data-pdf-exists="true" 
       data-pdf-filename="Migrating Workloads"
@@ -8551,11 +8530,19 @@
 <p class="page-details">
   
     
-    <time datetime="2022-03-24 21:01:57 +0000">03/24/2022</time>
+    <time datetime="2023-02-07 18:50:41 +0000">02/07/2023</time>
     
   
 
 <span>Contributors
+  <a target="_blank" class="ext-link-indicator" href="https://github.com/kevin-hoke">
+    <img  class="avatar avatar-small"
+          alt="kevin-hoke"
+          width="20" height="20"
+          src="https://avatars.githubusercontent.com/u/55808219?v=4"
+          style="border-radius: 50%;"/>
+  </a>
+  
 </span>
 
 
@@ -8566,18 +8553,6 @@
 </div>
 <div class="paragraph">
 <p>This section describes how to set up and manage GCVE and use it in combination with the available options for connecting NetApp storage.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<img src="/us-en/netapp-solutions/images/note.svg" alt="Note">
-</td>
-<td class="content">
-In-guest storage is the only supported method of connecting Cloud Volumes ONTAP and Cloud Volumes Services to GCVE.
-</td>
-</tr>
-</table>
 </div>
 <div class="paragraph">
 <p>The setup process can be broken down into the following steps:</p>
@@ -8663,7 +8638,7 @@ In-guest storage is the only supported method of connecting Cloud Volumes ONTAP 
         <div class="n-footer__copyright">
           <ul class="n-footer__copyright-list">
             <li class="n-footer__copyright-link">
-              <a href="https://www.netapp.com/us/legal/copyright.aspx">© 2023 NetApp, Inc.</a>
+              <a href="https://www.netapp.com/company/legal/copyright/">© 2023 NetApp, Inc.</a>
             </li>
             <li class="n-footer__copyright-link">
               <a href="https://www.netapp.com/company/legal/terms-of-use/">Terms of Use</a>
