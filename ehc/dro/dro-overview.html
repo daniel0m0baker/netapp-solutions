@@ -8530,7 +8530,7 @@
 <p class="page-details">
   
     
-    <time datetime="2023-02-07 18:50:41 +0000">02/07/2023</time>
+    <time datetime="2023-02-11 21:55:18 +0000">02/11/2023</time>
     
   
 
@@ -8653,7 +8653,7 @@ A SnapMirror relationship is a prerequisite and must be created beforehand.
 <div class="ulist">
 <ul>
 <li>
-<p>Ubuntu Focal 20.04 (LTS)</p>
+<p>Ubuntu 20.04 (LTS) with minimum of 2GB and 4 vCPUs</p>
 </li>
 <li>
 <p>The following packages must be installed on the designated agent VM:</p>
@@ -8697,7 +8697,7 @@ The <code>deploy.sh</code> script executes all the required prerequisites.
 <p>Download the installation package on the designated virtual machine:</p>
 <div class="listingblock">
 <div class="content">
-<pre>git clone &lt;link here&gt;</pre>
+<pre>https://github.com/NetApp-Automation/DRO.git</pre>
 </div>
 </div>
 <div class="admonitionblock note">
@@ -8717,7 +8717,7 @@ The agent can be installed on-premises or within an AWS VPC.
 <p>Unzip the package, run the deployment script, and enter the host IP (for example, 10.10.10.10).</p>
 <div class="listingblock">
 <div class="content">
-<pre>tar xvf draas_package.tar</pre>
+<pre>tar xvf DRO-prereq.tar</pre>
 </div>
 </div>
 </li>
@@ -8730,16 +8730,35 @@ The agent can be installed on-premises or within an AWS VPC.
 </div>
 </li>
 <li>
-<p>Access the UI using the following credentials:<br>
-*</p>
-</li>
-</ol>
+<p>Access the UI using:</p>
+<div class="listingblock">
+<div class="content">
+<pre>https://&lt;host-ip-address&gt;</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>with the following default credentials:</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre>Username: admin
 Password: admin</pre>
 </div>
+</div>
+</li>
+</ol>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/netapp-solutions/images/note.svg" alt="Note">
+</td>
+<td class="content">
+The password can be changed using the "Change Password" option.
+</td>
+</tr>
+</table>
 </div>
 <div class="imageblock">
 <div class="content">
