@@ -951,6 +951,13 @@
     </url>
   
     <url>
+      <loc>https://docs.netapp.com/us-en/netapp-solutions/databases/aws_postgres_fsx_ec2_hadr.html</loc>
+      
+      <lastmod>2023-02-15T15:38:09+00:00</lastmod>
+      
+    </url>
+  
+    <url>
       <loc>https://docs.netapp.com/us-en/netapp-solutions/databases/awx_automation.html</loc>
       
       <lastmod>2022-04-05T18:25:53+00:00</lastmod>
@@ -3326,7 +3333,7 @@
     <url>
       <loc>https://docs.netapp.com/us-en/netapp-solutions//search.html</loc>
       
-      <lastmod>2023-02-11T21:55:30+00:00</lastmod>
+      <lastmod>2023-02-15T19:13:06+00:00</lastmod>
       
     </url>
   
@@ -3585,7 +3592,7 @@
     <url>
       <loc>https://docs.netapp.com/us-en/netapp-solutions/videos.html</loc>
       
-      <lastmod>2022-12-14T15:54:10+00:00</lastmod>
+      <lastmod>2023-02-10T16:02:34+00:00</lastmod>
       
     </url>
   
