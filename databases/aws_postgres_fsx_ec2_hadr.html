@@ -461,8 +461,6 @@
 
 
 
-
-
         </li>
       </ul>
     
@@ -4377,13 +4375,6 @@
       class=" "
     ><a class="na-navbar-padding" href="/us-en/netapp-solutions/ai/tr-4859-link.html">
         Deploying IBM Spectrum Scale with NetApp E-Series Storage
-      </a></li><li 
-      data-pdf-exists="true" 
-      data-pdf-filename="NetApp ONTAP and Lenovo ThinkSystem SR670 for AI and ML Model Training Workloads"
-      data-li-level="3#" 
-      class=" "
-    ><a class="na-navbar-padding" href="/us-en/netapp-solutions/ai/tr-4810-link.html">
-        NetApp ONTAP and Lenovo ThinkSystem SR670 for AI and ML Model Training Workloads
       </a></li><li 
       data-pdf-exists="true" 
       data-pdf-filename="NetApp AFF A800 and Fujitsu Server PRIMERGY GX2570 M5 for AI and ML Model Training Workloads"
@@ -8707,7 +8698,7 @@
 <p class="page-details">
   
     
-    <time datetime="2023-02-15 15:38:09 +0000">02/15/2023</time>
+    <time datetime="2023-02-16 20:44:31 +0000">02/16/2023</time>
     
   
 
@@ -8739,7 +8730,7 @@
 <p>PostgreSQL is a widely used open-source database that is ranked number four among the top ten most popular database engines by <a href="https://db-engines.com/en/ranking" target="_blank" rel="noopener">DB-Engines</a>. On one hand, PostgreSQL derives its popularity from its license-free, open-source model while still possessing sophisticated features. On the other hand, because it is open sourced, there is shortage of detailed guidance on production-grade database deployment in the area of high availability and disaster recovery (HA/DR), particularly in the public cloud. In general, it can be difficult to set up a typical PostgreSQL HA/DR system with hot and warm standby, streaming replication, and so on. Testing the HA/DR environment by promoting the standby site and then switching back to the primary can be disruptive to production. There are well documented performance issues on the primary when read workloads are deployed on streaming hot standby.</p>
 </div>
 <div class="paragraph">
-<p>In this documentation, we demonstrate how you can do away with an application-level PostgreSQL streaming HA/DR solution and build a PostgreSQL HA/DR solution based on AWS FSx ONTAP storage for database files and EC2 compute instances, such as PostgreSQL DB servers. The solution creates a simpler and comparable system and delivers equivalent results when compared with traditional PostgreSQL application-level streaming replication for HA/DR.</p>
+<p>In this documentation, we demonstrate how you can do away with an application-level PostgreSQL streaming HA/DR solution and build a PostgreSQL HA/DR solution based on AWS FSx ONTAP storage and EC2 compute instances using storage-level replication. The solution creates a simpler and comparable system and delivers equivalent results when compared with traditional PostgreSQL application-level streaming replication for HA/DR.</p>
 </div>
 <div class="paragraph">
 <p>This solution is built on proven and mature NetApp SnapMirror storage-level replication technology that is available in AWS-native FSX ONTAP cloud storage for PostgreSQL HA/DR. It is simple to implement with an automation toolkit provided by the NetApp Solutions team. It provides similar functionality while eliminating the complexity and performance drag on the primary site with the application-level streaming-based HA/DR solution. The solution can be easily deployed and tested without affecting the active primary site.</p>
@@ -9414,7 +9405,7 @@ psql_01ps ansible_ssh_private_key_file=psql_01ps.pem
 <div class="sect2">
 <h3 id="failover-from-primary-ec2-db-server-to-standby-ec2-db-server-due-to-ec2-compute-instance-failure">Failover from primary EC2 DB server to standby EC2 DB server due to EC2 compute instance failure</h3>
 <div class="paragraph">
-<p>NetApp recommends running manual failover with well-established OS cluster-ware that might require a license.</p>
+<p>NetApp recommends running manual failover or using well-established OS cluster-ware that might require a license.</p>
 </div>
 </div>
 </div>
@@ -9442,7 +9433,7 @@ psql_01ps ansible_ssh_private_key_file=psql_01ps.pem
 <li>
 <p>NetApp Solution Automation</p>
 <div class="paragraph">
-<p><a href="https://review.docs.netapp.com/us-en/netapp-solutions_ajc_psql_aws/automation/automation_introduction.html" target="_blank" rel="noopener">https://review.docs.netapp.com/us-en/netapp-solutions_ajc_psql_aws/automation/automation_introduction.html</a></p>
+<p><a href="https://docs.netapp.com/us-en/netapp-solutions/automation/automation_introduction.html" target="_blank" rel="noopener">https://docs.netapp.com/us-en/netapp-solutions/automation/automation_introduction.html</a></p>
 </div>
 </li>
 </ul>
