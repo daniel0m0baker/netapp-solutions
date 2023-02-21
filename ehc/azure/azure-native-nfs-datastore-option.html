@@ -8698,7 +8698,7 @@
 <p class="page-details">
   
     
-    <time datetime="2022-09-08 17:32:52 +0000">09/08/2022</time>
+    <time datetime="2023-02-21 16:56:04 +0000">02/21/2023</time>
     
   
 
@@ -8864,18 +8864,6 @@ For optimal performance, deploy the Azure NetApp Files in the same availability 
 </tr>
 </table>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<img src="/us-en/netapp-solutions/images/note.svg" alt="Note">
-</td>
-<td class="content">
-This feature is currently in public preview.
-</td>
-</tr>
-</table>
-</div>
 <div class="paragraph">
 <p>To attach an Azure NetApp File volume as the VMware datastore of an Azure VMware Solution private cloud, make sure the following prerequisites are met.</p>
 </div>
@@ -9034,7 +9022,7 @@ az feature register --name "CloudSanExperience" --namespace "Microsoft.AVS"</pre
 <p>NFSv3 is supported for datastores on Azure NetApp Files.</p>
 </li>
 <li>
-<p>Use the Premium or Ultra tier for optimal performance.</p>
+<p>Use the Premium or standard tier for capacity bound workloads and Ultra tier for performance bound workloads where necessary while complementing default vSAN storage.</p>
 </li>
 </ul>
 </div></div></td>
@@ -9062,6 +9050,18 @@ az feature register --name "CloudSanExperience" --namespace "Microsoft.AVS"</pre
 <details>
 <summary class="title">Add Azure NetApp files datastore to private cloud</summary>
 <div class="content">
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/netapp-solutions/images/note.svg" alt="Note">
+</td>
+<td class="content">
+Azure NetApp Files volume can be attached to your private cloud using Azure Portal. Follow this <a href="https://learn.microsoft.com/en-us/azure/azure-vmware/attach-azure-netapp-files-to-azure-vmware-solution-hosts?tabs=azure-portal">link from Microsoft</a> for step by step approach of using Azure portal to mount an Azure NetApp files datastore.
+</td>
+</tr>
+</table>
+</div>
 <div class="paragraph">
 <p>To add an Azure NetApp files datastore to a private cloud, complete the following steps:</p>
 </div>
@@ -9163,6 +9163,9 @@ C:\Users\niyaz&gt;az vmware datastore list --resource-group anfavsval2 --cluster
 <div class="paragraph">
 <p>For more information, see <a href="https://docs.microsoft.com/en-us/azure/azure-netapp-files/azure-netapp-files-service-levels" target="_blank" rel="noopener">Service levels for Azure NetApp Files</a>.</p>
 </div>
+<div class="paragraph">
+<p>Refer to this <a href="https://learn.microsoft.com/en-us/azure/azure-netapp-files/performance-benchmarks-azure-vmware-solution">link from Microsoft</a> for detailed performance benchmarks that can be used during a sizing exercise.</p>
+</div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 100%;">
@@ -9177,10 +9180,10 @@ C:\Users\niyaz&gt;az vmware datastore list --resource-group anfavsval2 --cluster
 <td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
 <ul>
 <li>
-<p>Use the Premium or Ultra tier for datastore volumes for optimal performance.</p>
+<p>Use the Premium or Standard tier for datastore volumes for optimal capacity and performance. If performance is required, then Ultra tier can be used.</p>
 </li>
 <li>
-<p>For file share requirements for guest VMs, use Standard or Premium tier volumes.</p>
+<p>For guest mount requirements, use Premium or Ultra tier and for file share requirements for guest VMs, use Standard or Premium tier volumes.</p>
 </li>
 </ul>
 </div></div></td>
@@ -9200,6 +9203,9 @@ C:\Users\niyaz&gt;az vmware datastore list --resource-group anfavsval2 --cluster
 </div>
 <div class="paragraph">
 <p>For higher bandwidth, as a best practice create multiple datastores using multiple ANF volumes, create VMDKs,  and stripe the logical volumes across VMDKs.</p>
+</div>
+<div class="paragraph">
+<p>Refer to this <a href="https://learn.microsoft.com/en-us/azure/azure-netapp-files/performance-benchmarks-azure-vmware-solution">link from Microsoft</a> for detailed performance benchmarks that can be used during a sizing exercise.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -9225,50 +9231,7 @@ More information</p>
 <p>With the "Basic" network features in Azure NetApp files, the connectivity from Azure VMware Solution is bound by the bandwidth of the ExpressRoute circuit and the ExpressRoute Gateway.</p>
 </li>
 <li>
-<p>For Azure NetApp Files volumes with "Standard" network features (currently in public preview), ExpressRoute FastPath is supported. When enabled, FastPath sends network traffic directly to Azure NetApp Files volumes, bypassing the gateway providing higher bandwidth and lower latency.</p>
-</li>
-</ul>
-</div></div></td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<div class="sect1">
-<h2 id="performance-optimization">Performance optimization</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Although the recommended number of virtual machines per NFS datastore is subjective, many factors determine the optimum number of VMs that can be placed on each datastore. Although most administrators only consider capacity, the amount of concurrent I/O being sent to the VMDKs is one of the most important factors for overall performance. The ESXi host has many mechanisms to ensure fairness between virtual machines competing for datastore resources. However, the easiest way to control performance is by regulating how many virtual machines are placed on each datastore. If the concurrent virtual machine I/O patterns are sending too much traffic to the datastore, the disk queues fill, and higher latency is generated.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="volume-and-datastore-sizing">Volume and datastore sizing</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>When a volume is created on Azure NetApp Files for datastore purposes, the best practice is to create a volume no larger than needed. although the maximum volume size can be up to 100 TB, NetApp recommends beginning with a small datastore capacity and increase it as needed. Right-sizing datastores prevent accidentally placing too many virtual machines on the datastore and decreases the probability of resource contention. Since datastore and VMDK sizes can be easily increased if a virtual machine needs extra capacity, it is not necessary to create datastores larger than required. For optimal performance, the best practice is to increase the number of datastores rather than increase their size.</p>
-</div>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 100%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Points to remember</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
-<ul>
-<li>
-<p>A good size for an ANF NFS datastore is from 4TB to 8TB.</p>
-</li>
-<li>
-<p>Place 15-20 VMs on a single datastore. Depending on the VM requirements, this can be increased to 35-40 VMs.</p>
-</li>
-<li>
-<p>For the best performance and manageability, consider guest-owned file systems such as NFS/SMB file systems managed by the guests for high-I/O applications such as databases.</p>
+<p>For Azure NetApp Files volumes with "Standard" network features, ExpressRoute FastPath is supported. When enabled, FastPath sends network traffic directly to Azure NetApp Files volumes, bypassing the gateway providing higher bandwidth and lower latency.</p>
 </li>
 </ul>
 </div></div></td>
@@ -9300,7 +9263,7 @@ More information</p>
 <p>Volume reshaping and dynamic service level capability allow you to optimize cost by sizing for steady-state workloads and thus avoid overprovisioning.</p>
 </li>
 <li>
-<p>During public preview, VAAI is not enabled.</p>
+<p>VAAI is not enabled.</p>
 </li>
 </ul>
 </div></div></td>
