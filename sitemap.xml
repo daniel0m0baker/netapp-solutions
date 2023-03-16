@@ -2232,6 +2232,62 @@
     </url>
   
     <url>
+      <loc>https://docs.netapp.com/us-en/netapp-solutions/data-analytics/kafka-nfs-conclusion.html</loc>
+      
+      <lastmod>2023-03-15T20:48:13+00:00</lastmod>
+      
+    </url>
+  
+    <url>
+      <loc>https://docs.netapp.com/us-en/netapp-solutions/data-analytics/kafka-nfs-functional-validation-silly-rename-fix.html</loc>
+      
+      <lastmod>2023-03-15T21:44:04+00:00</lastmod>
+      
+    </url>
+  
+    <url>
+      <loc>https://docs.netapp.com/us-en/netapp-solutions/data-analytics/kafka-nfs-introduction.html</loc>
+      
+      <lastmod>2023-03-15T20:48:13+00:00</lastmod>
+      
+    </url>
+  
+    <url>
+      <loc>https://docs.netapp.com/us-en/netapp-solutions/data-analytics/kafka-nfs-netapp-solution-for-silly-rename-issue-in-nfs-to-kafka-workload.html</loc>
+      
+      <lastmod>2023-03-15T20:48:13+00:00</lastmod>
+      
+    </url>
+  
+    <url>
+      <loc>https://docs.netapp.com/us-en/netapp-solutions/data-analytics/kafka-nfs-performance-overview-and-validation-in-aws.html</loc>
+      
+      <lastmod>2023-03-15T21:44:04+00:00</lastmod>
+      
+    </url>
+  
+    <url>
+      <loc>https://docs.netapp.com/us-en/netapp-solutions/data-analytics/kafka-nfs-performance-overview-and-validation-with-aff-on-premises.html</loc>
+      
+      <lastmod>2023-03-15T20:48:13+00:00</lastmod>
+      
+    </url>
+  
+    <url>
+      <loc>https://docs.netapp.com/us-en/netapp-solutions/data-analytics/kafka-nfs-where-to-find-additional-information.html</loc>
+      
+      <lastmod>2023-03-15T20:48:13+00:00</lastmod>
+      
+    </url>
+  
+    <url>
+      <loc>https://docs.netapp.com/us-en/netapp-solutions/data-analytics/kafka-nfs-why-netapp-nfs-for-kafka-workloads.html</loc>
+      
+      <lastmod>2023-03-15T22:30:01+00:00</lastmod>
+      
+    </url>
+  
+    <url>
       <loc>https://docs.netapp.com/us-en/netapp-solutions/data-analytics/kafka-ontap-overview.html</loc>
       
       <lastmod>2022-10-05T13:15:01+00:00</lastmod>
@@ -3396,7 +3452,7 @@
     <url>
       <loc>https://docs.netapp.com/us-en/netapp-solutions//search.html</loc>
       
-      <lastmod>2023-03-09T12:29:01+00:00</lastmod>
+      <lastmod>2023-03-16T15:41:41+00:00</lastmod>
       
     </url>
   
