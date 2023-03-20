@@ -8760,7 +8760,7 @@
 <p class="page-details">
   
     
-    <time datetime="2023-03-15 21:44:04 +0000">03/15/2023</time>
+    <time datetime="2023-03-20 18:49:44 +0000">03/20/2023</time>
     
   
 
@@ -8867,6 +8867,15 @@
 <div class="sectionbody">
 <div class="olist arabic">
 <ol class="arabic">
+<li>
+<p>Update <code>-is-preserve-unlink-enabled true</code> to the kafka volume, as follows:</p>
+<div class="literalblock">
+<div class="content">
+<pre>aws-shantanclastrecall-aws::*&gt; volume create -vserver kafka_svm -volume kafka_fg_vol01 -aggregate kafka_aggr -size 3500GB -state online -policy kafka_policy -security-style unix -unix-permissions 0777 -junction-path /kafka_fg_vol01 -type RW -is-preserve-unlink-enabled true
+[Job 32] Job succeeded: Successful</pre>
+</div>
+</div>
+</li>
 <li>
 <p>Two similar Kafka clusters were created with the following difference:</p>
 <div class="ulist">
