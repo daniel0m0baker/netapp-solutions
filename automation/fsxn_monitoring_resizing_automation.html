@@ -8738,7 +8738,7 @@
 <p class="page-details">
   
     
-    <time datetime="2023-03-22 15:06:16 +0000">03/22/2023</time>
+    <time datetime="2023-04-19 15:35:02 +0000">04/19/2023</time>
     
   
 
@@ -8770,7 +8770,7 @@
 <p>FSx for ONTAP is a first party enterprise-grade cloud storage service available on AWS that provides highly reliable, scalable, high-performing and feature-rich file storage built on the popular NetApp ONTAP file system.</p>
 </div>
 <div class="paragraph">
-<p>FSx for ONTAP provides a seamless deployment and management experience. No storage expertise is required to get started. To simplify monitoring, an AWS lamdba function (to automate resizing of total storage capacity, volume size or LUN size based on threshold) can be used.  This document provides a step by step guide to create an automated setup that monitors FSx for ONTAP at regular intervals, notifies and resizes when a user-specified threshold is crossed and notifies the administrator of the resizing activity.</p>
+<p>FSx for ONTAP provides a seamless deployment and management experience. No storage expertise is required to get started. To simplify monitoring, an AWS lambda function (to automate resizing of total storage capacity, volume size or LUN size based on threshold) can be used.  This document provides a step by step guide to create an automated setup that monitors FSx for ONTAP at regular intervals, notifies and resizes when a user-specified threshold is crossed and notifies the administrator of the resizing activity.</p>
 </div>
 <details>
 <summary class="title">Features</summary>
@@ -8809,7 +8809,13 @@
 <p>Ability to get a list of FlexClone volumes and snapshots associated</p>
 </li>
 <li>
-<p>Ability to run the checks at a regular interval</p>
+<p>Ability to monitor the checks at a regular interval</p>
+</li>
+<li>
+<p>Ability to use the solution with or without internet access</p>
+</li>
+<li>
+<p>Ability to deploy manually or using AWS CloudFormation Template</p>
 </li>
 </ul>
 </div>
@@ -8827,10 +8833,7 @@
 <p>FSx for ONTAP is deployed</p>
 </li>
 <li>
-<p>A Private Subnet with a NAT gateway attached is required by the lambda function for internet connectivity</p>
-</li>
-<li>
-<p>The private subnet should also have connectivity to FSx for ONTAP</p>
+<p>Private subnet with connectivity to FSx for ONTAP</p>
 </li>
 <li>
 <p>"fsxadmin" password has been set for FSx for ONTAP</p>
@@ -8853,6 +8856,9 @@
 <li>
 <p>AWS SES (Simple Email Service) is used to notify end-users when a resizing event occurs.</p>
 </li>
+<li>
+<p>If deploying the solution in a VPC without internet access, VPC Endpoints for AWS SSM, FSx and SES are setup to allow Lambda to reach these services via AWS internal network.</p>
+</li>
 </ul>
 </div>
 <div class="paragraph">
@@ -8865,8 +8871,13 @@
 <div class="sect1">
 <h2 id="solution-deployment">Solution Deployment</h2>
 <div class="sectionbody">
+<div class="sect2">
+<h3 id="automated-deployment">Automated Deployment</h3>
+<details>
+<summary class="title">Details</summary>
+<div class="content">
 <div class="paragraph">
-<p>Follow the series of steps to complete the deployment of this solution:</p>
+<p>Follow the series of steps to complete the automated deployment of this solution:</p>
 </div>
 <details>
 <summary class="title">Step 1: Clone the GitHub repository</summary>
@@ -8882,7 +8893,167 @@
 </div>
 </details>
 <details>
-<summary class="title">Step 2: Create SSM parameter for fsxadmin password</summary>
+<summary class="title">Step 2: Setup an AWS S3 bucket</summary>
+<div class="content">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Navigate to AWS Console &gt; <strong>S3</strong> and click on <strong>Create bucket</strong>. Create the bucket with the default settings.</p>
+</li>
+<li>
+<p>Once inside the bucket, click on <strong>Upload</strong> &gt; <strong>Add files</strong> and select <strong>Paramiko.zip</strong> and <strong>Requests.zip</strong> from the cloned GitHub repository on your system.</p>
+<div class="paragraph">
+<p><span class="image"><img src="./../media/fsxn-monitoring-resizing-s3-upload-zip-files.png" alt="This image depicts the S3 window with zip files being uploaded"></span></p>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</details>
+<details>
+<summary class="title">Step 3: AWS SES SMTP Setup (required if no internet access available)</summary>
+<div class="content">
+<div class="paragraph">
+<p>Follow this step if you want to deploy the solution without internet access (Note: There will be added costs associated due to VPC endpoints being setup.)</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Navigate to AWS Console &gt; <strong>AWS Simple Email Service (SES)</strong> &gt; SMTP Settings and click on <strong>Create SMTP credentials</strong></p>
+</li>
+<li>
+<p>Enter an IAM User Name or leave it at the default value and click on Create. Save the username and password for further use.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/netapp-solutions/images/note.svg" alt="Note">
+</td>
+<td class="content">
+Skip this step if SES SMTP setup is already in place.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="./../media/fsxn-monitoring-resizing-ses-smtp-creds-addition.png" alt="This image depicts the Create SMTP Credentials window under AWS SES"></span></p>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</details>
+<details>
+<summary class="title">Step 4: AWS CloudFormation Deployment</summary>
+<div class="content">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Navigate to AWS Console &gt; <strong>CloudFormation</strong> &gt; Create stack &gt; With New Resources (Standard).</p>
+<div class="listingblock">
+<div class="content">
+<pre>Prepare template: Template is ready
+Specify template: Upload a template file
+Choose file: Browse to the cloned GitHub repo and select fsxn-monitoring-solution.yaml</pre>
+</div>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="./../media/fsxn-monitoring-resizing-create-cft-1.png" alt="This image depicts AWS CloudFormation Create Stack window"></span></p>
+</div>
+<div class="paragraph">
+<p>Click on Next</p>
+</div>
+</li>
+<li>
+<p>Enter the stack details. Click on Next and check the checkbox for "I acknowledge that AWS CloudFormation might create IAM resources" and click on Submit.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/netapp-solutions/images/note.svg" alt="Note">
+</td>
+<td class="content">
+If "Does VPC have internet access?" is set to False, "SMTP Username for AWS SES" and "SMTP Password for AWS SES" are required. Otherwise, they can be left empty.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="./../media/fsxn-monitoring-resizing-cft-stack-details-1.png" alt="This image depicts AWS CloudFormation Stack Details window"></span></p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="./../media/fsxn-monitoring-resizing-cft-stack-details-2.png" alt="This image depicts AWS CloudFormation Stack Details window"></span></p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="./../media/fsxn-monitoring-resizing-cft-stack-details-3.png" alt="This image depicts AWS CloudFormation Stack Details window"></span></p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="./../media/fsxn-monitoring-resizing-cft-stack-details-4.png" alt="This image depicts AWS CloudFormation Stack Details window"></span></p>
+</div>
+</li>
+<li>
+<p>Once the CloudFormation deployment starts, the email ID mentioned in the "sender email ID" will get an email asking them to authorize use of the email address with AWS SES. Click on the link to verify the email address.</p>
+</li>
+<li>
+<p>Once the CloudFormation stack deployment is completed, if there are any warnings/notifications, an email will be sent to the recipient email ID with the notification details.</p>
+<div class="paragraph">
+<p><span class="image"><img src="./../media/fsxn-monitoring-resizing-email-1.png" alt="This image depicts the Email Notification received when notifications are available"></span></p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="./../media/fsxn-monitoring-resizing-email-2.png" alt="This image depicts the Email Notification received when notifications are available"></span></p>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</details>
+</div>
+</details>
+</div>
+<div class="sect2">
+<h3 id="manual-deployment">Manual Deployment</h3>
+<details>
+<summary class="title">Details</summary>
+<div class="content">
+<div class="paragraph">
+<p>Follow the series of steps to complete the manual deployment of this solution:</p>
+</div>
+<details>
+<summary class="title">Step 1: Clone the GitHub repository</summary>
+<div class="content">
+<div class="paragraph">
+<p>Clone the GitHub repository on your local system:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>git clone https://github.com/NetApp-Automation/fsxn-monitoring-auto-resizing.git</pre>
+</div>
+</div>
+</div>
+</details>
+<details>
+<summary class="title">Step 2: AWS SES SMTP Setup (required if no internet access available)</summary>
+<div class="content">
+<div class="paragraph">
+<p>Follow this step if you want to deploy the solution without internet access (Note: There will be added costs associated due to VPC endpoints being setup.)</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Navigate to AWS Console &gt; <strong>AWS Simple Email Service (SES)</strong> &gt; SMTP Settings and click on <strong>Create SMTP credentials</strong></p>
+</li>
+<li>
+<p>Enter an IAM User Name or leave it at the default value and click on Create. Save the username and password for further use.</p>
+<div class="paragraph">
+<p><span class="image"><img src="./../media/fsxn-monitoring-resizing-ses-smtp-creds-addition.png" alt="This image depicts the Create SMTP Credentials window under AWS SES"></span></p>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</details>
+<details>
+<summary class="title">Step 3: Create SSM parameter for fsxadmin password</summary>
 <div class="content">
 <div class="paragraph">
 <p>Navigate to AWS Console &gt; <strong>Parameter Store</strong> and click on <strong>Create Parameter</strong>.</p>
@@ -8903,10 +9074,13 @@ Value: &lt;Enter the password for "fsxadmin" user configured on FSx for ONTAP&gt
 <div class="paragraph">
 <p><span class="image"><img src="./../media/fsxn-monitoring-resizing-ssm-parameter.png" alt="This image depicts the SSM parameter creation window on AWS console."></span></p>
 </div>
+<div class="paragraph">
+<p>Perform the same steps for storing smtp username and smtp password if deploying the solution without internet access. Otherwise, skip adding these 2 parameters.</p>
+</div>
 </div>
 </details>
 <details>
-<summary class="title">Step 3: Setup Email Service</summary>
+<summary class="title">Step 4: Setup Email Service</summary>
 <div class="content">
 <div class="paragraph">
 <p>Navigate to AWS Console &gt; <strong>Simple Email Service (SES)</strong> and click on <strong>Create Identity</strong>.</p>
@@ -8921,12 +9095,62 @@ Email address: &lt;Enter an email address to be used for sending resizing notifi
 <p>Click on <strong>Create identity</strong></p>
 </div>
 <div class="paragraph">
+<p>The email ID mentioned in the "sender email ID" will get an email asking the owner to authorize use of the email address with AWS SES. Click on the link to verify the email address.</p>
+</div>
+<div class="paragraph">
 <p><span class="image"><img src="./../media/fsxn-monitoring-resizing-ses.png" alt="This image depicts the SES identity creation window on AWS console."></span></p>
 </div>
 </div>
 </details>
 <details>
-<summary class="title">Step 4: Create and setup the AWS Lambda Function</summary>
+<summary class="title">Step 5: Setup VPC Endpoints (required if no internet access available)</summary>
+<div class="content">
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/netapp-solutions/images/note.svg" alt="Note">
+</td>
+<td class="content">
+Required only if deployed without internet access. There will be additional costs associated due to VPC endpoints.
+</td>
+</tr>
+</table>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Navigate to AWS Console &gt; <strong>VPC</strong> &gt; <strong>Endpoints</strong> and click on <strong>Create Endpoint</strong> and enter the following details:</p>
+<div class="listingblock">
+<div class="content">
+<pre>Name: &lt;Any name for the vpc endpoint&gt;
+Service category: AWS Services
+Services: com.amazonaws.&lt;region&gt;.fsx
+vpc: &lt;select the vpc where lambda will be deployed&gt;
+subnets: &lt;select the subnets where lambda will be deployed&gt;
+Security groups: &lt;select the security group&gt;
+Policy: &lt;Either choose Full access or set your own custom policy&gt;</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Click on Create endpoint.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="./../media/fsxn-monitoring-resizing-vpc-endpoint-create-1.png" alt="This image depicts the VPC endpoint creation window"></span></p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="./../media/fsxn-monitoring-resizing-vpc-endpoint-create-2.png" alt="This image depicts the VPC endpoint creation window"></span></p>
+</div>
+</li>
+<li>
+<p>Follow the same process for creating SES and SSM VPC endpoints. All parameters remain same as above except Services which will correspond to <strong>com.amazonaws.&lt;region&gt;.smtp</strong> and <strong>com.amazonaws.&lt;region&gt;.ssm</strong> respectively.</p>
+</li>
+</ol>
+</div>
+</div>
+</details>
+<details>
+<summary class="title">Step 6: Create and setup the AWS Lambda Function</summary>
 <div class="content">
 <div class="olist arabic">
 <ol class="arabic">
@@ -9056,7 +9280,7 @@ Advanced Settings:
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>warn_notification</strong></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Bool</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">(Required) Set this varible to True to receive notification when Storage Capacity/Volume/LUN usage exceeds 75% but is less than threshold.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">(Required) Set this variable to True to receive notification when Storage Capacity/Volume/LUN usage exceeds 75% but is less than threshold.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>enable_snapshot_deletion</strong></p></td>
@@ -9067,6 +9291,26 @@ Advanced Settings:
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>snapshot_age_threshold_in_days</strong></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Integer</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">(Required) Enter the number of days of volume level snapshots you want to retain. Any snapshots older than the value provided will be deleted and the same will be notified via email.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>internet_access</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Bool</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">(Required) Set this variable to True if internet access is available from the subnet where this lambda is deployed. Otherwise set it to False.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>smtp_region</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">(Optional) If "internet_access" variable is set to False, enter the region in which lambda is deployed. E.g. us-east-1 (in this format)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>smtp_username_ssm_parameter</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">(Optional) If "internet_access" variable is set to False, enter the path name used in AWS Parameter Store for storing the SMTP username.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>smtp_password_ssm_parameter</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">(Optional) If "internet_access" variable is set to False, enter the path name used in AWS Parameter Store for storing the SMTP password.</p></td>
 </tr>
 </tbody>
 </table>
@@ -9099,6 +9343,9 @@ Schedule expression: &lt;Use "rate(1 day)" if you want the function to run daily
 </div>
 </div>
 </details>
+</div>
+</details>
+</div>
 </div>
 </div>
 <div class="sect1">
