@@ -888,6 +888,13 @@
     </url>
   
     <url>
+      <loc>https://docs.netapp.com/us-en/netapp-solutions/ehc/dro/aws-dro-overview.html</loc>
+      
+      <lastmod>2023-04-26T13:19:49+00:00</lastmod>
+      
+    </url>
+  
+    <url>
       <loc>https://docs.netapp.com/us-en/netapp-solutions/ehc/aws/aws-guest-dr-solution-overview.html</loc>
       
       <lastmod>2023-01-18T17:00:30+00:00</lastmod>
@@ -1031,6 +1038,13 @@
       <loc>https://docs.netapp.com/us-en/netapp-solutions/ehc/azure/azure-avs.html</loc>
       
       <lastmod>2022-08-12T23:00:32+00:00</lastmod>
+      
+    </url>
+  
+    <url>
+      <loc>https://docs.netapp.com/us-en/netapp-solutions/ehc/dro/azure-dro-overview.html</loc>
+      
+      <lastmod>2023-04-26T13:19:49+00:00</lastmod>
       
     </url>
   
@@ -3522,7 +3536,7 @@
     <url>
       <loc>https://docs.netapp.com/us-en/netapp-solutions//search.html</loc>
       
-      <lastmod>2023-04-24T14:56:58+00:00</lastmod>
+      <lastmod>2023-04-26T13:20:01+00:00</lastmod>
       
     </url>
   
