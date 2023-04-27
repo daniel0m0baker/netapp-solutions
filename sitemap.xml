@@ -958,6 +958,13 @@
     </url>
   
     <url>
+      <loc>https://docs.netapp.com/us-en/netapp-solutions/ehc/aws/aws-vmc-veeam-fsx-solution.html</loc>
+      
+      <lastmod>2023-04-27T15:35:27+00:00</lastmod>
+      
+    </url>
+  
+    <url>
       <loc>https://docs.netapp.com/us-en/netapp-solutions/ehc/aws/aws-vmc.html</loc>
       
       <lastmod>2022-08-12T23:00:32+00:00</lastmod>
@@ -2225,7 +2232,35 @@
     </url>
   
     <url>
-      <loc>https://docs.netapp.com/us-en/netapp-solutions/ehc/azure/</loc>
+      <loc>https://docs.netapp.com/us-en/netapp-solutions/containers/</loc>
+      
+      <lastmod>2022-03-17T19:35:44+00:00</lastmod>
+      
+    </url>
+  
+    <url>
+      <loc>https://docs.netapp.com/us-en/netapp-solutions/ai/</loc>
+      
+      <lastmod>2022-01-31T23:56:46+00:00</lastmod>
+      
+    </url>
+  
+    <url>
+      <loc>https://docs.netapp.com/us-en/netapp-solutions/data-analytics/</loc>
+      
+      <lastmod>2022-01-13T21:14:38+00:00</lastmod>
+      
+    </url>
+  
+    <url>
+      <loc>https://docs.netapp.com/us-en/netapp-solutions/databases/</loc>
+      
+      <lastmod>2022-03-31T13:54:12+00:00</lastmod>
+      
+    </url>
+  
+    <url>
+      <loc>https://docs.netapp.com/us-en/netapp-solutions/ehc/aws/</loc>
       
       <lastmod>2022-07-22T13:58:06+00:00</lastmod>
       
@@ -2239,7 +2274,7 @@
     </url>
   
     <url>
-      <loc>https://docs.netapp.com/us-en/netapp-solutions/ehc/aws/</loc>
+      <loc>https://docs.netapp.com/us-en/netapp-solutions/ehc/azure/</loc>
       
       <lastmod>2022-07-22T13:58:06+00:00</lastmod>
       
@@ -2249,34 +2284,6 @@
       <loc>https://docs.netapp.com/us-en/netapp-solutions/ehc/</loc>
       
       <lastmod>2022-07-22T13:58:06+00:00</lastmod>
-      
-    </url>
-  
-    <url>
-      <loc>https://docs.netapp.com/us-en/netapp-solutions/databases/</loc>
-      
-      <lastmod>2022-03-31T13:54:12+00:00</lastmod>
-      
-    </url>
-  
-    <url>
-      <loc>https://docs.netapp.com/us-en/netapp-solutions/data-analytics/</loc>
-      
-      <lastmod>2022-01-13T21:14:38+00:00</lastmod>
-      
-    </url>
-  
-    <url>
-      <loc>https://docs.netapp.com/us-en/netapp-solutions/ai/</loc>
-      
-      <lastmod>2022-01-31T23:56:46+00:00</lastmod>
-      
-    </url>
-  
-    <url>
-      <loc>https://docs.netapp.com/us-en/netapp-solutions/containers/</loc>
-      
-      <lastmod>2022-03-17T19:35:44+00:00</lastmod>
       
     </url>
   
@@ -3536,7 +3543,7 @@
     <url>
       <loc>https://docs.netapp.com/us-en/netapp-solutions//search.html</loc>
       
-      <lastmod>2023-04-26T13:20:01+00:00</lastmod>
+      <lastmod>2023-04-27T15:35:41+00:00</lastmod>
       
     </url>
   
