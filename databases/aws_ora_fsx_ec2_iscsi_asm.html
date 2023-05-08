@@ -8757,7 +8757,7 @@
 <p class="page-details">
   
     
-    <time datetime="2023-05-04 14:08:27 +0000">05/04/2023</time>
+    <time datetime="2023-05-08 22:19:36 +0000">05/08/2023</time>
     
   
 
@@ -8965,6 +8965,18 @@
 </li>
 </ol>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/netapp-solutions/images/note.svg" alt="Note">
+</td>
+<td class="content">
+Ensure that you have allocated at least 50G in EC2 instance root volume in order to have sufficient space to stage Oracle installation files.
+</td>
+</tr>
+</table>
+</div>
 </div>
 </details>
 </div>
@@ -8974,7 +8986,7 @@
 <summary class="title">Details</summary>
 <div class="content">
 <div class="paragraph">
-<p>With the prerequisites provisioned, log into the EC2 instance as the root user to configure the Linux kernel for Oracle installation.</p>
+<p>With the prerequisites provisioned, log into the EC2 instance as ec2-user and sudo to root user to configure the Linux kernel for Oracle installation.</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -9172,12 +9184,17 @@ systemctl start iscsid</pre>
 <summary class="title">Details</summary>
 <div class="content">
 <div class="paragraph">
-<p>Provision three volumes from the FSx console to host the Oracle database binary, data, and logs files.</p>
+<p>Provision three volumes from the command line by login to FSx cluster via ssh as fsxadmin user with FSx cluster management IP to host the Oracle database binary, data, and logs files.</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
 <p>Log into the FSx cluster through SSH as the fsxadmin user.</p>
+<div class="literalblock">
+<div class="content">
+<pre>ssh fsxadmin@172.30.15.53</pre>
+</div>
+</div>
 </li>
 <li>
 <p>Execute the following command to create a volume for the Oracle binary.</p>
@@ -9299,7 +9316,7 @@ svm_ora    /vol/ora_01_logs/ora_01_logs_02           ora_01        6  iscsi</pre
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Log into the EC2 instance via SSH as the ec2-user. Then change to your SSH key and EC2 instance IP address.</p>
+<p>Log into the EC2 instance via SSH as the ec2-user with your SSH key and EC2 instance IP address.</p>
 <div class="literalblock">
 <div class="content">
 <pre>ssh -i ora_01.pem ec2-user@172.30.15.58</pre>
@@ -9553,7 +9570,7 @@ lrwxrwxrwx 1 root root       7 Mar 21 20:41 ora_01_logs_02 -&gt; ../dm-6</pre>
 <p>Change <code>/u01</code> mount point ownership to the Oracle user and it&#8217;s asssociated primary group.</p>
 <div class="literalblock">
 <div class="content">
-<pre>chown oracle:oinstall /u01</pre>
+<pre>sudo chown oracle:oinstall /u01</pre>
 </div>
 </div>
 </li>
@@ -9605,8 +9622,7 @@ It is important to mount the binary with only the UUID and with the nofail optio
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>ENV{DM_NAME}=="ora_01_data_*", GROUP:="oinstall", OWNER:="oracle", MODE:="660"
-ENV{DM_NAME}=="ora_01_logs_*", GROUP:="oinstall", OWNER:="oracle", MODE:="660"</pre>
+<pre>ENV{DM_NAME}=="ora*", GROUP:="oinstall", OWNER:="oracle", MODE:="660"</pre>
 </div>
 </div>
 </li>
@@ -9633,6 +9649,9 @@ ENV{DM_NAME}=="ora_01_logs_*", GROUP:="oinstall", OWNER:="oracle", MODE:="660"</
 <pre>systemctl restart multipathd</pre>
 </div>
 </div>
+</li>
+<li>
+<p>Reboot the EC2 instance host.</p>
 </li>
 </ol>
 </div>
@@ -9744,7 +9763,7 @@ oracle.install.asm.diskGroup.name=DATA
 oracle.install.asm.diskGroup.redundancy=EXTERNAL
 oracle.install.asm.diskGroup.AUSize=4
 oracle.install.asm.diskGroup.disks=/dev/mapper/ora_01_data*
-oracle.install.asm.diskGroup.diskDiscoveryString=/dev/mapper/*
+oracle.install.asm.diskGroup.diskDiscoveryString=/dev/mapper/ora_01_data_01,/dev/mapper/ora_01_data_02,/dev/mapper/ora_01_data_03,/dev/mapper/ora_01_data_04
 oracle.install.asm.monitorPassword="SetPWD"
 oracle.install.asm.configureAFD=true</pre>
 </div>
@@ -9779,19 +9798,6 @@ cd /u01/app/oracle/product/19.0.0/grid/bin</pre>
 </div>
 </li>
 <li>
-<p>Change devices ownership to <code>oracle:oinstall</code>.</p>
-<div class="literalblock">
-<div class="content">
-<pre>chown oracle:oinstall /dev/mapper/ora_01_data_01
-chown oracle:oinstall /dev/mapper/ora_01_data_02
-chown oracle:oinstall /dev/mapper/ora_01_data_03
-chown oracle:oinstall /dev/mapper/ora_01_data_04
-chown oracle:oinstall /dev/mapper/ora_01_logs_01
-chown oracle:oinstall /dev/mapper/ora_01_logs_02</pre>
-</div>
-</div>
-</li>
-<li>
 <p>Install <code>cvuqdisk-1.0.10-1.rpm</code>.</p>
 <div class="literalblock">
 <div class="content">
@@ -9816,7 +9822,7 @@ chown oracle:oinstall /dev/mapper/ora_01_logs_02</pre>
 </div>
 </li>
 <li>
-<p>As the Oracle user, launch <code>gridSetup.sh</code> for grid infrastructure installation.</p>
+<p>From grid home /u01/app/oracle/product/19.0.0/grid and as the oracle user, launch <code>gridSetup.sh</code> for grid infrastructure installation.</p>
 <div class="literalblock">
 <div class="content">
 <pre> ./gridSetup.sh -applyRU /tmp/archive/34762026/ -silent -responseFile /tmp/archive/gridsetup.rsp</pre>
@@ -9827,12 +9833,20 @@ chown oracle:oinstall /dev/mapper/ora_01_logs_02</pre>
 </div>
 </li>
 <li>
-<p>As a root user, execute the following script(s):</p>
+<p>As root user, execute the following script(s):</p>
 <div class="literalblock">
 <div class="content">
 <pre>/u01/app/oraInventory/orainstRoot.sh
 
 /u01/app/oracle/product/19.0.0/grid/root.sh</pre>
+</div>
+</div>
+</li>
+<li>
+<p>As root user, reload the multipathd.</p>
+<div class="literalblock">
+<div class="content">
+<pre>systemctl restart multipathd</pre>
 </div>
 </div>
 </li>
@@ -9845,34 +9859,10 @@ chown oracle:oinstall /dev/mapper/ora_01_logs_02</pre>
 </div>
 </li>
 <li>
-<p>If you received the message "[INS-43080] Some of the configuration assistants failed, were cancelled or skipped", run the following command as oracle user to check if the DATA disk group resource was created.</p>
-<div class="literalblock">
-<div class="content">
-<pre>bin/crsctl stat res -t</pre>
-</div>
-</div>
-</li>
-<li>
-<p>If the DATA disk group was not created, reload the multipathd as root user.</p>
-<div class="literalblock">
-<div class="content">
-<pre>systemctl restart multipathd</pre>
-</div>
-</div>
-</li>
-<li>
-<p>As the oracle user, create a DATA disk group if it was not created during grid installation.</p>
-<div class="literalblock">
-<div class="content">
-<pre>bin/asmca -silent -sysAsmPassword 'yourPWD' -asmsnmpPassword 'yourPWD' -createDiskGroup -diskString '/dev/mapper/*' -diskGroupName DATA -disklist '/dev/mapper/ora_01_data_01,/dev/mapper/ora_01_data_02,/dev/mapper/ora_01_data_03,/dev/mapper/ora_01_data_04' -redundancy EXTERNAL</pre>
-</div>
-</div>
-</li>
-<li>
 <p>As the Oracle user, create the LOGS disk group.</p>
 <div class="literalblock">
 <div class="content">
-<pre>bin/asmca -silent -sysAsmPassword 'yourPWD' -asmsnmpPassword 'yourPWD' -createDiskGroup -diskString '/dev/mapper/*' -diskGroupName LOGS -disklist '/dev/mapper/ora_01_logs_01,/dev/mapper/ora_01_logs_02' -redundancy EXTERNAL</pre>
+<pre>bin/asmca -silent -sysAsmPassword 'yourPWD' -asmsnmpPassword 'yourPWD' -createDiskGroup -diskGroupName LOGS -disk 'AFD:LOGS*' -redundancy EXTERNAL -au_size 4</pre>
 </div>
 </div>
 </li>
@@ -10006,7 +9996,7 @@ oracle.install.db.rootconfig.executeRootScript=false</pre>
 </div>
 </li>
 <li>
-<p>Execute silent software-only DB installation.</p>
+<p>From db1 home /u01/app/oracle/product/19.0.0/db1, execute silent software-only DB installation.</p>
 <div class="literalblock">
 <div class="content">
 <pre> ./runInstaller -applyRU /tmp/archive/34765931/ -silent -ignorePrereqFailure -responseFile /tmp/archive/dbinstall.rsp</pre>
@@ -10014,7 +10004,7 @@ oracle.install.db.rootconfig.executeRootScript=false</pre>
 </div>
 </li>
 <li>
-<p>Run the <code>root.sh</code> script after sofware-only installation.</p>
+<p>As root user, run the <code>root.sh</code> script after sofware-only installation.</p>
 <div class="literalblock">
 <div class="content">
 <pre>/u01/app/oracle/product/19.0.0/db1/root.sh</pre>
@@ -10022,7 +10012,7 @@ oracle.install.db.rootconfig.executeRootScript=false</pre>
 </div>
 </li>
 <li>
-<p>Create the <code>dbca.rsp</code> file with the following entries:</p>
+<p>As Oracle user, create the <code>dbca.rsp</code> file with the following entries:</p>
 <div class="literalblock">
 <div class="content">
 <pre>gdbName=db1.demo.netapp.com
@@ -10048,7 +10038,7 @@ totalMemory=8192</pre>
 </div>
 </li>
 <li>
-<p>Lauch DB creation with dbca.</p>
+<p>As Oracle user, lauch DB creation with dbca.</p>
 <div class="literalblock">
 <div class="content">
 <pre>bin/dbca -silent -createDatabase -responseFile /tmp/archive/dbca.rsp
@@ -10087,7 +10077,7 @@ Look at the log file "/u01/app/oracle/cfgtoollogs/dbca/db1/db1.log" for further 
 </div>
 </li>
 <li>
-<p>Validate Oracle Restart HA services after DB creation.</p>
+<p>As Oracle user, validate Oracle Restart HA services after DB creation.</p>
 <div class="literalblock">
 <div class="content">
 <pre>[oracle@ip-172-30-15-58 db1]$ ../grid/bin/crsctl stat res -t
