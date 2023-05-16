@@ -8766,7 +8766,7 @@
 <p class="page-details">
   
     
-    <time datetime="2023-05-04 14:08:27 +0000">05/04/2023</time>
+    <time datetime="2023-05-16 14:14:53 +0000">05/16/2023</time>
     
   
 
@@ -8776,6 +8776,14 @@
           alt="acao8888"
           width="20" height="20"
           src="https://avatars.githubusercontent.com/u/58010249?v=4"
+          style="border-radius: 50%;"/>
+  </a>
+  
+  <a target="_blank" class="ext-link-indicator" href="https://github.com/kevin-hoke">
+    <img  class="avatar avatar-small"
+          alt="kevin-hoke"
+          width="20" height="20"
+          src="https://avatars.githubusercontent.com/u/55808219?v=4"
           style="border-radius: 50%;"/>
   </a>
   
@@ -9087,12 +9095,9 @@ echo "export PATH=\$PATH:\$ORACLE_HOME/bin" &gt;&gt; /home/azacsnap/.bash_profil
 <p>As the Linux user azacsnap, create the wallet. You are prompted for the wallet password.</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-cli" data-lang="cli">sudo su - azacsnap</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-cli" data-lang="cli">mkstore -wrl $TNS_ADMIN/.oracle_wallet/ -create</code></pre>
+<pre class="highlight"><code class="language-cli" data-lang="cli">sudo su - azacsnap
+
+mkstore -wrl $TNS_ADMIN/.oracle_wallet/ -create</code></pre>
 </div>
 </div>
 </li>
@@ -9134,23 +9139,23 @@ WALLET_LOCATION=(
 </div>
 </div>
 <div class="paragraph">
-<p>The expected output from the command:<br>
-[azacsnap@acao-ora01 ~]$ sqlplus /@AZACSNAP as SYSBACKUP</p>
+<p>The expected output from the command:</p>
 </div>
-<div class="paragraph">
-<p>SQL*Plus: Release 19.0.0.0.0 - Production on Thu Sep 8 18:02:07 2022<br>
-Version 19.8.0.0.0</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-cli" data-lang="cli">[azacsnap@acao-ora01 ~]$ sqlplus /@AZACSNAP as SYSBACKUP
+
+SQL*Plus: Release 19.0.0.0.0 - Production on Thu Sep 8 18:02:07 2022
+Version 19.8.0.0.0
+
+Copyright (c) 1982, 2019, Oracle.  All rights reserved.
+
+Connected to:
+Oracle Database 19c Enterprise Edition Release 19.0.0.0.0 - Production
+Version 19.8.0.0.0
+
+SQL&gt;</code></pre>
 </div>
-<div class="paragraph">
-<p>Copyright (c) 1982, 2019, Oracle.  All rights reserved.</p>
-</div>
-<div class="paragraph">
-<p>Connected to:<br>
-Oracle Database 19c Enterprise Edition Release 19.0.0.0.0 - Production<br>
-Version 19.8.0.0.0</p>
-</div>
-<div class="paragraph">
-<p>SQL&gt;</p>
 </div>
 </li>
 </ol>
@@ -9190,19 +9195,21 @@ Version 19.8.0.0.0</p>
 <div class="paragraph">
 <p>The expected output:</p>
 </div>
-<div class="paragraph">
-<p>{<br>
-  "clientId": "00aa000a-aaaa-0000-00a0-00aa000aaa0a",<br>
-  "clientSecret": "00aa000a-aaaa-0000-00a0-00aa000aaa0a",<br>
-  "subscriptionId": "00aa000a-aaaa-0000-00a0-00aa000aaa0a",<br>
-  "tenantId": "00aa000a-aaaa-0000-00a0-00aa000aaa0a",<br>
-  "activeDirectoryEndpointUrl": "https://login.microsoftonline.com",<br>
-  "resourceManagerEndpointUrl": "https://management.azure.com/",<br>
-  "activeDirectoryGraphResourceId": "https://graph.windows.net/",<br>
-  "sqlManagementEndpointUrl": "https://management.core.windows.net:8443/",<br>
-  "galleryEndpointUrl": "https://gallery.azure.com/",<br>
-  "managementEndpointUrl": "https://management.core.windows.net/"<br>
-}</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-cli" data-lang="cli">{
+  "clientId": "00aa000a-aaaa-0000-00a0-00aa000aaa0a",
+  "clientSecret": "00aa000a-aaaa-0000-00a0-00aa000aaa0a",
+  "subscriptionId": "00aa000a-aaaa-0000-00a0-00aa000aaa0a",
+  "tenantId": "00aa000a-aaaa-0000-00a0-00aa000aaa0a",
+  "activeDirectoryEndpointUrl": "https://login.microsoftonline.com",
+  "resourceManagerEndpointUrl": "https://management.azure.com/",
+  "activeDirectoryGraphResourceId": "https://graph.windows.net/",
+  "sqlManagementEndpointUrl": "https://management.core.windows.net:8443/",
+  "galleryEndpointUrl": "https://gallery.azure.com/",
+  "managementEndpointUrl": "https://management.core.windows.net/"
+}</code></pre>
+</div>
 </div>
 </li>
 <li>
@@ -9256,49 +9263,45 @@ Make sure the format of the JSON file is exactly as described above, especially 
 <div class="paragraph">
 <p>The expected output with three Oracle volumes:</p>
 </div>
-<div class="paragraph">
-<p>[azacsnap@acao-ora01 bin]$ azacsnap -c configure --configuration new<br>
-Building new config file<br>
-Add comment to config file (blank entry to exit adding comments): Oracle snapshot bkup<br>
-Add comment to config file (blank entry to exit adding comments):<br>
-Enter the database type to add, 'hana', 'oracle', or 'exit' (for no database): oracle</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-cli" data-lang="cli">[azacsnap@acao-ora01 bin]$ azacsnap -c configure --configuration new
+Building new config file
+Add comment to config file (blank entry to exit adding comments): Oracle snapshot bkup
+Add comment to config file (blank entry to exit adding comments):
+Enter the database type to add, 'hana', 'oracle', or 'exit' (for no database): oracle
+
+=== Add Oracle Database details ===
+Oracle Database SID (e.g. CDB1): ORATST
+Database Server's Address (hostname or IP address): 172.30.137.142
+Oracle connect string (e.g. /@AZACSNAP): /@AZACSNAP
+
+=== Azure NetApp Files Storage details ===
+Are you using Azure NetApp Files for the database? (y/n) [n]: y
+--- DATA Volumes have the Application put into a consistent state before they are snapshot ---
+Add Azure NetApp Files resource to DATA Volume section of Database configuration? (y/n) [n]: y
+Full Azure NetApp Files Storage Volume Resource ID (e.g. /subscriptions/.../resourceGroups/.../providers/Microsoft.NetApp/netAppAccounts/.../capacityPools/Premium/volumes/...): /subscriptions/0efa2dfb-917c-4497-b56a-b3f4eadb8111/resourceGroups/ANFAVSRG/providers/Microsoft.NetApp/netAppAccounts/ANFAVSAcct/capacityPools/CapPool/volumes/acao-ora01-u01
+Service Principal Authentication filename or Azure Key Vault Resource ID (e.g. auth-file.json or https://...): oracle.json
+Add Azure NetApp Files resource to DATA Volume section of Database configuration? (y/n) [n]: y
+Full Azure NetApp Files Storage Volume Resource ID (e.g. /subscriptions/.../resourceGroups/.../providers/Microsoft.NetApp/netAppAccounts/.../capacityPools/Premium/volumes/...): /subscriptions/0efa2dfb-917c-4497-b56a-b3f4eadb8111/resourceGroups/ANFAVSRG/providers/Microsoft.NetApp/netAppAccounts/ANFAVSAcct/capacityPools/CapPool/volumes/acao-ora01-u02
+Service Principal Authentication filename or Azure Key Vault Resource ID (e.g. auth-file.json or https://...): oracle.json
+Add Azure NetApp Files resource to DATA Volume section of Database configuration? (y/n) [n]: n
+--- OTHER Volumes are snapshot immediately without preparing any application for snapshot ---
+Add Azure NetApp Files resource to OTHER Volume section of Database configuration? (y/n) [n]: y
+Full Azure NetApp Files Storage Volume Resource ID (e.g. /subscriptions/.../resourceGroups/.../providers/Microsoft.NetApp/netAppAccounts/.../capacityPools/Premium/volumes/...): /subscriptions/0efa2dfb-917c-4497-b56a-b3f4eadb8111/resourceGroups/ANFAVSRG/providers/Microsoft.NetApp/netAppAccounts/ANFAVSAcct/capacityPools/CapPool/volumes/acao-ora01-u03
+Service Principal Authentication filename or Azure Key Vault Resource ID (e.g. auth-file.json or https://...): oracle.json
+Add Azure NetApp Files resource to OTHER Volume section of Database configuration? (y/n) [n]: n
+
+=== Azure Managed Disk details ===
+Are you using Azure Managed Disks for the database? (y/n) [n]: n
+
+=== Azure Large Instance (Bare Metal) Storage details ===
+Are you using Azure Large Instance (Bare Metal) for the database? (y/n) [n]: n
+
+Enter the database type to add, 'hana', 'oracle', or 'exit' (for no database): exit
+
+Editing configuration complete, writing output to 'azacsnap.json'.</code></pre>
 </div>
-<div class="paragraph">
-<p>=== Add Oracle Database details ===<br>
-Oracle Database SID (e.g. CDB1): ORATST<br>
-Database Server&#8217;s Address (hostname or IP address): 172.30.137.142<br>
-Oracle connect string (e.g. /@AZACSNAP): /@AZACSNAP</p>
-</div>
-<div class="paragraph">
-<p>=== Azure NetApp Files Storage details ===<br>
-Are you using Azure NetApp Files for the database? (y/n) [n]: y<br>
---- DATA Volumes have the Application put into a consistent state before they are snapshot ---<br>
-Add Azure NetApp Files resource to DATA Volume section of Database configuration? (y/n) [n]: y<br>
-Full Azure NetApp Files Storage Volume Resource ID (e.g. /subscriptions/&#8230;&#8203;/resourceGroups/&#8230;&#8203;/providers/Microsoft.NetApp/netAppAccounts/&#8230;&#8203;/capacityPools/Premium/volumes/&#8230;&#8203;): /subscriptions/0efa2dfb-917c-4497-b56a-b3f4eadb8111/resourceGroups/ANFAVSRG/providers/Microsoft.NetApp/netAppAccounts/ANFAVSAcct/capacityPools/CapPool/volumes/acao-ora01-u01<br>
-Service Principal Authentication filename or Azure Key Vault Resource ID (e.g. auth-file.json or <a href="https://&#8230;&#8203;" class="bare">https://&#8230;&#8203;</a>): oracle.json<br>
-Add Azure NetApp Files resource to DATA Volume section of Database configuration? (y/n) [n]: y<br>
-Full Azure NetApp Files Storage Volume Resource ID (e.g. /subscriptions/&#8230;&#8203;/resourceGroups/&#8230;&#8203;/providers/Microsoft.NetApp/netAppAccounts/&#8230;&#8203;/capacityPools/Premium/volumes/&#8230;&#8203;): /subscriptions/0efa2dfb-917c-4497-b56a-b3f4eadb8111/resourceGroups/ANFAVSRG/providers/Microsoft.NetApp/netAppAccounts/ANFAVSAcct/capacityPools/CapPool/volumes/acao-ora01-u02<br>
-Service Principal Authentication filename or Azure Key Vault Resource ID (e.g. auth-file.json or <a href="https://&#8230;&#8203;" class="bare">https://&#8230;&#8203;</a>): oracle.json<br>
-Add Azure NetApp Files resource to DATA Volume section of Database configuration? (y/n) [n]: n<br>
---- OTHER Volumes are snapshot immediately without preparing any application for snapshot ---<br>
-Add Azure NetApp Files resource to OTHER Volume section of Database configuration? (y/n) [n]: y<br>
-Full Azure NetApp Files Storage Volume Resource ID (e.g. /subscriptions/&#8230;&#8203;/resourceGroups/&#8230;&#8203;/providers/Microsoft.NetApp/netAppAccounts/&#8230;&#8203;/capacityPools/Premium/volumes/&#8230;&#8203;): /subscriptions/0efa2dfb-917c-4497-b56a-b3f4eadb8111/resourceGroups/ANFAVSRG/providers/Microsoft.NetApp/netAppAccounts/ANFAVSAcct/capacityPools/CapPool/volumes/acao-ora01-u03<br>
-Service Principal Authentication filename or Azure Key Vault Resource ID (e.g. auth-file.json or <a href="https://&#8230;&#8203;" class="bare">https://&#8230;&#8203;</a>): oracle.json<br>
-Add Azure NetApp Files resource to OTHER Volume section of Database configuration? (y/n) [n]: n</p>
-</div>
-<div class="paragraph">
-<p>=== Azure Managed Disk details ===<br>
-Are you using Azure Managed Disks for the database? (y/n) [n]: n</p>
-</div>
-<div class="paragraph">
-<p>=== Azure Large Instance (Bare Metal) Storage details ===<br>
-Are you using Azure Large Instance (Bare Metal) for the database? (y/n) [n]: n</p>
-</div>
-<div class="paragraph">
-<p>Enter the database type to add, 'hana', 'oracle', or 'exit' (for no database): exit</p>
-</div>
-<div class="paragraph">
-<p>Editing configuration complete, writing output to 'azacsnap.json'.</p>
 </div>
 </li>
 <li>
@@ -9312,13 +9315,15 @@ azacsnap -c test --test oracle --configfile azacsnap.json</code></pre>
 <div class="paragraph">
 <p>The expected output:</p>
 </div>
-<div class="paragraph">
-<p>[azacsnap@acao-ora01 bin]$ azacsnap -c test --test oracle --configfile azacsnap.json<br>
-BEGIN : Test process started for 'oracle'<br>
-BEGIN : Oracle DB tests<br>
-PASSED: Successful connectivity to Oracle DB version 1908000000<br>
-END   : Test process complete for 'oracle'<br>
-[azacsnap@acao-ora01 bin]$</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-cli" data-lang="cli">[azacsnap@acao-ora01 bin]$ azacsnap -c test --test oracle --configfile azacsnap.json
+BEGIN : Test process started for 'oracle'
+BEGIN : Oracle DB tests
+PASSED: Successful connectivity to Oracle DB version 1908000000
+END   : Test process complete for 'oracle'
+[azacsnap@acao-ora01 bin]$</code></pre>
+</div>
 </div>
 </li>
 <li>
