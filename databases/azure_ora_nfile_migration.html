@@ -8766,7 +8766,7 @@
 <p class="page-details">
   
     
-    <time datetime="2023-05-04 14:08:27 +0000">05/04/2023</time>
+    <time datetime="2023-05-16 22:59:00 +0000">05/16/2023</time>
     
   
 
@@ -8776,6 +8776,14 @@
           alt="acao8888"
           width="20" height="20"
           src="https://avatars.githubusercontent.com/u/58010249?v=4"
+          style="border-radius: 50%;"/>
+  </a>
+  
+  <a target="_blank" class="ext-link-indicator" href="https://github.com/kevin-hoke">
+    <img  class="avatar avatar-small"
+          alt="kevin-hoke"
+          width="20" height="20"
+          src="https://avatars.githubusercontent.com/u/55808219?v=4"
           style="border-radius: 50%;"/>
   </a>
   
@@ -8888,23 +8896,11 @@ If there is not sufficient space on the host, the <code>NOCOPY</code> option can
 <p>Start with PDB upgrade after conversion if the version between the source single-instance non-CDB and the target CDB are different. For the same-version conversion, this step can be skipped.</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-cli" data-lang="cli">sqlplus / as sysdba;</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-cli" data-lang="cli">alter session set container=ncdb;</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-cli" data-lang="cli">alter pluggable database open upgrade;
-exit;</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-cli" data-lang="cli">dbupgrade -c ncdb -l /home/oracle</code></pre>
+<pre class="highlight"><code class="language-cli" data-lang="cli">sqlplus / as sysdba;
+alter session set container=ncdb
+alter pluggable database open upgrade;
+exit;
+dbupgrade -c ncdb -l /home/oracle</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -8915,18 +8911,10 @@ exit;</code></pre>
 <p>Open the pluggable database, check for pdb plug-in violations, and recompile the invalid objects.</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-cli" data-lang="cli">alter pluggable database ncdb open;</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-cli" data-lang="cli">alter session set container=ncdb;
-select message from pdb_plug_in_violations where type like '%ERR%' and status &lt;&gt; 'RESOLVED';</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-cli" data-lang="cli">$ORACLE_HOME/perl/bin/perl $ORACLE_HOME/rdbms/admin/catcon.pl -n 1 -c 'ncdb' -e -b utlrp -d $ORACLE_HOME/rdbms/admin utlrp.sql</code></pre>
+<pre class="highlight"><code class="language-cli" data-lang="cli">alter pluggable database ncdb open;
+alter session set container=ncdb;
+select message from pdb_plug_in_violations where type like '%ERR%' and status &lt;&gt; 'RESOLVED';
+$ORACLE_HOME/perl/bin/perl $ORACLE_HOME/rdbms/admin/catcon.pl -n 1 -c 'ncdb' -e -b utlrp -d $ORACLE_HOME/rdbms/admin utlrp.sql</code></pre>
 </div>
 </div>
 </li>
@@ -8934,12 +8922,8 @@ select message from pdb_plug_in_violations where type like '%ERR%' and status &l
 <p>Execute <code>noncdb_to_pdb.sql</code> to update the data dictionary.</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-cli" data-lang="cli">sqlplus / as sysdba</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-cli" data-lang="cli">alter session set container=ncdb;
+<pre class="highlight"><code class="language-cli" data-lang="cli">sqlplus / as sysdba
+alter session set container=ncdb;
 @$ORACLE_HOME/rdbms/admin/noncdb_to_pdb.sql;</code></pre>
 </div>
 </div>
@@ -9012,9 +8996,6 @@ The admin user is the management user on the on-premises Oracle server host with
 <pre class="highlight"><code class="language-cli" data-lang="cli">ansible-playbook -i hosts ora_pdb_relocate.yml -u azureuser --private-key db1.pem -t ora_pdb_relo_primary</code></pre>
 </div>
 </div>
-</li>
-</ol>
-</div>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -9026,6 +9007,9 @@ The Ansible controller can be located either on-premises or in the Azure cloud. 
 </td>
 </tr>
 </table>
+</div>
+</li>
+</ol>
 </div>
 </div>
 </div>

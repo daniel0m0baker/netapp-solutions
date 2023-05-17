@@ -8766,7 +8766,7 @@
 <p class="page-details">
   
     
-    <time datetime="2023-05-11 12:59:05 +0000">05/11/2023</time>
+    <time datetime="2023-05-16 22:59:00 +0000">05/16/2023</time>
     
   
 
@@ -8849,9 +8849,13 @@ azacsnap -c backup --volume other --prefix acao-ora01-log --retention 250</code>
 </div>
 </div>
 <div class="paragraph">
-<p>Crontab schedule:<br>
-15,30,45 * * * * /home/azacsnap/snap_log.sh<br>
-0 */2 * * * /home/azacsnap/snap_data.sh</p>
+<p>Crontab schedule:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>15,30,45 * * * * /home/azacsnap/snap_log.sh
+0 */2 * * * /home/azacsnap/snap_data.sh</pre>
+</div>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -8892,52 +8896,40 @@ When setting up the backup <code>azacsnap.json</code> configuration file, add al
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Create a test table in the database to be restored.<br>
-[oracle@acao-ora01 ~]$ sqlplus / as sysdba</p>
-<div class="paragraph">
-<p>SQL*Plus: Release 19.0.0.0.0 - Production on Mon Sep 12 19:02:35 2022<br>
-Version 19.8.0.0.0</p>
-</div>
-<div class="paragraph">
-<p>Copyright (c) 1982, 2019, Oracle.  All rights reserved.</p>
-</div>
-<div class="paragraph">
-<p>Connected to:<br>
-Oracle Database 19c Enterprise Edition Release 19.0.0.0.0 - Production<br>
-Version 19.8.0.0.0</p>
-</div>
-<div class="paragraph">
-<p>SQL&gt; create table testsnapshot(<br>
-     id integer,<br>
-     event varchar(100),<br>
-     dt timestamp);</p>
-</div>
-<div class="paragraph">
-<p>Table created.</p>
-</div>
-<div class="paragraph">
-<p>SQL&gt; insert into testsnapshot values(1,'insert a data marker to validate snapshot restore',sysdate);</p>
-</div>
-<div class="paragraph">
-<p>1 row created.</p>
-</div>
-<div class="paragraph">
-<p>SQL&gt; commit;</p>
-</div>
-<div class="paragraph">
-<p>Commit complete.</p>
-</div>
-<div class="paragraph">
-<p>SQL&gt; select * from testsnapshot;</p>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>ID</pre>
-</div>
-</div>
+<p>Create a test table in the database to be restored.</p>
 <div class="listingblock">
 <div class="content">
-<pre>EVENT
+<pre>[oracle@acao-ora01 ~]$ sqlplus / as sysdba
+
+SQL*Plus: Release 19.0.0.0.0 - Production on Mon Sep 12 19:02:35 2022
+Version 19.8.0.0.0
+
+Copyright (c) 1982, 2019, Oracle.  All rights reserved.
+
+Connected to:
+Oracle Database 19c Enterprise Edition Release 19.0.0.0.0 - Production
+Version 19.8.0.0.0
+
+SQL&gt; create table testsnapshot(
+     id integer,
+     event varchar(100),
+     dt timestamp);
+
+Table created.
+
+SQL&gt; insert into testsnapshot values(1,'insert a data marker to validate snapshot restore',sysdate);
+
+1 row created.
+
+SQL&gt; commit;
+
+Commit complete.
+
+SQL&gt; select * from testsnapshot;
+
+ ID
+----------
+EVENT
 --------------------------------------------------------------------------------
 DT
 ---------------------------------------------------------------------------
@@ -8949,42 +8941,38 @@ insert a data marker to validate snapshot restore
 </li>
 <li>
 <p>Drop the table after the snapshot backups.</p>
-<div class="paragraph">
-<p>[oracle@acao-ora01 ~]$ sqlplus / as sysdba</p>
+<div class="listingblock">
+<div class="content">
+<pre>[oracle@acao-ora01 ~]$ sqlplus / as sysdba
+
+SQL*Plus: Release 19.0.0.0.0 - Production on Tue Sep 13 14:20:22 2022
+Version 19.8.0.0.0
+
+Copyright (c) 1982, 2019, Oracle.  All rights reserved.
+
+
+Connected to:
+Oracle Database 19c Enterprise Edition Release 19.0.0.0.0 - Production
+Version 19.8.0.0.0
+
+SQL&gt; drop table testsnapshot;
+
+Table dropped.
+
+SQL&gt; select * from testsnapshot;
+select * from testsnapshot
+              *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+SQL&gt; shutdown immediate;
+Database closed.
+Database dismounted.
+ORACLE instance shut down.
+SQL&gt; exit
+Disconnected from Oracle Database 19c Enterprise Edition Release 19.0.0.0.0 - Production
+Version 19.8.0.0.0</pre>
 </div>
-<div class="paragraph">
-<p>SQL*Plus: Release 19.0.0.0.0 - Production on Tue Sep 13 14:20:22 2022<br>
-Version 19.8.0.0.0</p>
-</div>
-<div class="paragraph">
-<p>Copyright (c) 1982, 2019, Oracle.  All rights reserved.</p>
-</div>
-<div class="paragraph">
-<p>Connected to:<br>
-Oracle Database 19c Enterprise Edition Release 19.0.0.0.0 - Production<br>
-Version 19.8.0.0.0</p>
-</div>
-<div class="paragraph">
-<p>SQL&gt; drop table testsnapshot;</p>
-</div>
-<div class="paragraph">
-<p>Table dropped.</p>
-</div>
-<div class="paragraph">
-<p>SQL&gt; select * from testsnapshot;<br>
-select * from testsnapshot<br>
-              *<br>
-ERROR at line 1:<br>
-ORA-00942: table or view does not exist</p>
-</div>
-<div class="paragraph">
-<p>SQL&gt; shutdown immediate;<br>
-Database closed.<br>
-Database dismounted.<br>
-ORACLE instance shut down.<br>
-SQL&gt; exit<br>
-Disconnected from Oracle Database 19c Enterprise Edition Release 19.0.0.0.0 - Production<br>
-Version 19.8.0.0.0</p>
 </div>
 </li>
 <li>
@@ -9013,106 +9001,89 @@ Version 19.8.0.0.0</p>
 </li>
 <li>
 <p>Resync the control files if you have multiple copies of them, and replace the old control file with the latest copy available.</p>
-<div class="paragraph">
-<p>[oracle@acao-ora01 ~]$ mv /u02/oradata/ORATST/control01.ctl /u02/oradata/ORATST/control01.ctl.bk<br>
-[oracle@acao-ora01 ~]$ cp /u03/orareco/ORATST/control02.ctl /u02/oradata/ORATST/control01.ctl</p>
+<div class="listingblock">
+<div class="content">
+<pre>[oracle@acao-ora01 ~]$ mv /u02/oradata/ORATST/control01.ctl /u02/oradata/ORATST/control01.ctl.bk
+[oracle@acao-ora01 ~]$ cp /u03/orareco/ORATST/control02.ctl /u02/oradata/ORATST/control01.ctl</pre>
+</div>
 </div>
 </li>
 <li>
 <p>Log into the Oracle server VM and run database recovery with sqlplus.</p>
-<div class="paragraph">
-<p>[oracle@acao-ora01 ~]$ sqlplus / as sysdba</p>
-</div>
-<div class="paragraph">
-<p>SQL*Plus: Release 19.0.0.0.0 - Production on Tue Sep 13 15:10:17 2022<br>
-Version 19.8.0.0.0</p>
-</div>
-<div class="paragraph">
-<p>Copyright (c) 1982, 2019, Oracle.  All rights reserved.</p>
-</div>
-<div class="paragraph">
-<p>Connected to an idle instance.</p>
-</div>
-<div class="paragraph">
-<p>SQL&gt; startup mount;<br>
-ORACLE instance started.</p>
-</div>
-<div class="paragraph">
-<p>Total System Global Area 6442448984 bytes<br>
-Fixed Size                  8910936 bytes<br>
-Variable Size            1090519040 bytes<br>
-Database Buffers         5335154688 bytes<br>
-Redo Buffers                7864320 bytes<br>
-Database mounted.<br>
-SQL&gt; recover database using backup controlfile until cancel;<br>
-ORA-00279: change 3188523 generated at 09/13/2022 10:00:09 needed for thread 1<br>
-ORA-00289: suggestion :<br>
-/u03/orareco/ORATST/archivelog/2022_09_13/o1_mf_1_43__22rnjq9q_.arc<br>
-ORA-00280: change 3188523 for thread 1 is in sequence #43</p>
-</div>
-<div class="paragraph">
-<p>Specify log: {&lt;RET&gt;=suggested | filename | AUTO | CANCEL}</p>
-</div>
-<div class="paragraph">
-<p>ORA-00279: change 3188862 generated at 09/13/2022 10:01:20 needed for thread 1<br>
-ORA-00289: suggestion :<br>
-/u03/orareco/ORATST/archivelog/2022_09_13/o1_mf_1_44<em>29f2lgb5_.arc<br>
-ORA-00280: change 3188862 for thread 1 is in sequence #44<br>
-ORA-00278: log file<br>
-'/u03/orareco/ORATST/archivelog/2022_09_13/o1_mf_1_43</em>22rnjq9q_.arc' no longer<br>
-needed for this recovery</p>
-</div>
-<div class="paragraph">
-<p>Specify log: {&lt;RET&gt;=suggested | filename | AUTO | CANCEL}</p>
-</div>
-<div class="paragraph">
-<p>ORA-00279: change 3193117 generated at 09/13/2022 12:00:08 needed for thread 1<br>
-ORA-00289: suggestion :<br>
-/u03/orareco/ORATST/archivelog/2022_09_13/o1_mf_1_45<em>29h6qqyw_.arc<br>
-ORA-00280: change 3193117 for thread 1 is in sequence #45<br>
-ORA-00278: log file<br>
-'/u03/orareco/ORATST/archivelog/2022_09_13/o1_mf_1_44</em>29f2lgb5_.arc' no longer<br>
-needed for this recovery</p>
-</div>
-<div class="paragraph">
-<p>Specify log: {&lt;RET&gt;=suggested | filename | AUTO | CANCEL}</p>
-</div>
-<div class="paragraph">
-<p>ORA-00279: change 3193440 generated at 09/13/2022 12:01:20 needed for thread 1<br>
-ORA-00289: suggestion :<br>
-/u03/orareco/ORATST/archivelog/2022_09_13/o1_mf_1_46_%u_.arc<br>
-ORA-00280: change 3193440 for thread 1 is in sequence #46<br>
-ORA-00278: log file<br>
-'/u03/orareco/ORATST/archivelog/2022_09_13/o1_mf_1_45__29h6qqyw_.arc' no longer<br>
-needed for this recovery</p>
-</div>
-<div class="paragraph">
-<p>Specify log: {&lt;RET&gt;=suggested | filename | AUTO | CANCEL}<br>
-cancel<br>
-Media recovery cancelled.<br>
-SQL&gt; alter database open resetlogs;</p>
-</div>
-<div class="paragraph">
-<p>Database altered.</p>
-</div>
-<div class="paragraph">
-<p>SQL&gt; select * from testsnapshot;</p>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>ID</pre>
-</div>
-</div>
 <div class="listingblock">
 <div class="content">
-<pre>EVENT
+<pre>[oracle@acao-ora01 ~]$ sqlplus / as sysdba
+
+SQL*Plus: Release 19.0.0.0.0 - Production on Tue Sep 13 15:10:17 2022
+Version 19.8.0.0.0
+
+Copyright (c) 1982, 2019, Oracle.  All rights reserved.
+
+Connected to an idle instance.
+
+SQL&gt; startup mount;
+ORACLE instance started.
+
+Total System Global Area 6442448984 bytes
+Fixed Size                  8910936 bytes
+Variable Size            1090519040 bytes
+Database Buffers         5335154688 bytes
+Redo Buffers                7864320 bytes
+Database mounted.
+SQL&gt; recover database using backup controlfile until cancel;
+ORA-00279: change 3188523 generated at 09/13/2022 10:00:09 needed for thread 1
+ORA-00289: suggestion :
+/u03/orareco/ORATST/archivelog/2022_09_13/o1_mf_1_43__22rnjq9q_.arc
+ORA-00280: change 3188523 for thread 1 is in sequence #43
+
+Specify log: {&lt;RET&gt;=suggested | filename | AUTO | CANCEL}
+
+ORA-00279: change 3188862 generated at 09/13/2022 10:01:20 needed for thread 1
+ORA-00289: suggestion :
+/u03/orareco/ORATST/archivelog/2022_09_13/o1_mf_1_44__29f2lgb5_.arc
+ORA-00280: change 3188862 for thread 1 is in sequence #44
+ORA-00278: log file
+'/u03/orareco/ORATST/archivelog/2022_09_13/o1_mf_1_43__22rnjq9q_.arc' no longer
+needed for this recovery
+
+Specify log: {&lt;RET&gt;=suggested | filename | AUTO | CANCEL}
+
+ORA-00279: change 3193117 generated at 09/13/2022 12:00:08 needed for thread 1
+ORA-00289: suggestion :
+/u03/orareco/ORATST/archivelog/2022_09_13/o1_mf_1_45__29h6qqyw_.arc
+ORA-00280: change 3193117 for thread 1 is in sequence #45
+ORA-00278: log file
+'/u03/orareco/ORATST/archivelog/2022_09_13/o1_mf_1_44__29f2lgb5_.arc' no longer
+needed for this recovery
+
+Specify log: {&lt;RET&gt;=suggested | filename | AUTO | CANCEL}
+
+ORA-00279: change 3193440 generated at 09/13/2022 12:01:20 needed for thread 1
+ORA-00289: suggestion :
+/u03/orareco/ORATST/archivelog/2022_09_13/o1_mf_1_46_%u_.arc
+ORA-00280: change 3193440 for thread 1 is in sequence #46
+ORA-00278: log file
+'/u03/orareco/ORATST/archivelog/2022_09_13/o1_mf_1_45__29h6qqyw_.arc' no longer
+needed for this recovery
+
+Specify log: {&lt;RET&gt;=suggested | filename | AUTO | CANCEL}
+cancel
+Media recovery cancelled.
+SQL&gt; alter database open resetlogs;
+
+Database altered.
+
+SQL&gt; select * from testsnapshot;
+
+  ID
+----------
+EVENT
 --------------------------------------------------------------------------------
 DT
 ---------------------------------------------------------------------------
          1
 insert a data marker to validate snapshot restore
 12-SEP-22 07.07.35.000000 PM
-
 
 SQL&gt; select systimestamp from dual;
 
