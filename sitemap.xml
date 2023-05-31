@@ -204,14 +204,7 @@
     <url>
       <loc>https://docs.netapp.com/us-en/netapp-solutions/containers/anthos-with-netapp/a-w-n_videos_and_demos.html</loc>
       
-      <lastmod>2023-05-04T14:08:27+00:00</lastmod>
-      
-    </url>
-  
-    <url>
-      <loc>https://docs.netapp.com/us-en/netapp-solutions/containers/anthos-with-netapp/a-w-n_videos_baremetal_install.html</loc>
-      
-      <lastmod>2023-05-04T14:08:27+00:00</lastmod>
+      <lastmod>2023-05-31T16:32:10+00:00</lastmod>
       
     </url>
   
@@ -897,7 +890,7 @@
     <url>
       <loc>https://docs.netapp.com/us-en/netapp-solutions/ehc/aws/aws-guest.html</loc>
       
-      <lastmod>2022-10-25T18:39:28+00:00</lastmod>
+      <lastmod>2023-05-31T16:32:10+00:00</lastmod>
       
     </url>
   
@@ -918,7 +911,7 @@
     <url>
       <loc>https://docs.netapp.com/us-en/netapp-solutions/ehc/aws/aws-native-overview.html</loc>
       
-      <lastmod>2023-05-17T17:44:13+00:00</lastmod>
+      <lastmod>2023-05-31T16:32:10+00:00</lastmod>
       
     </url>
   
@@ -1002,7 +995,7 @@
     <url>
       <loc>https://docs.netapp.com/us-en/netapp-solutions/databases/aws_ora_fsx_ec2_migration.html</loc>
       
-      <lastmod>2023-05-04T14:08:27+00:00</lastmod>
+      <lastmod>2023-05-31T16:32:10+00:00</lastmod>
       
     </url>
   
@@ -1023,7 +1016,7 @@
     <url>
       <loc>https://docs.netapp.com/us-en/netapp-solutions/databases/aws_postgres_fsx_ec2_hadr.html</loc>
       
-      <lastmod>2023-05-04T15:20:06+00:00</lastmod>
+      <lastmod>2023-05-31T16:32:10+00:00</lastmod>
       
     </url>
   
@@ -1065,7 +1058,7 @@
     <url>
       <loc>https://docs.netapp.com/us-en/netapp-solutions/ehc/azure/azure-migrate-vmware-hcx.html</loc>
       
-      <lastmod>2022-10-12T21:34:11+00:00</lastmod>
+      <lastmod>2023-05-31T16:32:10+00:00</lastmod>
       
     </url>
   
@@ -1238,58 +1231,9 @@
     </url>
   
     <url>
-      <loc>https://docs.netapp.com/us-en/netapp-solutions/containers/baremetal-anthos/bmanthos_abstract.html</loc>
-      
-      <lastmod>2022-05-04T19:57:43+00:00</lastmod>
-      
-    </url>
-  
-    <url>
-      <loc>https://docs.netapp.com/us-en/netapp-solutions/containers/baremetal-anthos/bmanthos_conclusion.html</loc>
-      
-      <lastmod>2022-03-14T15:27:15+00:00</lastmod>
-      
-    </url>
-  
-    <url>
-      <loc>https://docs.netapp.com/us-en/netapp-solutions/containers/baremetal-anthos/bmanthos_deployment_summary.html</loc>
-      
-      <lastmod>2022-03-14T15:27:15+00:00</lastmod>
-      
-    </url>
-  
-    <url>
-      <loc>https://docs.netapp.com/us-en/netapp-solutions/containers/baremetal-anthos/bmanthos_introduction.html</loc>
-      
-      <lastmod>2022-05-04T20:12:53+00:00</lastmod>
-      
-    </url>
-  
-    <url>
-      <loc>https://docs.netapp.com/us-en/netapp-solutions/containers/baremetal-anthos/bmanthos_solution_overview.html</loc>
-      
-      <lastmod>2022-03-14T15:27:15+00:00</lastmod>
-      
-    </url>
-  
-    <url>
       <loc>https://docs.netapp.com/us-en/netapp-solutions/containers/baremetal-anthos/bmanthos_solution_requirements.html</loc>
       
       <lastmod>2023-05-13T18:59:07+00:00</lastmod>
-      
-    </url>
-  
-    <url>
-      <loc>https://docs.netapp.com/us-en/netapp-solutions/containers/baremetal-anthos/bmanthos_solution_validation.html</loc>
-      
-      <lastmod>2022-05-04T20:17:28+00:00</lastmod>
-      
-    </url>
-  
-    <url>
-      <loc>https://docs.netapp.com/us-en/netapp-solutions/containers/baremetal-anthos/bmanthos_where_to_find_additional_information.html</loc>
-      
-      <lastmod>2022-03-14T15:27:15+00:00</lastmod>
       
     </url>
   
@@ -1527,7 +1471,7 @@
     <url>
       <loc>https://docs.netapp.com/us-en/netapp-solutions/rhhc/provider-managed/data-migration.html</loc>
       
-      <lastmod>2023-05-18T17:55:39+00:00</lastmod>
+      <lastmod>2023-05-31T16:32:10+00:00</lastmod>
       
     </url>
   
@@ -1548,7 +1492,7 @@
     <url>
       <loc>https://docs.netapp.com/us-en/netapp-solutions/rhhc/provider-managed/data-protection.html</loc>
       
-      <lastmod>2023-05-18T17:55:39+00:00</lastmod>
+      <lastmod>2023-05-31T16:32:10+00:00</lastmod>
       
     </url>
   
@@ -1681,28 +1625,7 @@
     <url>
       <loc>https://docs.netapp.com/us-en/netapp-solutions/containers/devops_with_netapp/dwn_videos_and_demos.html</loc>
       
-      <lastmod>2022-04-28T18:59:42+00:00</lastmod>
-      
-    </url>
-  
-    <url>
-      <loc>https://docs.netapp.com/us-en/netapp-solutions/containers/devops_with_netapp/dwn_videos_astra_control_flexclone.html</loc>
-      
-      <lastmod>2022-04-28T18:56:52+00:00</lastmod>
-      
-    </url>
-  
-    <url>
-      <loc>https://docs.netapp.com/us-en/netapp-solutions/containers/devops_with_netapp/dwn_videos_clone_for_postmortem_and_restore.html</loc>
-      
-      <lastmod>2022-04-28T18:57:50+00:00</lastmod>
-      
-    </url>
-  
-    <url>
-      <loc>https://docs.netapp.com/us-en/netapp-solutions/containers/devops_with_netapp/dwn_videos_data_protection_in_ci_cd_pipeline.html</loc>
-      
-      <lastmod>2022-04-28T18:58:30+00:00</lastmod>
+      <lastmod>2023-05-31T16:32:10+00:00</lastmod>
       
     </url>
   
@@ -1793,7 +1716,7 @@
     <url>
       <loc>https://docs.netapp.com/us-en/netapp-solutions/ehc/gcp/gcp-app-dr-sc-cvo-veeam.html</loc>
       
-      <lastmod>2023-05-17T17:44:13+00:00</lastmod>
+      <lastmod>2023-05-31T16:32:10+00:00</lastmod>
       
     </url>
   
@@ -2458,7 +2381,7 @@
     <url>
       <loc>https://docs.netapp.com/us-en/netapp-solutions/databases/marketing_overview.html</loc>
       
-      <lastmod>2022-03-31T13:54:12+00:00</lastmod>
+      <lastmod>2023-05-31T16:32:10+00:00</lastmod>
       
     </url>
   
@@ -3429,65 +3352,9 @@
     </url>
   
     <url>
-      <loc>https://docs.netapp.com/us-en/netapp-solutions/containers/rh-os-n_videos_RHV_deployment.html</loc>
-      
-      <lastmod>2021-06-14T19:52:55+00:00</lastmod>
-      
-    </url>
-  
-    <url>
       <loc>https://docs.netapp.com/us-en/netapp-solutions/containers/rh-os-n_videos_and_demos.html</loc>
       
-      <lastmod>2022-03-08T19:31:27+00:00</lastmod>
-      
-    </url>
-  
-    <url>
-      <loc>https://docs.netapp.com/us-en/netapp-solutions/containers/rh-os-n_videos_astra_control_flexclone.html</loc>
-      
-      <lastmod>2022-03-08T17:26:10+00:00</lastmod>
-      
-    </url>
-  
-    <url>
-      <loc>https://docs.netapp.com/us-en/netapp-solutions/containers/rh-os-n_videos_clone_for_postmortem_and_restore.html</loc>
-      
-      <lastmod>2021-12-21T15:06:18+00:00</lastmod>
-      
-    </url>
-  
-    <url>
-      <loc>https://docs.netapp.com/us-en/netapp-solutions/containers/rh-os-n_videos_data_protection_in_ci_cd_pipeline.html</loc>
-      
-      <lastmod>2021-11-15T08:34:05+00:00</lastmod>
-      
-    </url>
-  
-    <url>
-      <loc>https://docs.netapp.com/us-en/netapp-solutions/containers/rh-os-n_videos_openshift_virt_install.html</loc>
-      
-      <lastmod>2021-08-26T13:35:35+00:00</lastmod>
-      
-    </url>
-  
-    <url>
-      <loc>https://docs.netapp.com/us-en/netapp-solutions/containers/rh-os-n_videos_openshift_virt_vm_deploy.html</loc>
-      
-      <lastmod>2021-08-26T13:35:35+00:00</lastmod>
-      
-    </url>
-  
-    <url>
-      <loc>https://docs.netapp.com/us-en/netapp-solutions/containers/rh-os-n_videos_workload_migration_acc.html</loc>
-      
-      <lastmod>2021-10-04T05:40:06+00:00</lastmod>
-      
-    </url>
-  
-    <url>
-      <loc>https://docs.netapp.com/us-en/netapp-solutions/containers/rh-os-n_videos_workload_migration_manual.html</loc>
-      
-      <lastmod>2021-08-05T11:20:36+00:00</lastmod>
+      <lastmod>2023-05-31T16:32:10+00:00</lastmod>
       
     </url>
   
@@ -3583,41 +3450,6 @@
     </url>
   
     <url>
-      <loc>https://docs.netapp.com/us-en/netapp-solutions/virtualization/scv_videos_backup_workflow.html</loc>
-      
-      <lastmod>2022-03-31T20:18:57+00:00</lastmod>
-      
-    </url>
-  
-    <url>
-      <loc>https://docs.netapp.com/us-en/netapp-solutions/virtualization/scv_videos_deployment.html</loc>
-      
-      <lastmod>2022-03-31T20:18:57+00:00</lastmod>
-      
-    </url>
-  
-    <url>
-      <loc>https://docs.netapp.com/us-en/netapp-solutions/virtualization/scv_videos_prerequisites.html</loc>
-      
-      <lastmod>2022-03-31T20:18:57+00:00</lastmod>
-      
-    </url>
-  
-    <url>
-      <loc>https://docs.netapp.com/us-en/netapp-solutions/virtualization/scv_videos_restore_workflow.html</loc>
-      
-      <lastmod>2022-04-05T13:21:14+00:00</lastmod>
-      
-    </url>
-  
-    <url>
-      <loc>https://docs.netapp.com/us-en/netapp-solutions/virtualization/scv_videos_sql_restore.html</loc>
-      
-      <lastmod>2022-03-31T20:18:57+00:00</lastmod>
-      
-    </url>
-  
-    <url>
       <loc>https://docs.netapp.com/us-en/netapp-solutions/virtualization/scvmware-security-secure-development-activities.html</loc>
       
       <lastmod>2023-05-04T14:08:27+00:00</lastmod>
@@ -3627,14 +3459,14 @@
     <url>
       <loc>https://docs.netapp.com/us-en/netapp-solutions//search.html</loc>
       
-      <lastmod>2023-05-25T13:39:35+00:00</lastmod>
+      <lastmod>2023-05-31T21:00:51+00:00</lastmod>
       
     </url>
   
     <url>
       <loc>https://docs.netapp.com/us-en/netapp-solutions/rhhc/provider-managed/setup.html</loc>
       
-      <lastmod>2023-05-18T17:55:39+00:00</lastmod>
+      <lastmod>2023-05-31T16:32:10+00:00</lastmod>
       
     </url>
   
@@ -3655,7 +3487,7 @@
     <url>
       <loc>https://docs.netapp.com/us-en/netapp-solutions/databases/snapctr_svcs_ora.html</loc>
       
-      <lastmod>2023-03-30T15:27:15+00:00</lastmod>
+      <lastmod>2023-05-31T16:32:10+00:00</lastmod>
       
     </url>
   
@@ -3683,7 +3515,7 @@
     <url>
       <loc>https://docs.netapp.com/us-en/netapp-solutions/databases/sql-aws-ec2.html</loc>
       
-      <lastmod>2023-03-01T17:05:22+00:00</lastmod>
+      <lastmod>2023-05-31T16:32:10+00:00</lastmod>
       
     </url>
   
@@ -3942,7 +3774,7 @@
     <url>
       <loc>https://docs.netapp.com/us-en/netapp-solutions/videos.html</loc>
       
-      <lastmod>2023-05-18T17:55:39+00:00</lastmod>
+      <lastmod>2023-05-31T16:32:10+00:00</lastmod>
       
     </url>
   
@@ -3998,7 +3830,7 @@
     <url>
       <loc>https://docs.netapp.com/us-en/netapp-solutions/virtualization/vsphere_demos_videos.html</loc>
       
-      <lastmod>2023-05-04T14:08:27+00:00</lastmod>
+      <lastmod>2023-05-31T16:32:10+00:00</lastmod>
       
     </url>
   
@@ -4292,21 +4124,7 @@
     <url>
       <loc>https://docs.netapp.com/us-en/netapp-solutions/containers/tanzu_with_netapp/vtwn_videos_and_demos.html</loc>
       
-      <lastmod>2022-06-16T14:09:28+00:00</lastmod>
-      
-    </url>
-  
-    <url>
-      <loc>https://docs.netapp.com/us-en/netapp-solutions/containers/tanzu_with_netapp/vtwn_videos_astra_control_center_tkg.html</loc>
-      
-      <lastmod>2022-06-16T14:09:28+00:00</lastmod>
-      
-    </url>
-  
-    <url>
-      <loc>https://docs.netapp.com/us-en/netapp-solutions/containers/tanzu_with_netapp/vtwn_videos_astra_trident_tkg.html</loc>
-      
-      <lastmod>2022-06-16T14:09:28+00:00</lastmod>
+      <lastmod>2023-05-31T16:32:10+00:00</lastmod>
       
     </url>
   
