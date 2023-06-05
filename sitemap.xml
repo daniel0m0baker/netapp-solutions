@@ -1469,6 +1469,13 @@
     </url>
   
     <url>
+      <loc>https://docs.netapp.com/us-en/netapp-solutions/rhhc/on-premises/data-migration.html</loc>
+      
+      <lastmod>2023-05-18T17:55:39+00:00</lastmod>
+      
+    </url>
+  
+    <url>
       <loc>https://docs.netapp.com/us-en/netapp-solutions/rhhc/provider-managed/data-migration.html</loc>
       
       <lastmod>2023-06-01T11:25:53+00:00</lastmod>
@@ -1483,7 +1490,7 @@
     </url>
   
     <url>
-      <loc>https://docs.netapp.com/us-en/netapp-solutions/rhhc/on-premises/data-migration.html</loc>
+      <loc>https://docs.netapp.com/us-en/netapp-solutions/rhhc/on-premises/data-protection.html</loc>
       
       <lastmod>2023-05-18T17:55:39+00:00</lastmod>
       
@@ -1498,13 +1505,6 @@
   
     <url>
       <loc>https://docs.netapp.com/us-en/netapp-solutions/rhhc/self-managed/data-protection.html</loc>
-      
-      <lastmod>2023-05-18T17:55:39+00:00</lastmod>
-      
-    </url>
-  
-    <url>
-      <loc>https://docs.netapp.com/us-en/netapp-solutions/rhhc/on-premises/data-protection.html</loc>
       
       <lastmod>2023-05-18T17:55:39+00:00</lastmod>
       
@@ -2190,48 +2190,6 @@
     </url>
   
     <url>
-      <loc>https://docs.netapp.com/us-en/netapp-solutions/rhhc/</loc>
-      
-      <lastmod>2023-05-18T17:55:39+00:00</lastmod>
-      
-    </url>
-  
-    <url>
-      <loc>https://docs.netapp.com/us-en/netapp-solutions/virtualization/</loc>
-      
-      <lastmod>2021-12-15T15:02:05+00:00</lastmod>
-      
-    </url>
-  
-    <url>
-      <loc>https://docs.netapp.com/us-en/netapp-solutions/ai/</loc>
-      
-      <lastmod>2022-01-31T23:56:46+00:00</lastmod>
-      
-    </url>
-  
-    <url>
-      <loc>https://docs.netapp.com/us-en/netapp-solutions/containers/</loc>
-      
-      <lastmod>2022-03-17T19:35:44+00:00</lastmod>
-      
-    </url>
-  
-    <url>
-      <loc>https://docs.netapp.com/us-en/netapp-solutions/data-analytics/</loc>
-      
-      <lastmod>2022-01-13T21:14:38+00:00</lastmod>
-      
-    </url>
-  
-    <url>
-      <loc>https://docs.netapp.com/us-en/netapp-solutions/ehc/gcp/</loc>
-      
-      <lastmod>2022-07-22T13:58:06+00:00</lastmod>
-      
-    </url>
-  
-    <url>
       <loc>https://docs.netapp.com/us-en/netapp-solutions/ehc/azure/</loc>
       
       <lastmod>2022-07-22T13:58:06+00:00</lastmod>
@@ -2246,9 +2204,51 @@
     </url>
   
     <url>
+      <loc>https://docs.netapp.com/us-en/netapp-solutions/ehc/gcp/</loc>
+      
+      <lastmod>2022-07-22T13:58:06+00:00</lastmod>
+      
+    </url>
+  
+    <url>
       <loc>https://docs.netapp.com/us-en/netapp-solutions/ehc/</loc>
       
       <lastmod>2022-07-22T13:58:06+00:00</lastmod>
+      
+    </url>
+  
+    <url>
+      <loc>https://docs.netapp.com/us-en/netapp-solutions/ai/</loc>
+      
+      <lastmod>2022-01-31T23:56:46+00:00</lastmod>
+      
+    </url>
+  
+    <url>
+      <loc>https://docs.netapp.com/us-en/netapp-solutions/rhhc/</loc>
+      
+      <lastmod>2023-05-18T17:55:39+00:00</lastmod>
+      
+    </url>
+  
+    <url>
+      <loc>https://docs.netapp.com/us-en/netapp-solutions/virtualization/</loc>
+      
+      <lastmod>2021-12-15T15:02:05+00:00</lastmod>
+      
+    </url>
+  
+    <url>
+      <loc>https://docs.netapp.com/us-en/netapp-solutions/containers/</loc>
+      
+      <lastmod>2022-03-17T19:35:44+00:00</lastmod>
+      
+    </url>
+  
+    <url>
+      <loc>https://docs.netapp.com/us-en/netapp-solutions/data-analytics/</loc>
+      
+      <lastmod>2022-01-13T21:14:38+00:00</lastmod>
       
     </url>
   
@@ -3459,7 +3459,14 @@
     <url>
       <loc>https://docs.netapp.com/us-en/netapp-solutions//search.html</loc>
       
-      <lastmod>2023-06-01T12:22:43+00:00</lastmod>
+      <lastmod>2023-06-05T19:07:09+00:00</lastmod>
+      
+    </url>
+  
+    <url>
+      <loc>https://docs.netapp.com/us-en/netapp-solutions/rhhc/on-premises/setup.html</loc>
+      
+      <lastmod>2023-05-18T17:55:39+00:00</lastmod>
       
     </url>
   
@@ -3478,16 +3485,16 @@
     </url>
   
     <url>
-      <loc>https://docs.netapp.com/us-en/netapp-solutions/rhhc/on-premises/setup.html</loc>
+      <loc>https://docs.netapp.com/us-en/netapp-solutions/databases/snapctr_svcs_ora.html</loc>
       
-      <lastmod>2023-05-18T17:55:39+00:00</lastmod>
+      <lastmod>2023-05-31T16:32:10+00:00</lastmod>
       
     </url>
   
     <url>
-      <loc>https://docs.netapp.com/us-en/netapp-solutions/databases/snapctr_svcs_ora.html</loc>
+      <loc>https://docs.netapp.com/us-en/netapp-solutions/rhhc/on-premises/solution.html</loc>
       
-      <lastmod>2023-05-31T16:32:10+00:00</lastmod>
+      <lastmod>2023-05-18T17:55:39+00:00</lastmod>
       
     </url>
   
@@ -3500,13 +3507,6 @@
   
     <url>
       <loc>https://docs.netapp.com/us-en/netapp-solutions/rhhc/self-managed/solution.html</loc>
-      
-      <lastmod>2023-05-18T17:55:39+00:00</lastmod>
-      
-    </url>
-  
-    <url>
-      <loc>https://docs.netapp.com/us-en/netapp-solutions/rhhc/on-premises/solution.html</loc>
       
       <lastmod>2023-05-18T17:55:39+00:00</lastmod>
       
@@ -3984,7 +3984,7 @@
     <url>
       <loc>https://docs.netapp.com/us-en/netapp-solutions/virtualization/vsrm-ontap9_new_features_with_srm_and_ontap_tools.html</loc>
       
-      <lastmod>2023-05-04T14:08:27+00:00</lastmod>
+      <lastmod>2023-06-05T19:06:52+00:00</lastmod>
       
     </url>
   

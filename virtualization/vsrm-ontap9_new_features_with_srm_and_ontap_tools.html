@@ -9150,7 +9150,7 @@
 <p class="page-details">
   
     
-    <time datetime="2023-05-04 14:08:27 +0000">05/04/2023</time>
+    <time datetime="2023-06-05 19:06:52 +0000">06/05/2023</time>
     
   
 
@@ -9168,7 +9168,7 @@
 <h2 id="latest-versions-of-vsphere-and-site-recovery-manager">Latest versions of vSphere and Site Recovery Manager</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>With the release of SRM 8.3 and later and the 9.7.1 and later releases of ONTAP tools, you are now able to protect VMs running on VMware vSphere 7.</p>
+<p>With the release of SRM 8.7 and later and the 9.12 and later releases of ONTAP tools, you are now able to protect VMs running on VMware vSphere 8 update 1.</p>
 </div>
 <div class="paragraph">
 <p>NetApp has shared a deep partnership with VMware for nearly two decades and strives to provide support for the latest releases as soon as possible. Always check the NetApp Interoperability Matrix Tool (IMT) for the latest qualified combinations of software.</p>
@@ -9182,7 +9182,7 @@
 <h2 id="vvols-support-and-why-spbm-matters-even-with-srm">vVols support (and why SPBM matters, even with SRM)</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Starting with the 8.3 release, SRM now supports storage policy-based management (SPBM) of replication leveraging vVols and array-based replication. To accomplish this, the SRM server was updated to include a new SRM vVols provider service, which communicates to the vCenter server’s SMS service for VASA related tasks.</p>
+<p>Starting with the 8.3 release, SRM now supports storage policy-based management (SPBM) of replication leveraging vVols and array-based replication for datastores using iSCSI, FCP, and NFS v3. To accomplish this, the SRM server was updated to include a new SRM vVols provider service, which communicates to the vCenter server’s SMS service for VASA related tasks.</p>
 </div>
 <div class="paragraph">
 <p>One advantage to this architecture is that an SRA is no longer needed since everything is handled using VASA.</p>
@@ -9191,12 +9191,15 @@
 <p>SPBM is a powerful tool in the vSphere toolbox, allow simplified, predictable, and consistent storage services for consumption by automation frameworks in private and hybrid cloud environments. Fundamentally, SPBM allows you to define classes of service that meet the needs of your diverse customer base. SRM now allows you to expose replication capabilities to your customers for critical workloads requiring robust industry-standard disaster- recovery orchestration and automation.</p>
 </div>
 <div class="paragraph">
+<p>vVols Architecture example with FCP or iSCSI:</p>
+</div>
+<div class="paragraph">
 <p><span class="image"><img src="./../media/vsrm-ontap9_image1.png" alt="Error: Missing Graphic Image"></span></p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="vvols-architecture-2-3-support-for-appliance-based-srm-servers">vVols Architecture 2.3 Support for appliance-based SRM servers</h2>
+<h2 id="support-for-appliance-based-srm-servers">Support for appliance-based SRM servers</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Photon OS-based SRM servers are now supported, in addition to legacy Windows-based platforms.</p>
@@ -9231,7 +9234,7 @@
 <h2 id="improved-performance">Improved performance</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Operational performance is a key requirement for SRM task execution. To meet the requirements of modern RTOs and RPOs, the SRA with ONTAP tools has added two new improvements.</p>
+<p>Operational performance is a key requirement for SRM task execution. To meet the requirements of modern RTOs and RPOs, the SRA with ONTAP tools has added three new improvements.</p>
 </div>
 <div class="ulist">
 <ul>
@@ -9240,6 +9243,9 @@
 </li>
 <li>
 <p><strong>ONTAP Tools 9.8 adds a new NAS- only optimized mode.</strong> When you use SVM- scoped accounts and connections to ONTAP clusters with only NFS based datastores, you can enable NAS-only optimized mode for peak performance in supported environments.</p>
+</li>
+<li>
+<p><strong>ONTAP Tools 9.12 added support for ONTAP&#8217;s SnapMirror quick resync feature.</strong> This enables rapid resyncronization of mirrors at the exense of having to recalculate storage efficency savings post process. This feature is not used by default, but can be enabled in large scale environments where traditional resync takes too long or is timing out.</p>
 </li>
 </ul>
 </div>
