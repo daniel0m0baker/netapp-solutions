@@ -3356,6 +3356,8 @@
 
 
 
+
+
         </li>
       </ul>
     
@@ -3578,7 +3580,61 @@
           </a>
           
 
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/us-en/netapp-solutions/pdfs/sidebar/Protecting_Workloads.pdf" 
+            
+          >
+            <img src="/us-en/netapp-solutions/images/pdf.png" alt="" width="16" height="16"/>
+            Protecting Workloads
+          </a>
+          
 
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/us-en/netapp-solutions/pdfs/sidebar/Migrating_Workloads.pdf" 
+            
+          >
+            <img src="/us-en/netapp-solutions/images/pdf.png" alt="" width="16" height="16"/>
+            Migrating Workloads
+          </a>
+          
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+    <ul class="subfolders" id="pdf-remove" style="display:none;"><li class="active"></li></ul>
+  
 
 
 
@@ -7924,6 +7980,13 @@
         Guest Connected storage for AVS
       </a></li><li 
       data-pdf-exists="true" 
+      data-pdf-filename="Supplemental NFS Datastore for GCVE"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/us-en/netapp-solutions/ehc/gcp/gcp-ncvs-datastore.html">
+        Supplemental NFS Datastore for GCVE
+      </a></li><li 
+      data-pdf-exists="true" 
       data-pdf-filename="Guest Connected storage for GCVE"
       data-li-level="4#" 
       class=" "
@@ -8115,18 +8178,57 @@
       <ul style="display: none;">
         <li 
       data-pdf-exists="true" 
-      data-pdf-filename="Application Disaster Recovery with SnapCenter, CVO and Veeam Replication"
-      data-li-level="3#" 
+      data-pdf-filename="Protecting Workloads"
+      data-li-level="3" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Protecting Workloads</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Disaster Recovery with Veeam (supplemental NFS datastore)"
+      data-li-level="4#" 
       class=" "
-    ><a class="na-navbar-padding" href="/us-en/netapp-solutions/ehc/gcp/gcp-app-dr-sc-cvo-veeam.html">
-        Application Disaster Recovery with SnapCenter, CVO and Veeam Replication
+    ><a class="na-navbar-padding" href="/us-en/netapp-solutions/ehc/gcp/gcp-app-dr-sc-cvs-veeam.html">
+        Disaster Recovery with Veeam (supplemental NFS datastore)
       </a></li><li 
       data-pdf-exists="true" 
+      data-pdf-filename="Disaster Recovery with Veeam (guest connected storage)"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/us-en/netapp-solutions/ehc/gcp/gcp-app-dr-sc-cvo-veeam.html">
+        Disaster Recovery with Veeam (guest connected storage)
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Migrating Workloads"
+      data-li-level="3" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Migrating Workloads</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
       data-pdf-filename="Migrate Workloads to Cloud Volume Service NFS datastore using VMware HCX"
-      data-li-level="3#" 
+      data-li-level="4#" 
       class=" "
     ><a class="na-navbar-padding" href="/us-en/netapp-solutions/ehc/gcp/gcp-migrate-vmware-hcx.html">
         Migrate Workloads to Cloud Volume Service NFS datastore using VMware HCX
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Migrate VM Workloads to NetApp Cloud Volume Service NFS datastore using Veeam Replication"
+      data-li-level="4#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/us-en/netapp-solutions/ehc/gcp/gcp-migrate-veeam.html">
+        Migrate VM Workloads to NetApp Cloud Volume Service NFS datastore using Veeam Replication
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Region Support for NetApp CVS NFS Datastores"
+      data-li-level="3#" 
+      class="  active "
+    ><a class="na-navbar-padding" href="/us-en/netapp-solutions/ehc/gcp/gcp-regions.html">
+        Region Support for NetApp CVS NFS Datastores
       </a></li><li 
       data-pdf-exists="true" 
       data-pdf-filename="Security overview - NetApp Cloud Volumes Service (CVS) in Google Cloud"
@@ -9156,17 +9258,25 @@
 </p>
 
 <div class="paragraph lead">
-<p>The availability of supplemental NFS datastores on GCP / GCVE is defined by Google.  First, you need to determine if both GCVE and CVS are available in a specific region.  Next, you need to determine if the CVS supplemental NFS datastore is supported in that region.</p>
+<p>Supplemental NFS datastore for GCVE is supported with NetApp Cloud Volume Service.</p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p>Check the availability of GCVE and CVS <a href="">here</a>.</p>
-</li>
-<li>
-<p>Check the availability of the CVS supplemental NFS datastore <a href="">here</a>.</p>
-</li>
-</ul>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/netapp-solutions/images/note.svg" alt="Note">
+</td>
+<td class="content">
+Only CVS-Performance volumes can be used for GCVE NFS Datastore.<br>
+For the available location, refer <a href="https://bluexp.netapp.com/cloud-volumes-global-regions#cvsGc">Global Region Map</a>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Google Cloud VMware Engine is available at following locations <span class="image"><img src="./../../media/gcve_regions_Mar2023.png" alt="gcve regions Mar2023"></span><br>
+To minimize latency, NetApp CVS Volume and GCVE where you intent to mount the volume should be in same availability zone.<br>
+Work with Google and NetApp Solution Architects for availability and TCO optimizations.</p>
 </div>
 
     </article>
